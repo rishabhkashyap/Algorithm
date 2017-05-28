@@ -1,8 +1,8 @@
-package com.graph.dfs;
+package com.graph.bfs;
 
 import com.graph.model.Vertex;
 
-public class DfsMain {
+public class BfsMain {
 
 	public static void main(String[] args) {
 		GraphBFS search=new GraphBFS(9);

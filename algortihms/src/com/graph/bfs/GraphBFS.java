@@ -1,4 +1,4 @@
-package com.graph.dfs;
+package com.graph.bfs;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
