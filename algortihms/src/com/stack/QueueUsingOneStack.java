@@ -11,7 +11,7 @@ public class QueueUsingOneStack {
 		eneque(3);
 		eneque(4);
 		while(!stack.isEmpty()){
-			System.out.print(stack.pop()+"\t");
+			System.out.print(dequeue()+"\t");
 		}
 		
 	}
@@ -24,6 +24,10 @@ public class QueueUsingOneStack {
 			eneque(n);
 			stack.push(temp);
 		}
+	}
+	
+	private static int dequeue(){
+		return stack.pop();
 	}
 
 }
