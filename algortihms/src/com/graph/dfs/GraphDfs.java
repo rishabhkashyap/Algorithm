@@ -1,4 +1,4 @@
-package com.algo.dfs;
+package com.graph.dfs;
 
 import java.util.ArrayList;
 import java.util.List;
