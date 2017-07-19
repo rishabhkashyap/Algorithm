@@ -28,9 +28,14 @@ public class AdjacencyListGraph {
 		List<Vertex> neighbours = adjList.get(source);
 		neighbours.add(destination);
 		adjList.put(source, neighbours);
+		
 		neighbours = adjList.get(destination);
+		neighbours.add(source);
 		adjList.put(destination, neighbours);
 
+	}
+	public List<Vertex>getConnectedVertices(Vertex source){
+		return adjList.get(source);
 	}
 
 }
