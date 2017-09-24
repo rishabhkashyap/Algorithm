@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package com.algo.heaps;
+=======
+package com.algo.heapSort;
+>>>>>>> branch 'master' of https://github.com/rishabhkashyap/Algorithm.git
 
 public class HeapSort {
 

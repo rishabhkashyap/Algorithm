@@ -1,4 +1,4 @@
-package com.cookbook.linkedList;
+package com.algo.linkedList;
 
 public class PairWiseReverse {
 

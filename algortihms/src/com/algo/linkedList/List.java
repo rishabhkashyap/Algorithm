@@ -1,4 +1,4 @@
-package com.cookbook.linkedList;
+package com.algo.linkedList;
 
 public class List {
 	private Node head;
@@ -23,6 +23,21 @@ public class List {
 		}
 
 	}
+	
+	//Adds node at end of list
+	public void addLast(Node node){
+		if(head==null){
+			head=node;
+		}else{
+			Node temp=head;
+			while (temp.next!=null){
+				temp=temp.next;
+			}
+			temp.next=node;
+		}
+	}
+
+	
 
 	public void display() {
 		Node temp = head;
