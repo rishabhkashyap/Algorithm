@@ -1,4 +1,4 @@
-package com.algo.Lru;
+package com.algo.lru;
 
 public class Page {
 	int pageNo;

@@ -1,4 +1,4 @@
-package com.algo.Lru;
+package com.algo.lru;
 
 import java.util.ArrayList;
 import java.util.HashMap;
