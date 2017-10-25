@@ -12,6 +12,8 @@ public class HeapMain {
 		heap.insert(-1);
 		heap.displayHeap();
 		System.out.println();
+		System.out.println("\nDeleted element = "+heap.delete());
+		heap.displayHeap();
 		System.out.println("Deleted element = "+heap.delete());
 		System.out.println();
 		heap.displayHeap();

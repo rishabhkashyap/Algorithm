@@ -15,9 +15,9 @@ public class Heap {
 
 	// inserts element in heap
 	public void insert(int element) {
-		heap[size] = element;
+		heap[size] = element;		
+		hapifyUp(size);
 		++size;
-		hapifyUp(size - 1);
 	}
 
 	public int delete() {
@@ -35,10 +35,10 @@ public class Heap {
 		while(index<size/2){
 			int leftChild=getLeftChild(index);
 			int rightChild=getRightChild(index);
-			if(leftChild<size && heap[index]<heap[leftChild]){
-				largeChild=leftChild;
+			if(rightChild<size && heap[rightChild]>heap[leftChild]){
+				largeChild=rightChild;
 			}else{
-				largeChild=rightChild;				
+				largeChild=leftChild;				
 			}
 			if(top>=heap[largeChild]){
 				break;
@@ -78,6 +78,7 @@ public class Heap {
 		for (int i=0;i<size;i++) {
 			System.out.print(heap[i] + "\t");
 		}
+		System.out.println();
 	}
 
 }
