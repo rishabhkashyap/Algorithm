@@ -2,6 +2,7 @@ package com.algo.trie;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class TrieNode {
 	private char ch;
@@ -57,14 +58,14 @@ public class TrieNode {
 	}
 
 	public TrieNode getChild(char ch) {
+		Optional<TrieNode>child=null;
 		if (childList != null) {
-			for (TrieNode child : childList) {
-				if (child.ch == ch) {
-					return child;
-				}
-			}
+			child=childList.stream()
+					      .filter(e->e.ch==ch)
+					      .findFirst();
+			
 		}
-		return null;
+		return child.isPresent()?child.get():null;
 
 	}
 

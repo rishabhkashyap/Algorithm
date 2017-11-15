@@ -9,7 +9,7 @@ public class TrieMain {
 		trie.insert("spock");
 		trie.insert("kirk");
 		
-		System.out.println("Is Kirk avaialble = "+trie.search("kirk"));
+		System.out.println("Is Kirk avaialble = "+trie.search("world1"));
 		
 
 	}
