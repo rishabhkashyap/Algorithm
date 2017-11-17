@@ -25,6 +25,7 @@ public class MaxSizeIsland {
 	}
 
 	private static int getIslandSize(int[][] island, int row, int column) {
+		//Mark it visited
 		island[row][column] = 0;
 
 		// Check top of cell
