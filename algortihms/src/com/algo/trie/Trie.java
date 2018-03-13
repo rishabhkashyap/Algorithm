@@ -2,45 +2,53 @@ package com.algo.trie;
 
 public class Trie {
 	private TrieNode root;
-
-	public Trie() {
-		this.root=new TrieNode(' ');
+	
+	public Trie(){
+		root=new TrieNode(' ');
 	}
-
-	public void insert(String word) {
-		if (search(word)) {
+	
+	public void insert(String word){
+		TrieNode current=root;
+		if(search(word)){
 			return;
-		} else {
-			TrieNode current = root;
-			for (char ch : word.toCharArray()) {
-				TrieNode child = current.getChild(ch);
-				if (child != null) {
-					current = child;
-				} else {
+			
+		}else{
+			 String lowerCaseWord=word.toLowerCase();
+			for(char ch:lowerCaseWord.toCharArray()){
+				TrieNode child=current.getChildren(ch);
+				if(child==null){
 					TrieNode node=new TrieNode(ch);
-					current.addToChildList(node);
-					current = node;
+					current.addchild(node);
+					current=node;
+				}else{
+					current=child;
 				}
 			}
-			current.setEnd(true);
-
+			current.setWord(true);
 		}
-
+		
 	}
 
 	public boolean search(String word) {
-		TrieNode current = root;
-		for (char ch : word.toCharArray()) {
-			if (current.getChild(ch) == null) {
-				return false;
-			} else {
-				current = current.getChild(ch);
+		boolean found = false;
+		TrieNode current=root;
+		 String lowerCaseWord=word.toLowerCase();
+			for(char ch:lowerCaseWord.toCharArray()){
+				TrieNode node=current.getChildren(ch);
+				if(node!=null){
+					current=node;
+				}else{
+					found=false;
+					current=node;
+					break;
+				}
 			}
-		}
-		if (current.isEnd()) {
-			return true;
-		}
-		return false;
+			if(current!=null && current.isWord()){
+				found=true;
+			}
+		return found;
 	}
+
+	
 
 }
