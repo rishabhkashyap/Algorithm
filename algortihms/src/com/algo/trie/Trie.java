@@ -48,6 +48,19 @@ public class Trie {
 			}
 		return found;
 	}
+	
+	public String getLongestPrefix(){
+		StringBuilder sb=new StringBuilder();
+		TrieNode current=root.getChildren();
+		
+		while(current.hadOneChild() && !current.isWord()){
+			sb.append(current.getCh());
+			current=current.getChildren(current.getChildren().getCh());
+		}
+		return sb.toString();
+		
+	
+	}
 
 	
 

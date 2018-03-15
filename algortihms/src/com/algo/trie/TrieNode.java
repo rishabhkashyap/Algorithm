@@ -21,14 +21,14 @@ public class TrieNode {
 	}
 
 	public void addchild(TrieNode node) {
-		children[node.ch-'a'] = node;
+		children[node.ch - 'a'] = node;
 	}
 
 	public TrieNode getChildren(char ch) {
 		TrieNode node = null;
 		int pos = ch - 'a';
 
-		if (children[pos]!=null && children[pos].ch == ch) {
+		if (children[pos] != null && children[pos].ch == ch) {
 			node = children[pos];
 		}
 		return node;
@@ -42,5 +42,31 @@ public class TrieNode {
 	public void setWord(boolean isWord) {
 		this.isWord = isWord;
 	}
+
+	public boolean hadOneChild() {
+		long count=Arrays.stream(children)
+		      .filter(e->e!=null)
+		      .count();
+		      
+		return (count == 1);
+	}
+
+	public char getCh() {
+		return ch;
+	}
+	
+	
+	public TrieNode getChildren(){
+		Optional<TrieNode> child=Arrays.stream(children)
+				                       .filter(e->e!=null)
+				                       .findFirst();
+		return child.get();
+		
+				                       
+				                        
+	}
+	
+	
+	
 
 }
