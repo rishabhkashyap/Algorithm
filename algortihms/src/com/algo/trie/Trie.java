@@ -55,7 +55,7 @@ public class Trie {
 		
 		while(current.hadOneChild() && !current.isWord()){
 			sb.append(current.getCh());
-			current=current.getChildren(current.getChildren().getCh());
+			current=current.getChildren();
 		}
 		return sb.toString();
 		
