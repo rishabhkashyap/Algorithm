@@ -1,4 +1,4 @@
-package com.quicksort;
+package com.algo.quicksort;
 
 public class QuickSort {
 	private int size;

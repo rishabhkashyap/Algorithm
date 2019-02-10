@@ -1,6 +1,6 @@
-package com.graph.dfs;
+package com.algo.graph.dfs;
 
-import com.graph.model.Vertex;
+import com.algo.graph.model.Vertex;
 
 public class DfsMain {
 

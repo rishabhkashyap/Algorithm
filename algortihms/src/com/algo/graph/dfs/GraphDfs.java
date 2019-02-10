@@ -1,10 +1,10 @@
-package com.graph.dfs;
+package com.algo.graph.dfs;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import com.graph.model.Vertex;
+import com.algo.graph.model.Vertex;
 
 public class GraphDfs {
 	private int noOfNodes;

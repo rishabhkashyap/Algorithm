@@ -1,6 +1,6 @@
-package com.graph.bfs;
+package com.algo.graph.bfs;
 
-import com.graph.model.Vertex;
+import com.algo.graph.model.Vertex;
 
 public class BfsMain {
 

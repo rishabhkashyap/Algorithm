@@ -1,9 +1,9 @@
-package com.graph.problems;
+package com.algo.graph.problems;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.graph.model.Vertex;
+import com.algo.graph.model.Vertex;
 
 public class PrintAllPaths {
 	static int size=0;

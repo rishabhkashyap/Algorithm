@@ -1,4 +1,4 @@
-package com.graph.model;
+package com.algo.graph.model;
 
 public class Vertex {
 	private char label;

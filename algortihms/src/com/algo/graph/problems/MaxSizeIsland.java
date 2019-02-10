@@ -1,6 +1,4 @@
-package com.graph.problems;
-
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
+package com.algo.graph.problems;
 
 public class MaxSizeIsland {
 	public static void main(String[] args) {

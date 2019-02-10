@@ -1,11 +1,11 @@
-package com.graph.bfs;
+package com.algo.graph.bfs;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import com.graph.model.Vertex;
+import com.algo.graph.model.Vertex;
 
 public class GraphBFS {
 	private Queue<Vertex>queue;
