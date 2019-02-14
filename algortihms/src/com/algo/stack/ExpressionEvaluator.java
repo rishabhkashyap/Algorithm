@@ -1,4 +1,4 @@
-package com.stack;
+package com.algo.stack;
 
 import java.util.Stack;
 
@@ -105,7 +105,7 @@ public class ExpressionEvaluator {
     }
 
     private static double getOperand(String expression, int i) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         while (i < expression.length() && Character.isDigit(expression.charAt(i))) {
             sb.append(expression.charAt(i));
             ++i;
