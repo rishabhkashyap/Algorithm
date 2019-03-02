@@ -16,13 +16,13 @@ public class ReverseKElements {
         queue.add(7);
         System.out.print("Orignal queue \n");
         queue.forEach(ele->System.out.print(ele +"\t"));
-        Queue<Integer> reversedQueue=reverseKelements(queue,3);
+        Queue<Integer> reversedQueue= reverseKElements(queue,3);
         System.out.println("\n\nReversed queue with k element");
         reversedQueue.forEach(ele->System.out.print(ele+"\t"));
 
     }
 
-    private static Queue<Integer> reverseKelements(Queue<Integer> queue, int k) {
+    private static Queue<Integer> reverseKElements(Queue<Integer> queue, int k) {
 
         Stack<Integer>stack=new Stack<>();
         for(int i=0;i<k;i++){
