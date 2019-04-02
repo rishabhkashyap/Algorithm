@@ -38,7 +38,7 @@ public class GroupReverse {
         //Once above loop is completed next will be ,use it to recursively reverse group of nodes
 
         if (next != null) {
-            head.next = reverse(next, 4);
+            head.next = reverse(next, k);
         }
         return prev;
     }
