@@ -1,4 +1,4 @@
-package com.numbers;
+package com.algo.numbers;
 
 public class Prime {
 
