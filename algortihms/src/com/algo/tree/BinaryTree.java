@@ -1,4 +1,4 @@
-package com.ds.tree;
+package com.algo.tree;
 
 public class BinaryTree {
 	

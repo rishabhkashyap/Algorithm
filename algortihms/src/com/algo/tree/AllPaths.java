@@ -1,4 +1,4 @@
-package com.ds.tree;
+package com.algo.tree;
 
 import java.util.LinkedList;
 
