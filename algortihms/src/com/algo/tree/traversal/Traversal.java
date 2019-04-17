@@ -4,6 +4,7 @@ import com.algo.tree.Node;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class Traversal {
 
@@ -22,11 +23,13 @@ public class Traversal {
         node7.setRight(new Node(22));
         System.out.println("Level order traversal");
         doLevelOrderTraversal(root);
-        System.out.println("\n \nPre order traversal");
+        System.out.println("\n\nReverse level order traversal");
+        reverseleverOrderTraversal(root);
+        System.out.println("\n\nPre order traversal");
         preOrderTraversal(root);
-        System.out.println("\n \nIn order traversal");
+        System.out.println("\n\nIn order traversal");
         inOrderTraversal(root);
-        System.out.println("\n \nPost order traversal");
+        System.out.println("\n\nPost order traversal");
         postOrderTraversal(root);
     }
 
@@ -83,6 +86,27 @@ public class Traversal {
             System.out.print(root.getData() + "\t");
         }
 
+    }
+
+    private static void reverseleverOrderTraversal(Node root) {
+        if (root != null) {
+            Queue<Node> queue = new LinkedList<>();
+            Stack<Integer> stack = new Stack<>();
+            queue.add(root);
+            while (!queue.isEmpty()) {
+                Node node = queue.remove();
+                stack.push(node.getData());
+                if (node.getRight() != null) {
+                    queue.add(node.getRight());
+                }
+                if (node.getLeft() != null) {
+                    queue.add(node.getLeft());
+                }
+            }
+            while (!stack.isEmpty()){
+                System.out.print(stack.pop()+"\t");
+            }
+        }
     }
 
 
