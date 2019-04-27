@@ -55,6 +55,11 @@ public class MergeSort {
 			k++;
 			i++;
 		}
+		while(j<=high){
+			numbers[k]=helper[j];
+			++j;
+			++k;
+		}
 
 	}
 
