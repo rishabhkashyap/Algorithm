@@ -3,7 +3,7 @@ package com.algo.numbers;
 public class Prime {
 
     public static void main(String[] args){
-        int n=127;
+        int n=25;
 
         if(isPrime(n)){
             System.out.println(n+" is a prime number ");
@@ -20,7 +20,7 @@ public class Prime {
         }else if(n==2){
             numberIsPrime=true;
         }else{
-            for(int i=2;i*i<n;i++){
+            for(int i=2;i*i<=n;i++){
                 if(n%i==0){
                     numberIsPrime=false;
                     break;
