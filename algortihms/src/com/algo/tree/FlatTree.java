@@ -56,6 +56,7 @@ public class FlatTree {
             }
             current.setRight(temp);
         }
+        flattenTreeRecursive(root.getRight());
     }
 
 
