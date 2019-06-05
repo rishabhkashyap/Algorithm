@@ -21,7 +21,7 @@ public class KSmallest {
         node2.setRight(node3);
         node6.setRight(node7);
         node6.setLeft(node5);
-//        System.out.println("3th smallest element in tree = " + kthSmallestElement(root, 3).getData());
+//      System.out.println("3th smallest element in tree = " + kthSmallestElement(root, 3).getData());
         System.out.println("3th smallest element in tree = " + kThSmallestUsingStack(root, 3));
 
 
