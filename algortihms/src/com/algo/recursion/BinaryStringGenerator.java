@@ -15,6 +15,7 @@ public class BinaryStringGenerator {
         //Generate all strings that starts with 0
         bits[0] = '0';
         generateStringsUtil(bits, k, 1);
+        //Generate all strings that starts with 1
         bits[0] = '1';
         generateStringsUtil(bits, k, 1);
 

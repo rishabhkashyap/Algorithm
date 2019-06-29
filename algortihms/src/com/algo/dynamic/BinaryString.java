@@ -1,4 +1,4 @@
-package com.algo.recursion;
+package com.algo.dynamic;
 
 import java.io.IOException;
 
