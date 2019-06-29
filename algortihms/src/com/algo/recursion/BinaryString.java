@@ -1,19 +1,11 @@
 package com.algo.recursion;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class BinaryString {
 
     public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        int t = Integer.parseInt(bufferedReader.readLine());
-        for (int i = 0; i < t; i++) {
-            int num = Integer.parseInt(bufferedReader.readLine());
-            System.out.println(countBinaryStrings(num));
-
-        }
+        System.out.println(countBinaryStrings(3));
     }
 
     private static int countBinaryStrings(int k) {
