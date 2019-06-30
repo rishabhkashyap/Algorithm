@@ -1,4 +1,4 @@
-package com.algo.quicksort;
+package com.algo.sorting.quicksort;
 
 public class QuickSortMain {
 
