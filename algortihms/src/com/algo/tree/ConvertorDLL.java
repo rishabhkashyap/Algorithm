@@ -1,6 +1,6 @@
 package com.algo.tree;
 
-public class Convertor {
+public class ConvertorDLL {
 
     public static void main(String[] args) {
 
