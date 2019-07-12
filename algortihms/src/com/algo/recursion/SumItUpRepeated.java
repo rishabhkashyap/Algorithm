@@ -2,7 +2,6 @@ package com.algo.recursion;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 //Given a set of candidate numbers (C) and a target number (T), find all unique combinations in C
@@ -14,7 +13,7 @@ public class SumItUpRepeated {
 
         int[] input = {2, 3, 5, 6, 8};
         int target = 10;
-        Arrays.sort(input);
+        // Arrays.sort(input);
         printSumCombination(input, target);
     }
 
@@ -28,19 +27,20 @@ public class SumItUpRepeated {
             printList(sumNumber);
             return false;
         }
-        int prev = -1;
+        if (target < 0) {
+            return false;
+        }
+
         for (int j = start; j < input.length; j++) {
 
-            if (target >= 0 && input[j] != prev) {
-                sumNumber.add(input[j]);
-                boolean sumFound = printSumCombinationHelper(input, target - input[j], sumNumber, j);
-                if (sumFound) {
-                    return true;
-                }
-                sumNumber.remove(sumNumber.size() - 1);
-                prev = input[j];
-
+            sumNumber.add(input[j]);
+            boolean sumFound = printSumCombinationHelper(input, target - input[j], sumNumber, j);
+            if (sumFound) {
+                return true;
             }
+            sumNumber.remove(sumNumber.size() - 1);
+
+
         }
         return false;
     }
