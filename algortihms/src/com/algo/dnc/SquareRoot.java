@@ -1,4 +1,4 @@
-package com.dnc;
+package com.algo.dnc;
 
 public class SquareRoot {
 
