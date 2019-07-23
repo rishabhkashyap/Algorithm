@@ -3,7 +3,7 @@ package com.algo.dnc;
 public class SearchRotated {
     public static void main(String[] args) {
         int[] arr = {5, 6, 7, 1, 2, 3, 4};
-        int key = 5;
+        int key = 2;
         int index = search(arr, key);
         if (index >= 0) {
             System.out.println(key + " found at index = " + index);
@@ -15,7 +15,7 @@ public class SearchRotated {
 
     private static int search(int[] arr, int key) {
         int start = 0;
-        int end = arr.length;
+        int end = arr.length - 1;
         int index = -1;
         while (start <= end) {
             int mid = (start + end) / 2;
@@ -28,11 +28,14 @@ public class SearchRotated {
                 if (key >= arr[start] && key <= arr[mid]) {
                     end = mid - 1;
                 } else {
-                    end = mid + 1;
+                    start = mid + 1;
                 }
             } else {
-                if (key >= arr[mid]) {
-
+                //Second half is sorted
+                if (key >= arr[mid] && key <= arr[end]) {
+                    start = mid + 1;
+                } else {
+                    end = mid - 1;
                 }
             }
         }
