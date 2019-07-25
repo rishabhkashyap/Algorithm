@@ -14,13 +14,19 @@ public class BinaryTreeHeap {
         root.setRight(node3);
         node4.setLeft(node2);
         node4.setRight(node1);
+
+
         System.out.println("Binary tree is a heap = " + isHeap(root));
+
         node4.setRight(node10);
-        //call function
+
+        System.out.println("Binary tree is a heap = " + isHeap(root));
+
         node4.setRight(null);
         node4.setLeft(null);
         node3.setLeft(node2);
         node3.setRight(node1);
+        System.out.println("Binary tree is a heap = " + isHeap(root));
     }
 
     private static boolean isHeap(Node root) {
@@ -33,22 +39,26 @@ public class BinaryTreeHeap {
         }
 
         //if binary tree is not complete return false
-        if (index > size) {
+        if (index >= size) {
             return false;
         }
 
         //if child node are greater than root node return false
-        if (root.getData() < root.getRight().getData() || root.getData() < root.getLeft().getData()) {
+        if ((root.getRight() != null && root.getData() < root.getRight().getData())
+                || (root.getLeft() != null && root.getData() < root.getLeft().getData())) {
             return false;
         }
 
-        return isHeapHelper(root.getLeft(), 2 * index + 1, size)
-                && isHeapHelper(root, 2 * index + 2, size);
+        return isHeapHelper(root.getLeft(), size, 2 * index + 1)
+                && isHeapHelper(root.getRight(), size, 2 * index + 2);
 
     }
 
     private static int size(Node root) {
-        return 0;
+        if (root == null) {
+            return 0;
+        }
+        return 1 + size(root.getLeft()) + size(root.getRight());
 
     }
 
