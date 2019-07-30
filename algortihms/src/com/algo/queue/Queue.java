@@ -2,7 +2,7 @@ package com.algo.queue;
 
 import java.util.Arrays;
 
-public class Queue {
+public class Queue<I extends Number> {
 
     public static void main(String[] args) {
 

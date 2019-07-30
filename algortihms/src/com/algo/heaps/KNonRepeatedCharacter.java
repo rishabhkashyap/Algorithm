@@ -52,7 +52,7 @@ public class KNonRepeatedCharacter {
 
         @Override
         public int compareTo(Pair o) {
-            return this.index = o.index;
+            return this.index - o.index;
         }
     }
 }
