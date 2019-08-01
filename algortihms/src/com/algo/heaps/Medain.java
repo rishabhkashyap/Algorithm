@@ -2,6 +2,7 @@ package com.algo.heaps;
 
 import java.util.Collections;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class Medain {
 
@@ -11,8 +12,8 @@ public class Medain {
     }
 
     private static void printMedain(int[] stream) {
-        PriorityQueue<Integer> lower = new PriorityQueue<>(Collections.reverseOrder());
-        PriorityQueue<Integer> higher = new PriorityQueue<>();
+        Queue<Integer> lower = new PriorityQueue<>(Collections.reverseOrder());
+        Queue<Integer> higher = new PriorityQueue<>();
         for (int number : stream) {
             addElement(number, lower, higher);
             balanceHeaps(lower, higher);
@@ -21,29 +22,29 @@ public class Medain {
         }
     }
 
-    private static double getMedain(PriorityQueue<Integer> lower, PriorityQueue<Integer> higher) {
+    private static double getMedain(Queue<Integer> lower, Queue<Integer> higher) {
 
         double medain = 0;
         if (lower.size() == higher.size()) {
             medain = (double) (lower.peek() + higher.peek()) / 2;
         } else {
-            PriorityQueue<Integer> bigHeap = Math.max(lower.size(), higher.size()) == lower.size() ? lower : higher;
+            Queue<Integer> bigHeap = Math.max(lower.size(), higher.size()) == lower.size() ? lower : higher;
             medain = bigHeap.peek();
         }
         return medain;
 
     }
 
-    private static void balanceHeaps(PriorityQueue<Integer> lower, PriorityQueue<Integer> higher) {
-        PriorityQueue<Integer> bigHeap = Math.max(lower.size(), higher.size()) == lower.size() ? lower : higher;
-        PriorityQueue<Integer> smallHeap = Math.min(lower.size(), higher.size()) == lower.size() ? lower : higher;
+    private static void balanceHeaps(Queue<Integer> lower, Queue<Integer> higher) {
+        Queue<Integer> bigHeap = Math.max(lower.size(), higher.size()) == lower.size() ? lower : higher;
+        Queue<Integer> smallHeap = Math.min(lower.size(), higher.size()) == lower.size() ? lower : higher;
         if (bigHeap.size() - smallHeap.size() >= 2) {
             smallHeap.add(bigHeap.remove());
         }
 
     }
 
-    private static void addElement(int number, PriorityQueue<Integer> lower, PriorityQueue<Integer> higher) {
+    private static void addElement(int number, Queue<Integer> lower, Queue<Integer> higher) {
         if (lower.size() == 0 || number < lower.peek()) {
             lower.add(number);
         } else {
