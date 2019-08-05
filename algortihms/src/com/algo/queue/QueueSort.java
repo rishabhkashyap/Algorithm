@@ -24,25 +24,24 @@ public class QueueSort {
 
     private static Queue<Integer> sort(Queue<Integer> queue) {
         Queue<Integer> sortedQueue = new LinkedList<>();
-
+        //Queue<Integer> tempQueue=new LinkedList<>();
         int minElement = Integer.MAX_VALUE;
         int counter = 0;
         while (!queue.isEmpty()) {
-            if (minElement > queue.peek()) {
-                minElement = queue.remove();
-                if (sortedQueue.isEmpty()) {
-                    sortedQueue.add(minElement);
-                } else if (minElement > sortedQueue.peek()) {
-                    sortedQueue.add(minElement);
-                } else {
-                    while (!sortedQueue.isEmpty() && sortedQueue.peek() > minElement) {
+            int element = queue.remove();
+            if (!sortedQueue.isEmpty()) {
+                while (!sortedQueue.isEmpty()) {
+
+                    if (sortedQueue.peek() > element) {
+                        sortedQueue.add(sortedQueue.remove());
+                    } else {
                         queue.add(sortedQueue.remove());
                     }
-                    sortedQueue.add(minElement);
-
                 }
+                sortedQueue.add(element);
+
             } else {
-                queue.add(queue.remove());
+                sortedQueue.add(element);
             }
         }
         return sortedQueue;
