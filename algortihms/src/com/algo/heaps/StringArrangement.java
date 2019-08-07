@@ -1,13 +1,10 @@
 package com.algo.heaps;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 public class StringArrangement {
     public static void main(String[] args) {
-        String str = "aaaabc";
+        String str = "aaabc";
         String result = rearrangeString(str);
         if (result != null) {
             System.out.println("Result = " + result);
@@ -21,15 +18,12 @@ public class StringArrangement {
     private static String rearrangeString(String str) {
         Map<Character, Integer> freqMap = getFreq(str);
         String result = "";
-        Queue<CharNode> queue = new PriorityQueue<>((CharNode node1, CharNode node2) -> node2.freq - node1.freq);
-        for (int i = 0; i < 25; i++) {
-            char ch = (char) (i + 97);
-            if (freqMap.containsKey(ch)) {
-                int frequency = freqMap.get(ch);
-                CharNode charNode = new CharNode(ch, frequency);
-                queue.add(charNode);
-            }
-
+        Queue<CharNode> queue = new PriorityQueue<>(
+                (CharNode node1, CharNode node2) -> node2.freq - node1.freq);
+        Set<Character> characterSet = freqMap.keySet();
+        for (Character character : characterSet) {
+            CharNode charNode = new CharNode(character, freqMap.get(character));
+            queue.add(charNode);
         }
         CharNode previous = new CharNode('#', -1);
         while (!queue.isEmpty()) {
