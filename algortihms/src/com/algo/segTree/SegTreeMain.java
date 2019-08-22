@@ -1,4 +1,4 @@
-package com.algo.tree.segTree;
+package com.algo.segTree;
 
 public class SegTreeMain {
 
