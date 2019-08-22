@@ -51,7 +51,13 @@ public class Trie {
 	
 	public String getLongestPrefix(){
 		StringBuilder sb=new StringBuilder();
-		TrieNode current=root.getChildren();
+		TrieNode current=null;
+		if(root.hadOneChild()){
+		    current=root.getChildren();
+        }else{
+		    return "";
+        }
+
 		
 		while(current.hadOneChild() && !current.isWord()){
 			sb.append(current.getCh());
