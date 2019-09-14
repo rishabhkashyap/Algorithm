@@ -1,6 +1,9 @@
-package com.algo.linkedList;
+package com.algo.sorting;
 
-public class Sort012 {
+import com.algo.linkedList.List;
+import com.algo.linkedList.Node;
+
+public class Sort012List {
     public static void main(String[] args) {
         int[] arr = {1, 2, 0, 1, 1, 0, 2, 2, 0, 1, 2, 0, 2};
         List list = new List();
