@@ -17,6 +17,7 @@ public class SortReverse {
             }
         }
 
+
         for (int i = 15; i >= 6; i -= 2) {
             if (head2 == null) {
                 head2 = new Node(i);
@@ -42,14 +43,12 @@ public class SortReverse {
             while (head1 != null && head2 != null) {
                 if (head1.getValue() < head2.getValue()) {
                     next = head1.next;
-                    head1.next = head;
-                    head = head1;
+                    head = reverse(head1, head);
                     head1 = next;
 
                 } else {
                     next = head2.next;
-                    head2.next = head;
-                    head = head2;
+                    head = reverse(head2, head);
                     head2 = next;
                 }
             }
@@ -58,8 +57,7 @@ public class SortReverse {
         if (head1 != null) {
             while (head1 != null) {
                 next = head1.next;
-                head1.next = head;
-                head = head1;
+                head = reverse(head1, head);
                 head1 = next;
             }
         }
@@ -67,12 +65,18 @@ public class SortReverse {
         if (head2 != null) {
             while (head2 != null) {
                 next = head2.next;
-                head2.next = head;
-                head = head2;
+                head = reverse(head2, head);
                 head2 = next;
             }
         }
 
+        return head;
+    }
+
+
+    private static Node reverse(Node node, Node head) {
+        node.next = head;
+        head = node;
         return head;
     }
 
