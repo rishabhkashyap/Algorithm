@@ -27,7 +27,7 @@ public class BST {
         TreeUtil.inOrder(root);
         deleteNode(root, 3).getData();
 
-        System.out.println("\n");
+        System.out.println("\n\nAfter deleting node 3");
         TreeUtil.inOrder(root);
         System.out.println("\n\nSmallest element in tree = " + findMinValue(root));
         System.out.println("\nLargest element in tree = " + findMax(root));
@@ -67,9 +67,9 @@ public class BST {
             return node;
         }
         if (root.getData() > node.getData()) {
-            root.setLeft(insertIteratively(root.getLeft(), node));
+            root.setLeft(insertRecursively(root.getLeft(), node));
         } else {
-            root.setRight(insertIteratively(root.getRight(), node));
+            root.setRight(insertRecursively(root.getRight(), node));
         }
         return root;
     }
