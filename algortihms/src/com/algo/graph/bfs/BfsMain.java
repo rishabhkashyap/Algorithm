@@ -68,8 +68,6 @@ public class BfsMain {
         bfsAdjacenecyList.addEdge(v4, v3);
         bfsAdjacenecyList.addEdge(v3, v5);
         bfsAdjacenecyList.addEdge(v4, v0);
-
-
         bfsAdjacenecyList.addEdge(v5, v3);
 
         bfsAdjacenecyList.bfsSearch(v0);
