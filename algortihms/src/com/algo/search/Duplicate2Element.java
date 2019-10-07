@@ -1,7 +1,5 @@
 package com.algo.search;
 
-import java.util.stream.IntStream;
-
 public class Duplicate2Element {
     public static void main(String[] args) {
         int[] arr = {4, 2, 4, 5, 2, 3, 1};
@@ -17,12 +15,11 @@ public class Duplicate2Element {
         int product = 1;
         for (int element : arr) {
             sum += element;
-            product += product;
+            product *= element;
         }
         int nSum = n * (n + 1) / 2;
         sum = sum - nSum;
-        int nProduct = IntStream.range(1, n + 1)
-                .sum();
+        int nProduct = findNProduct(n);
         product = product / nProduct;
         int difference = (int) Math.sqrt(sum * sum - 4 * product);
         int num1 = (sum + difference) / 2;
@@ -30,6 +27,14 @@ public class Duplicate2Element {
         System.out.println("Repeated number1 = " + num1);
         System.out.println("Repeated number2 = " + num2);
 
+    }
+
+    private static int findNProduct(int n) {
+        int product = 1;
+        for (int i = 1; i <= n; i++) {
+            product *= i;
+        }
+        return product;
     }
 
     private static void printDuplicate(int[] arr) {
