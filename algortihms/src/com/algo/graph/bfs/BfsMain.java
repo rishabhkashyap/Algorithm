@@ -6,15 +6,15 @@ public class BfsMain {
 
     public static void main(String[] args) {
         GraphBFS search = new GraphBFS(9);
-        Vertex vA = new Vertex('A');
-        Vertex vB = new Vertex('B');
-        Vertex vC = new Vertex('C');
-        Vertex vD = new Vertex('D');
-        Vertex vE = new Vertex('E');
-        Vertex vF = new Vertex('F');
-        Vertex vG = new Vertex('G');
-        Vertex vH = new Vertex('H');
-        Vertex vI = new Vertex('I');
+        Vertex vA = new Vertex("A");
+        Vertex vB = new Vertex("B");
+        Vertex vC = new Vertex("C");
+        Vertex vD = new Vertex("D");
+        Vertex vE = new Vertex("E");
+        Vertex vF = new Vertex("F");
+        Vertex vG = new Vertex("G");
+        Vertex vH = new Vertex("H");
+        Vertex vI = new Vertex("I");
 
         search.addVertex(vA);
         search.addVertex(vB);
@@ -41,12 +41,12 @@ public class BfsMain {
         System.out.println("\n");
 
 
-        Vertex v0 = new Vertex('0');
-        Vertex v1 = new Vertex('1');
-        Vertex v2 = new Vertex('2');
-        Vertex v3 = new Vertex('3');
-        Vertex v4 = new Vertex('4');
-        Vertex v5 = new Vertex('5');
+        Vertex v0 = new Vertex("0");
+        Vertex v1 = new Vertex("1");
+        Vertex v2 = new Vertex("2");
+        Vertex v3 = new Vertex("3");
+        Vertex v4 = new Vertex("4");
+        Vertex v5 = new Vertex("5");
         BfsAdjacenecyList bfsAdjacenecyList = new BfsAdjacenecyList(6);
         bfsAdjacenecyList.addVertex(v0);
         bfsAdjacenecyList.addVertex(v1);

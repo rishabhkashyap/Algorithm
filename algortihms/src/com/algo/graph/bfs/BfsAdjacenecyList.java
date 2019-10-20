@@ -8,7 +8,7 @@ public class BfsAdjacenecyList {
 
     private int size;
     private List<Vertex> vertices;
-    private Map<Character, List<Vertex>> adjacencyMap;
+    private Map<String, List<Vertex>> adjacencyMap;
 
     public BfsAdjacenecyList(int size) {
         this.size = size;

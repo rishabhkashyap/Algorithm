@@ -7,12 +7,12 @@ import java.util.*;
 public class ShortestPath {
 
     public static void main(String[] args) {
-        Vertex v0 = new Vertex('0');
-        Vertex v1 = new Vertex('1');
-        Vertex v2 = new Vertex('2');
-        Vertex v3 = new Vertex('3');
-        Vertex v4 = new Vertex('4');
-        Vertex v5 = new Vertex('5');
+        Vertex v0 = new Vertex("0");
+        Vertex v1 = new Vertex("1");
+        Vertex v2 = new Vertex("2");
+        Vertex v3 = new Vertex("3");
+        Vertex v4 = new Vertex("4");
+        Vertex v5 = new Vertex("5");
         BfsShortesDistance bfsShortesDistance = new BfsShortesDistance(6);
         bfsShortesDistance.addVertex(v0);
         bfsShortesDistance.addVertex(v1);
@@ -45,7 +45,7 @@ public class ShortestPath {
 
         private int size;
         private List<Vertex> vertices;
-        private Map<Character, List<Vertex>> adjacencyMap;
+        private Map<String, List<Vertex>> adjacencyMap;
 
         public BfsShortesDistance(int size) {
             this.size = size;
@@ -72,7 +72,7 @@ public class ShortestPath {
         }
 
         public void shortestPath(Vertex root) {
-            Map<Character, Integer> distanceMap = new HashMap<>();
+            Map<String, Integer> distanceMap = new HashMap<>();
             distanceMap.put(root.getLabel(), 0);
             Queue<Vertex> queue = new LinkedList<>();
             queue.add(root);
@@ -91,8 +91,8 @@ public class ShortestPath {
 
             }
 
-            Set<Character> vertices = distanceMap.keySet();
-            for (Character vtx : vertices) {
+            Set<String> vertices = distanceMap.keySet();
+            for (String vtx : vertices) {
                 System.out.println("Distance between  " + root.getLabel() + "  and  " + vtx + "  =  " + distanceMap.get(vtx));
             }
 
