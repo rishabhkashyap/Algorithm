@@ -9,10 +9,10 @@ public class PrintAllPaths {
 	static int size=0;
 
 	public static void main(String[] args) {
-		Vertex vertex0=new Vertex('0');
-		Vertex vertex1=new Vertex('1');
-		Vertex vertex2=new Vertex('2');
-		Vertex vertex3=new Vertex('3');
+		Vertex vertex0=new Vertex("0");
+		Vertex vertex1=new Vertex("1");
+		Vertex vertex2=new Vertex("2");
+		Vertex vertex3=new Vertex("3");
 		AdjacencyListForDirectedGraph adjList=new AdjacencyListForDirectedGraph(4);
 		adjList.addVertex(vertex0);
 		adjList.addVertex(vertex1);

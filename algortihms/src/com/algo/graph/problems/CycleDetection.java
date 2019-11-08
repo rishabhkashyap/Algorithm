@@ -7,11 +7,11 @@ import com.algo.graph.model.Vertex;
 public class CycleDetection {
 
 	public static void main(String[] args) {
-		Vertex vertex0=new Vertex('0');
-		Vertex vertex1=new Vertex('1');
-		Vertex vertex2=new Vertex('2');
-		Vertex vertex3=new Vertex('3');
-		Vertex vertex4=new Vertex('4');
+		Vertex vertex0=new Vertex("0");
+		Vertex vertex1=new Vertex("1");
+		Vertex vertex2=new Vertex("2");
+		Vertex vertex3=new Vertex("3");
+		Vertex vertex4=new Vertex("4");
 		AdjacencyListGraph adjList=new AdjacencyListGraph(5);
 		adjList.addVertex(vertex0);
 		adjList.addVertex(vertex1);

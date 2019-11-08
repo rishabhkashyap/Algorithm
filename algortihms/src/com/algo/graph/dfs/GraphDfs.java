@@ -26,18 +26,7 @@ public class GraphDfs {
 		adjacencyMatrix[i][j]=1;
 	}
 	
-	private Vertex getAdjacentUnvisitedVertex(Vertex vertex){
-		Vertex neighbour=null;
-		int i=vertices.indexOf(vertex);
-		for(int j=0;j<noOfNodes;j++){
-			if(adjacencyMatrix[i][j]==1 && vertices.get(j).isVisited()==false){
-				neighbour=vertices.get(j);
-				break;
-			}
-		}
-		return neighbour;
-		
-	}
+
 	
 	public void performDfs(Vertex source){
 		Stack<Vertex>stack=new Stack<>();
@@ -55,6 +44,18 @@ public class GraphDfs {
 				
 			}
 		}
+	}
+	private Vertex getAdjacentUnvisitedVertex(Vertex vertex){
+		Vertex neighbour=null;
+		int i=vertices.indexOf(vertex);
+		for(int j=0;j<noOfNodes;j++){
+			if(adjacencyMatrix[i][j]==1 && vertices.get(j).isVisited()==false){
+				neighbour=vertices.get(j);
+				break;
+			}
+		}
+		return neighbour;
+
 	}
 	
 	
