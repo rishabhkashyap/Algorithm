@@ -58,6 +58,7 @@ public class DfsMain {
         dfsAdjacencyList.addEdge(v5, v3);
 
         dfsAdjacencyList.performDFS(v0);
+        //dfsAdjacencyList.performRecursiveDFS(v0);
 
 
     }

@@ -36,7 +36,7 @@ public class DfsAdjacencyList {
     public void performDFS(Vertex source) {
         Stack<Vertex> stack = new Stack<>();
         source.setVisited(true);
-        System.out.print(source.getLabel()+"\t");
+        System.out.print(source.getLabel() + "\t");
         stack.push(source);
         while (!stack.isEmpty()) {
             Vertex vertex = stack.peek();
@@ -45,10 +45,25 @@ public class DfsAdjacencyList {
                 unvisitedVtx.setVisited(true);
                 System.out.print(unvisitedVtx.getLabel() + "\t");
                 stack.push(unvisitedVtx);
-            }else{
+            } else {
                 stack.pop();
             }
         }
+    }
+
+
+    public void performRecursiveDFS(Vertex source) {
+        if (source.isVisited()) {
+            return;
+        }
+        source.setVisited(true);
+        System.out.print(source.getLabel() + "\t");
+        Vertex unvisitedVtx = getUnvisitedNeighbour(source);
+        if (unvisitedVtx != null) {
+            performRecursiveDFS(unvisitedVtx);
+        }
+
+
     }
 
     private Vertex getUnvisitedNeighbour(Vertex vertex) {
