@@ -58,11 +58,12 @@ public class DfsAdjacencyList {
         }
         source.setVisited(true);
         System.out.print(source.getLabel() + "\t");
-        Vertex unvisitedVtx = getUnvisitedNeighbour(source);
-        if (unvisitedVtx != null) {
-            performRecursiveDFS(unvisitedVtx);
+        List<Vertex> neighbours = this.adjacencyMap.get(source.getLabel());
+        for (Vertex neighbour : neighbours) {
+            if (!neighbour.isVisited()) {
+                performRecursiveDFS(neighbour);
+            }
         }
-
 
     }
 
