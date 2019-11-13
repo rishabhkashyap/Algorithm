@@ -69,9 +69,11 @@ public class DfsAdjacencyList {
 
     private Vertex getUnvisitedNeighbour(Vertex vertex) {
         List<Vertex> neighbours = this.adjacencyMap.get(vertex.getLabel());
-        for (Vertex neighbour : neighbours) {
-            if (!neighbour.isVisited()) {
-                return neighbour;
+        if (neighbours != null && !neighbours.isEmpty()) {
+            for (Vertex neighbour : neighbours) {
+                if (!neighbour.isVisited()) {
+                    return neighbour;
+                }
             }
         }
         return null;
