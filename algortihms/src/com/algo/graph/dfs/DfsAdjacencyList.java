@@ -59,10 +59,13 @@ public class DfsAdjacencyList {
         source.setVisited(true);
         System.out.print(source.getLabel() + "\t");
         List<Vertex> neighbours = this.adjacencyMap.get(source.getLabel());
-        for (Vertex neighbour : neighbours) {
-            if (!neighbour.isVisited()) {
-                performRecursiveDFS(neighbour);
+        if (neighbours != null && !neighbours.isEmpty()) {
+            for (Vertex neighbour : neighbours) {
+                if (!neighbour.isVisited()) {
+                    performRecursiveDFS(neighbour);
+                }
             }
+
         }
 
     }
