@@ -53,11 +53,11 @@ public class Heap {
 
     private void hapifyUp(int index) {
         int value = heap[index];
-        int parent = index / 2;
+        int parent = (index-1) / 2;
         while (index > 0 && heap[parent] < value) {
             heap[index] = heap[parent];
             index = parent;
-            parent = parent / 2;
+            parent = (parent-1) / 2;
 
         }
         heap[index] = value;
