@@ -1,7 +1,6 @@
 package com.algo.graph.bfs;
 
 import com.algo.graph.model.Vertex;
-import jdk.jshell.spi.SPIResolutionException;
 
 import java.util.*;
 
@@ -27,20 +26,19 @@ public class TopologicalSort {
         gSort.addVertex(css);
         gSort.addVertex(js);
         gSort.addVertex(webDevlopment);
-        gSort.addEdge(english,pl);
-        gSort.addEdge(maths,pl);
-        gSort.addEdge(english,html);
-        gSort.addEdge(pl,html);
-        gSort.addEdge(pl,python);
-        gSort.addEdge(pl,java);
-        gSort.addEdge(pl,js);
-        gSort.addEdge(html,css);
-        gSort.addEdge(css,js);
-        gSort.addEdge(js,webDevlopment);
-        gSort.addEdge(python,webDevlopment);
-        gSort.addEdge(java,webDevlopment);
+        gSort.addEdge(english, pl);
+        gSort.addEdge(maths, pl);
+        gSort.addEdge(english, html);
+        gSort.addEdge(pl, html);
+        gSort.addEdge(pl, python);
+        gSort.addEdge(pl, java);
+        gSort.addEdge(pl, js);
+        gSort.addEdge(html, css);
+        gSort.addEdge(css, js);
+        gSort.addEdge(js, webDevlopment);
+        gSort.addEdge(python, webDevlopment);
+        gSort.addEdge(java, webDevlopment);
         gSort.performTopologicalSort();
-
 
 
     }
@@ -103,13 +101,17 @@ public class TopologicalSort {
                 List<Vertex> neighbours = this.adjacencyMap.get(vtx.getLabel());
                 if (neighbours != null && !neighbours.isEmpty()) {
                     for (Vertex neighbour : neighbours) {
-                        int count = indegreeMap.get(neighbour.getLabel());
-                        --count;
-                        indegreeMap.put(neighbour.getLabel(), count);
-                        if (indegreeMap.get(neighbour.getLabel()) == 0) {
-                            queue.add(neighbour);
+                        if (indegreeMap.containsKey(neighbour.getLabel())) {
+                            int count = indegreeMap.get(neighbour.getLabel());
+                            --count;
+                            indegreeMap.put(neighbour.getLabel(), count);
+                            if (count == 0) {
+                                queue.add(neighbour);
+
+                            }
 
                         }
+
                     }
                 }
             }
