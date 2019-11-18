@@ -8,10 +8,10 @@ public class Palindrome {
     }
 
     private static boolean isPalindrome(int num) {
-        int divisor = 1;
-        while (num / divisor > 10) {
-            divisor *= 10;
-        }
+
+        int digitCount = (int) (Math.floor(Math.log10(num)) + 1);
+        System.out.println(digitCount);
+        int divisor = (int) Math.pow(10, digitCount - 1);
         while (num > 0) {
 
             int leading = num / divisor;
