@@ -12,8 +12,12 @@ public class BigNumberOp {
         number.add(1);
         number.add(8);
         number.add(9);
-        List<Integer> result = sum(number, 5);
-        result.forEach(e -> System.out.print(e + "\t"));
+        List<Integer> result = sum(number, 1);
+        System.out.print("\nSum = ");
+        result.forEach(e -> System.out.print(e));
+        System.out.print("\nProduct = ");
+        result = multiply(number, 5);
+        result.forEach(e -> System.out.print(e));
 
     }
 
@@ -22,16 +26,31 @@ public class BigNumberOp {
         int sum = number.get(size - 1) + i;
         number.set(size - 1, sum % 10);
         int carry = sum / 10;
-        for (int j = size - 2; j > 0; j--) {
+        for (int j = size - 2; j >= 0; j--) {
 
             if (carry == 1) {
-                number.set(j, number.get(j)+carry);
+                number.set(j, number.get(j) + carry);
                 carry = number.get(j) / 10;
                 number.set(j, number.get(j) % 10);
             }
         }
         if (carry == 1) {
             number.add(0, 1);
+        }
+        return number;
+    }
+
+
+    private static List<Integer> multiply(List<Integer> number, int i) {
+
+        int carry = 0;
+        for (int j = number.size() - 1; j >= 0; j--) {
+            int product = number.get(j) * i + carry;
+            number.set(j, product % 10);
+            carry = product / 10;
+        }
+        if (carry > 0) {
+            number.add(0, carry);
         }
         return number;
     }
