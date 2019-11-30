@@ -66,7 +66,6 @@ public class HeapSort {
     }
 
     public void displayArr() {
-        System.out.println();
         for (int i : arr) {
             System.out.print(i + " ");
         }
