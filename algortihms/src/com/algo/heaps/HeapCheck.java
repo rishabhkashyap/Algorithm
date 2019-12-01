@@ -2,14 +2,16 @@ package com.algo.heaps;
 
 public class HeapCheck {
     public static void main(String[] args) {
-        int[] heap = {10, 9, 6, 2, 1};
+        //int[] heap = {10, 9, 6, 2, 1};
+        int[] heap = {90, 15, 10, 7, 12, 2};
+        //int[] heap={1,2,3,4,5,6};
         //boolean result = isMaxHeapRecursive(heap);
-        boolean result = isMaxHeapIterative(heap);
+        boolean result = isMaxHeapRecursive(heap);
         System.out.println("heap is max heap = " + result);
     }
 
     private static boolean isMaxHeapRecursive(int[] heap) {
-        return isMaxHeapRecursiveHelper(heap, heap.length, 0);
+        return isMaxHeapRecursiveHelper(heap, heap.length-1, 0);
     }
 
     private static boolean isMaxHeapRecursiveHelper(int[] heap, int size, int i) {
@@ -35,4 +37,18 @@ public class HeapCheck {
         }
         return isMaxHeap;
     }
+
+    private static boolean isMinHeapRecursive(int[] heap) {
+        return isMinHeapRecursiveHelper(heap, heap.length-1, 0);
+    }
+
+    private static boolean isMinHeapRecursiveHelper(int[] heap, int size, int i) {
+        if (2 * i + 2 > size) {
+            return true;
+        }
+        boolean left = heap[i] < heap[2 * i + 1] && isMinHeapRecursiveHelper(heap, size, 2 * i + 1);
+        boolean right = heap[i] < heap[2 * i + 2] && isMinHeapRecursiveHelper(heap, size, 2 * i + 2);
+        return left && right;
+    }
+
 }
