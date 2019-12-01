@@ -1,5 +1,6 @@
 package com.algo.heaps;
 
+import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -10,6 +11,7 @@ public class KNumber {
         int k = 3;
         int kSmallest = findKthSmallestElement(arr, k);
         System.out.println(k + "th smallest element = " + kSmallest);
+        System.out.println(k + "th smallest element = " + findSmallestElement(arr, k));
     }
 
     private static int findKthSmallestElement(int[] arr, int k) {
@@ -25,5 +27,19 @@ public class KNumber {
             ++i;
         }
         return kthSmallest;
+    }
+
+    private static int findSmallestElement(int[] arr, int k) {
+        Queue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
+        for (int i = 0; i < k; i++) {
+            queue.add(arr[i]);
+        }
+        for (int j = k; j < arr.length; j++) {
+            if (arr[j] < queue.peek()) {
+                queue.remove();
+                queue.add(arr[j]);
+            }
+        }
+        return queue.peek();
     }
 }
