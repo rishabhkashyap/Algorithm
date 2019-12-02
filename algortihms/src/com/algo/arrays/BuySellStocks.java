@@ -2,7 +2,8 @@ package com.algo.arrays;
 
 public class BuySellStocks {
     public static void main(String[] args) {
-        int[] price = {310, 315, 275, 295, 260, 270, 290, 230, 255, 250};
+        //int[] price = {310, 315, 275, 295, 260, 270, 290, 230, 255, 250};
+        int[] price = {100, 80, 120, 130, 70, 60, 100, 125};
         int result = getMaxProfit(price);
         System.out.println("Result = " + result);
 
