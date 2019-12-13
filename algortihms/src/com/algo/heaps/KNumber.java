@@ -10,7 +10,11 @@ public class KNumber {
         int[] arr = {7, 10, 4, 3, 20, 15};
         int k = 3;
         int kSmallest = findKthSmallestElement(arr, k);
+        System.out.println("Approach 1");
         System.out.println(k + "th smallest element = " + kSmallest);
+        System.out.println(k + "th smallest element = " + findSmallestElement(arr, k));
+        System.out.println("\nApproach 2");
+        System.out.println(k + "th largest element = " + findLargestElement2(arr, k));
         System.out.println(k + "th smallest element = " + findSmallestElement(arr, k));
     }
 
@@ -42,4 +46,23 @@ public class KNumber {
         }
         return queue.peek();
     }
+
+    private static int findLargestElement2(int[] arr, int k) {
+
+        Queue<Integer> queue = new PriorityQueue<>();
+        for (int i = 0; i < k; i++) {
+            queue.add(arr[i]);
+        }
+
+        for (int i = k; i < arr.length; i++) {
+            if (arr[i] > queue.peek()) {
+                queue.remove();
+                queue.add(arr[i]);
+            }
+        }
+
+        return queue.peek();
+
+    }
+
 }
