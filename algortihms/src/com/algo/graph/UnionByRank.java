@@ -10,18 +10,18 @@ import java.util.Map;
 public class UnionByRank {
     public static void main(String[] args) {
 
-        Graph graph = new Graph(4, 3);
+        Graph graph = new Graph(3, 3);
         Vertex vertex0 = new Vertex("0");
         Vertex vertex1 = new Vertex("1");
         Vertex vertex2 = new Vertex("2");
-        Vertex vertex3 = new Vertex("3");
+        //Vertex vertex3 = new Vertex("3");
         graph.addVertex(vertex0);
         graph.addVertex(vertex1);
         graph.addVertex(vertex2);
-        graph.addVertex(vertex3);
+       // graph.addVertex(vertex3);
         graph.addEdge(vertex0, vertex1);
         graph.addEdge(vertex1, vertex2);
-        graph.addEdge(vertex2, vertex3);
+        graph.addEdge(vertex2, vertex1);
         System.out.println("Graph contains cycle = " + graph.isCyclic());
 
 
