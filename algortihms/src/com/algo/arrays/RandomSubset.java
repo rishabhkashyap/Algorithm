@@ -7,12 +7,12 @@ public class RandomSubset {
     public static void main(String[] args) {
         int[] arr = {4, 5, 7, 1, 2, 9};
         int k = 4;
-        int[] result = generateAllRandomSubset(arr, k);
+        int[] result = generateRandomSubset(arr, k);
         //System.out.println("Random subet");
         Arrays.stream(result).forEach(e -> System.out.print(e + "\t"));
     }
 
-    private static int[] generateAllRandomSubset(int[] input, int k) {
+    private static int[] generateRandomSubset(int[] input, int k) {
         int[] arr = Arrays.copyOf(input, input.length);
         for (int i = 0; i < k; i++) {
             swap(arr, getRandomIndexInRange(i, arr.length - 1), i);
