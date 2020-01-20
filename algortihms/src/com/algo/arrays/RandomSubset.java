@@ -8,8 +8,11 @@ public class RandomSubset {
         int[] arr = {4, 5, 7, 1, 2, 9};
         int k = 4;
         int[] result = generateRandomSubset(arr, k);
-        //System.out.println("Random subet");
+        System.out.println("Random subet of size "+k);
         Arrays.stream(result).forEach(e -> System.out.print(e + "\t"));
+        //System.out.println("\nRandmom premutation of given array");
+//        result = generateRandomPermutation(arr);
+//        Arrays.stream(result).forEach(e -> System.out.print(e + "\t"));
     }
 
     private static int[] generateRandomSubset(int[] input, int k) {
@@ -18,6 +21,15 @@ public class RandomSubset {
             swap(arr, getRandomIndexInRange(i, arr.length - 1), i);
         }
         return Arrays.copyOfRange(arr, 0, k);
+    }
+
+    private static int[] generateRandomPermutation(int[] input) {
+        int[] arr = Arrays.copyOf(input, input.length);
+        for (int i = 0; i < arr.length; i++) {
+            swap(arr, getRandomIndexInRange(i, arr.length - 1), i);
+        }
+        return arr;
+
     }
 
     private static int getRandomIndexInRange(int min, int max) {
@@ -29,4 +41,6 @@ public class RandomSubset {
         arr[i] = arr[j];
         arr[j] = temp;
     }
+
+
 }
