@@ -24,7 +24,7 @@ public class Kruskal {
         graph.addEdge(vertex0, vertex2, 6);
         graph.addEdge(vertex0, vertex3, 5);
         List<Edge> result = graph.getMinSpanningTree();
-        result.forEach(edge->
+        result.forEach(edge ->
                 System.out.print("\n" + edge.source + "------>" + edge.getDestination() + "\t" + edge.getWeight()));
 
     }
@@ -66,15 +66,13 @@ public class Kruskal {
             this.edges.sort((e1, e2) -> e1.getWeight() - e2.getWeight());
             int i = 0;
             int edgesCovered = 0;
-            while (edgesCovered < nVertices  && i < edges.size()) {
+            while (edgesCovered < nVertices && i < edges.size()) {
                 Edge edge = edges.get(i++);
                 if (!isCyclePresent(edge)) {
                     union(new Vertex(edge.getSource()), new Vertex(edge.getDestination()));
                     spanningTree.add(edge);
                     ++edgesCovered;
                 }
-
-
             }
             return spanningTree;
         }
