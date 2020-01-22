@@ -71,8 +71,9 @@ public class Kruskal {
                 if (!isCyclePresent(edge)) {
                     union(new Vertex(edge.getSource()), new Vertex(edge.getDestination()));
                     spanningTree.add(edge);
+                    ++edgesCovered;
                 }
-                ++edgesCovered;
+
 
             }
             return spanningTree;
