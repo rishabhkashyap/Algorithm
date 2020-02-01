@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.OptionalInt;
 
-public class CountingSort {
+public class CountSort {
 
 	public static void main(String[] args) {
 		int[]input= {2, 1, 4, 5, 7, 1, 1, 8, 9, 10, 11, 14, 15, 3, 2, 4};
