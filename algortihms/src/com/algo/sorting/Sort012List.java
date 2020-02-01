@@ -34,18 +34,18 @@ public class Sort012List {
         while (current != null) {
             if (current.getValue() == 0) {
                 zeroCurr.next = current;
-                zeroCurr = current;
+                zeroCurr = zeroCurr.next;
             } else if (current.getValue() == 1) {
                 oneCurr.next = current;
-                oneCurr = current;
+                oneCurr = oneCurr.next;
             } else {
                 twoCurr.next = current;
-                twoCurr = current;
+                twoCurr = twoCurr.next;
             }
             current = current.next;
         }
-        oneCurr.next=null;
-        twoCurr.next=null;
+        oneCurr.next = null;
+        twoCurr.next = null;
         zeroCurr.next = (oneCurr != null) ? ones.next : twoes.next;
         if (oneCurr != null) {
             oneCurr.next = twoes.next;
