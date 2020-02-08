@@ -46,13 +46,12 @@ public class MergeSortList {
             while (left != null && right != null) {
                 if (left.value < right.value) {
                     mergeTail.next = left;
-                    mergeTail = left;
                     left = left.next;
                 } else {
                     mergeTail.next = right;
-                    mergeTail = right;
                     right = right.next;
                 }
+                mergeTail = mergeTail.next;
             }
 
             if (left != null) {
@@ -79,11 +78,16 @@ public class MergeSortList {
             slow = slow.next;
             fast = fast.next.next;
         }
-        if (fast == null) {
+        if (isListLengthEven(fast)) {
             return previous;
         } else {
             return slow;
         }
 
+    }
+
+
+    private static boolean isListLengthEven(Node head) {
+        return head == null;
     }
 }
