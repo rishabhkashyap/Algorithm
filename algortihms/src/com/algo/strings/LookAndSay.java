@@ -32,18 +32,4 @@ public class LookAndSay {
         return stringBuilder.toString();
     }
 
-
-    private static Map<Character, Integer> getCountMap(String next) {
-        Map<Character, Integer> map = new LinkedHashMap<>();
-        for (int i = 0; i < next.length(); i++) {
-            if (map.containsKey(next.charAt(i))) {
-                int count = map.get(next.charAt(i));
-                ++count;
-                map.put(next.charAt(i), count);
-            } else {
-                map.put(next.charAt(i), 1);
-            }
-        }
-        return map;
-    }
 }
