@@ -19,24 +19,17 @@ public class LookAndSay {
     private static String nextNumber(String next) {
         StringBuilder stringBuilder = new StringBuilder();
         int count = 1;
-        if (next.length() == 1) {
-            stringBuilder.append(1);
-            stringBuilder.append(next.charAt(0));
-        } else {
-            for (int i = 0; i < next.length(); i++) {
-                if (i + 1 < next.length() && next.charAt(i) == next.charAt(i + 1)) {
-                    ++count;
-                } else {
-                    stringBuilder.append(count);
-                    stringBuilder.append(next.charAt(i));
-                    count = 1;
-                }
+
+        for (int i = 0; i < next.length(); i++) {
+            if (i + 1 < next.length() && next.charAt(i) == next.charAt(i + 1)) {
+                ++count;
+            } else {
+                stringBuilder.append(count);
+                stringBuilder.append(next.charAt(i));
+                count = 1;
             }
-
         }
-
         return stringBuilder.toString();
-
     }
 
 
