@@ -50,22 +50,18 @@ public class UnionFind {
         }
 
         private void union(Vertex v1, Vertex v2) {
-            String v1Set = find(v1.getLabel());
-            String v2Set = find(v2.getLabel());
-            parentMap.put(v1Set, v2Set);
+            parentMap.put(find(v1.getLabel()), find(v2.getLabel()));
         }
 
-        private String find(String label) {
-            String set = null;
+        private String find(String label) throws RuntimeException {
             for (int i = 0; i < parentMap.size(); i++) {
                 if (parentMap.get(label).equals(label)) {
-                    set = label;
-                    break;
+                    return label;
                 } else {
                     label = parentMap.get(label);
                 }
             }
-            return set;
+            throw new RuntimeException("Root of " + label + " not found");
         }
 
         public void addVertex(Vertex vertex) {
