@@ -14,15 +14,15 @@ public class FirstDuplicate {
 
     private static int getFirstDuplicateUsingHashset(int[] arr) {
         Set<Integer> set = new HashSet<>();
-        int minIndex = -1;
+        int index = -1;
         for (int i = arr.length - 1; i >= 0; --i) {
             if (set.contains(arr[i])) {
-                minIndex = i;
+                index = i;
             } else {
                 set.add(arr[i]);
             }
         }
-        return minIndex != -1 ? arr[minIndex] : -1;
+        return index != -1 ? arr[index] : -1;
     }
 
     private static int getFirstDuplicate(int[] arr) {
