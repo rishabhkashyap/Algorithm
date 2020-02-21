@@ -1,43 +1,43 @@
 package com.algo.search;
 
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class FirstDuplicate {
 
     public static void main(String[] args) {
         int[] arr = {10, 5, 3, 4, 3, 5, 6};
-        int[] temp = arr;
-//        int duplicate = getFirstDuplicate(arr);
-        int duplicate = getFirstDuplicateUsingHash(arr);
-        System.out.println("First repeated element in array = " + duplicate);
+        System.out.println("First repeated element in array using location = " + getFirstDuplicate(arr));
+        System.out.println("First repeated element in array using hashing = " + getFirstDuplicateUsingHash(arr));
+        System.out.println("First repeated element in array using hash set = " + getFirstDuplicateUsingHashset(arr));
+
+    }
+
+    private static int getFirstDuplicateUsingHashset(int[] arr) {
+        Set<Integer> set = new HashSet<>();
+        int minIndex = -1;
+        for (int i = arr.length - 1; i >= 0; --i) {
+            if (set.contains(arr[i])) {
+                minIndex = i;
+            } else {
+                set.add(arr[i]);
+            }
+        }
+        return minIndex != -1 ? arr[minIndex] : -1;
     }
 
     private static int getFirstDuplicate(int[] arr) {
         int[] temp = Arrays.copyOf(arr, arr.length);
-        int duplicate = -1;
         Arrays.sort(temp);
         for (int number : arr) {
-            int freq = getFreq(temp, number);
-            if (freq > 1) {
-                duplicate = number;
-                break;
+            if (isNumberRepeated(temp, number)) {
+                return number;
             }
         }
-        return duplicate;
+        return -1;
     }
 
-    private static int getFreq(int[] temp, int number) {
-        int count = 0;
-        int start = getFirstOccurence(temp, number);
-        int end = getLastOccurence(temp, number);
-        for (int i = start; i <= end; i++) {
-            ++count;
-        }
-        return count;
-
+    private static boolean isNumberRepeated(int[] temp, int number) {
+        return getFirstOccurence(temp, number) != getLastOccurence(temp, number) ? true : false;
     }
 
     private static int getFirstOccurence(int[] arr, int key) {
