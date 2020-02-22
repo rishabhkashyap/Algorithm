@@ -24,6 +24,7 @@ public class Duplicate2Element {
         int difference = (int) Math.sqrt(sum * sum - 4 * product);
         int num1 = (sum + difference) / 2;
         int num2 = (sum - difference) / 2;
+        System.out.println("Using mathematical equation");
         System.out.println("Repeated number1 = " + num1);
         System.out.println("Repeated number2 = " + num2);
 
@@ -42,7 +43,7 @@ public class Duplicate2Element {
         for (int num : arr) {
             ++freq[num];
         }
-
+        System.out.println("Using count array");
         for (int i = 0; i < arr.length; ++i) {
             if (freq[i] >= 2) {
                 System.out.println("Repeated number1 = " + i);
