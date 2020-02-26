@@ -1,31 +1,15 @@
 package com.algo.strings;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class IntegerToRoman {
     public static void main(String[] args) {
-        System.out.println("Roman eqivalent of 99 = " + intToRoman(25));
+        System.out.println("Roman equivalent of 25 = " + intToRoman(25));
     }
 
     private static String intToRoman(int num) {
-        Map<Integer, String> map = new LinkedHashMap<>();
+        Map<Integer, String> map = getRomanNumeralMap();
         StringBuilder stringBuilder = new StringBuilder();
-        map.put(1000, "M");
-        map.put(900, "CM");
-        map.put(500, "D");
-        map.put(400, "CD");
-        map.put(100, "C");
-        map.put(90, "XC ");
-        map.put(50, "L");
-        map.put(40, "XL");
-        map.put(10, "X");
-        map.put(9, "IX");
-        map.put(5, "V");
-        map.put(4, "IV");
-        map.put(1, "I");
         List<Integer> keys = new ArrayList<>(map.keySet());
         int index = 0;
         while (num != 0) {
@@ -40,8 +24,25 @@ public class IntegerToRoman {
                 num %= key;
             }
             ++index;
-
         }
         return stringBuilder.toString();
+    }
+
+    private static Map<Integer, String> getRomanNumeralMap() {
+        Map<Integer, String> map = new LinkedHashMap<>();
+        map.put(1000, "M");
+        map.put(900, "CM");
+        map.put(500, "D");
+        map.put(400, "CD");
+        map.put(100, "C");
+        map.put(90, "XC ");
+        map.put(50, "L");
+        map.put(40, "XL");
+        map.put(10, "X");
+        map.put(9, "IX");
+        map.put(5, "V");
+        map.put(4, "IV");
+        map.put(1, "I");
+        return map;
     }
 }
