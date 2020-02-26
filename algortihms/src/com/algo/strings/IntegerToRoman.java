@@ -7,7 +7,10 @@ public class IntegerToRoman {
         System.out.println("Roman equivalent of 25 = " + intToRoman(25));
     }
 
-    private static String intToRoman(int num) {
+    private static String intToRoman(int num) throws IllegalArgumentException {
+        if(num<0){
+            throw new IllegalArgumentException("Number is negative");
+        }
         Map<Integer, String> map = getRomanNumeralMap();
         StringBuilder stringBuilder = new StringBuilder();
         List<Integer> keys = new ArrayList<>(map.keySet());
