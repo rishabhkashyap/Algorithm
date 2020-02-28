@@ -61,7 +61,7 @@ public class Duplicate2Element {
         for (int i = 0; i < arr.length; i++) {
             if (i + 1 < arr.length && arr[i] == arr[i + 1]) {
                 ++count;
-                if (count > 2) {
+                if (count >= 2) {
                     System.out.println("Repeated number = " + arr[i]);
                 }
             } else {
