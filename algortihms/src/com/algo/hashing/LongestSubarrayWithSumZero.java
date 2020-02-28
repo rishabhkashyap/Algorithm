@@ -25,8 +25,7 @@ public class LongestSubarrayWithSumZero {
                 maxLen = Math.max(maxLen, i + 1);
             }
             if (map.containsKey(prefixSum)) {
-                int index = map.get(prefixSum);
-                maxLen = Math.max(maxLen, i - index);
+                maxLen = Math.max(maxLen, i - map.get(prefixSum));
             } else {
                 map.put(prefixSum, i);
             }
