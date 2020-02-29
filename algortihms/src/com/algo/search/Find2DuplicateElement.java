@@ -1,8 +1,9 @@
 package com.algo.search;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
-public class Duplicate2Element {
+public class Find2DuplicateElement {
     public static void main(String[] args) {
         int[] arr = {4, 2, 4, 5, 2, 3, 1};
         int n = 5;
@@ -35,11 +36,7 @@ public class Duplicate2Element {
     }
 
     private static int findNProduct(int n) {
-        int product = 1;
-        for (int i = 1; i <= n; i++) {
-            product *= i;
-        }
-        return product;
+      return IntStream.range(1,n+1).reduce((a,b)->a*b).getAsInt();
     }
 
     private static void printDuplicate(int[] arr) {
