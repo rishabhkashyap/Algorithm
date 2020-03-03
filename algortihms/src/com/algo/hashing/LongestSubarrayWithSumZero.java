@@ -18,7 +18,7 @@ public class LongestSubarrayWithSumZero {
         int prefixSum = 0;
         for (int i = 0; i < arr.length; i++) {
             prefixSum += arr[i];
-            if (prefixSum == 0 && maxLen == 0) {
+            if (arr[i] == 0 && maxLen == 0) {
                 maxLen = 1;
             }
             if (prefixSum == 0) {
