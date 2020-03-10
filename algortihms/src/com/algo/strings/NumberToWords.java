@@ -6,6 +6,7 @@ public class NumberToWords {
         System.out.println(convertToWordsInternational(123456));
         System.out.println(convertToWordsInternational(1000));
         System.out.println(convertToWordsInternational(12_234_456));
+        System.out.println(convertToWordsInternational(100_000_000));
     }
 
     private static String convertToWordsInternational(int number) {
@@ -34,7 +35,7 @@ public class NumberToWords {
         } else {
             words = words + getTenMultiple(lastDigits / 10) + getUnit(lastDigits % 10);
         }
-        return (number > 100) ? getUnit(number / 100) + " hundred" + words : words;
+        return (number >= 100) ? getUnit(number / 100) + " hundred" + words : words;
 
 
     }
