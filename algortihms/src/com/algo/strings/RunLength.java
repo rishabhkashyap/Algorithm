@@ -9,20 +9,17 @@ public class RunLength {
 
     private static String runLengthDecode(String string) {
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < string.length(); i+=2) {
-            if (i + 1 < string.length()) {
-                if (!isAlphabet(string.charAt(i))) {
-                    throw new IllegalArgumentException("Not a valid encoded string");
-                }
-                if (!Character.isDigit(string.charAt(i + 1))) {
-                    throw new IllegalArgumentException("Not a valid encoded string");
-                }
-
-                char ch = string.charAt(i);
-                int count = string.charAt(i + 1) - '0';
-                result.append(String.valueOf(ch).repeat(count));
+        for (int i = 0; i < string.length(); i += 2) {
+            if (!isAlphabet(string.charAt(i))) {
+                throw new IllegalArgumentException("Not a valid encoded string");
+            }
+            if (!Character.isDigit(string.charAt(i + 1))) {
+                throw new IllegalArgumentException("Not a valid encoded string");
             }
 
+            char ch = string.charAt(i);
+            int count = string.charAt(i + 1) - '0';
+            result.append(String.valueOf(ch).repeat(count));
         }
         return result.toString();
     }
