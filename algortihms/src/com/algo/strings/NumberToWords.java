@@ -13,7 +13,7 @@ public class NumberToWords {
         String words = "";
         int index = 0;
         while (number > 0) {
-            if (number%1000!=0) {
+            if (number % 1000 != 0) {
                 String str = convertToWordsHelper(number % 1000);
                 words = str + getPlaceValue(index) + words;
             }
