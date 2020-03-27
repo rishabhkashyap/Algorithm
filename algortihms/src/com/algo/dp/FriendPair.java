@@ -1,4 +1,4 @@
-package com.algo.dynamic;
+package com.algo.dp;
 
 public class FriendPair {
     public static void main(String[] args) {

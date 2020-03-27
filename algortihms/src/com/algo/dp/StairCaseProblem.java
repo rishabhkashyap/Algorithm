@@ -1,4 +1,4 @@
-package com.algo.dynamic;
+package com.algo.dp;
 
 import java.util.Arrays;
 
