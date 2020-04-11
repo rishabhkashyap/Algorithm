@@ -3,8 +3,9 @@ package com.algo.dp;
 public class MaxSumSubArray {
     public static void main(String[] args) {
         //int[] arr = {-2, -3, 4, -1, -2, 1, 5, -3};
-       // int[] arr = {-2, -5, 6, -2, -3, 1, 5, -6};
-        int[] arr = {-2, -1,-3,4,-1,2,1,-5,4};
+        // int[] arr = {-2, -5, 6, -2, -3, 1, 5, -6};
+        //int[] arr = {-2, -1,-3,4,-1,2,1,-5,4};
+        int[] arr = {1, 2};
         System.out.println("Max sum subarray using brute force = " + getMaxSumBruteForce(arr));
         System.out.println("Max sum subarray  using recursion= " + getMaxSumRecursion(arr));
         System.out.println("Max sum subarray  using recursion with optimization= " + getMaxSumRecursionOptimize(arr));
@@ -31,9 +32,6 @@ public class MaxSumSubArray {
 
     private static int maxSumRecursionHelper(int[] arr, int n) {
 
-        if (n < 0) {
-            return 0;
-        }
         if (n == 0) {
             return arr[0];
         }
@@ -59,7 +57,7 @@ public class MaxSumSubArray {
             return 0;
         }
         if (n == 0) {
-            return arr[0];
+            return sum + arr[0];
         }
         int maxSum = 0;
         if (sum + arr[n] > 0) {
