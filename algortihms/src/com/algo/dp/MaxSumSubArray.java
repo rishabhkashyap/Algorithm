@@ -65,7 +65,7 @@ public class MaxSumSubArray {
         } else {
             maxSum = maxSumOptimizedHelper(arr, n - 1, 0);
         }
-        return Math.max(maxSum, sum);
+        return Math.max(maxSum, sum + arr[n]);
 
 
     }
