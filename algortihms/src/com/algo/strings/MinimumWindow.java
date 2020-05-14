@@ -1,4 +1,4 @@
-package com.algo.hashing;
+package com.algo.strings;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,8 +10,10 @@ public class MinimumWindow {
 //        String pattern = "tist";
 //        String string = "tutorial cup";
 //        String pattern = "oti";
-        String string = "zaaskzaazaaasbjdskk";
-        String pattern = "zsk";
+//        String string = "zaaskzaazaaasbjdskk";
+//        String pattern = "zsk";
+        String string = "baaabbca";
+        String pattern = "abc";
         System.out.println(findSmallestWindow(string, pattern));
     }
 
