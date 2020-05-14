@@ -10,10 +10,8 @@ public class MinimumWindow {
 //        String pattern = "tist";
 //        String string = "tutorial cup";
 //        String pattern = "oti";
-//        String string = "zaaskzaazaaasbjdskk";
-//        String pattern = "zsk";
-        String string = "baaabbca";
-        String pattern = "abc";
+        String string = "zaaskzaazaaasbjdskk";
+        String pattern = "zsk";
         System.out.println(findSmallestWindow(string, pattern));
     }
 
