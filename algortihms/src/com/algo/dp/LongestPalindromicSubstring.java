@@ -5,8 +5,7 @@ import java.util.Arrays;
 public class LongestPalindromicSubstring {
 
     private static String substring;
-    private static int start = Integer.MAX_VALUE;
-    private static int end = Integer.MIN_VALUE;
+
 
     public static void main(String[] args) {
 //        String string = "cbbd";
@@ -34,13 +33,11 @@ public class LongestPalindromicSubstring {
         }
         //Single character
         if (i == j) {
-            substring = string.substring(i, i + 1);
             dp[i][j] = 1;
             return 1;
         }
         //2 character string
         if (string.charAt(i) == string.charAt(j) && i + 1 == j) {
-            substring = string.substring(i + 1, j);
             dp[i][j] = 2;
             return 2;
         }
@@ -61,15 +58,20 @@ public class LongestPalindromicSubstring {
         boolean[][] dp = new boolean[string.length() + 1][string.length() + 1];
         //String of length 1
         int start = 0;
+        int end=0;
         int maxLen = 1;
         for (int i = 0; i < string.length(); i++) {
             dp[i][i] = true;
+            start=i;
+            end=i;
         }
 
         for (int i = 0; i < string.length() - 1; i++) {
             if (string.charAt(i) == string.charAt(i + 1)) {
                 dp[i][i + 1] = true;
                 maxLen = 2;
+                start=i;
+                end=i+1;
             }
         }
 
@@ -82,10 +84,17 @@ public class LongestPalindromicSubstring {
                 if (string.charAt(i) == string.charAt(j)
                         && dp[i + 1][j - 1]) {
                     dp[i][j] = true;
-                    maxLen = Math.max(maxLen, len);
+                    if(len>maxLen){
+                        start=i;
+                        end=j;
+                        maxLen=len;
+                    }
+
                 }
             }
+
         }
+        System.out.println("Longest substring = "+string.substring(start,end+1));
         return maxLen;
     }
 
