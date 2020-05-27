@@ -61,5 +61,26 @@ public class List {
 
     }
 
+    public Node getLastNode() {
+        Node temp = head;
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+        return temp;
+    }
+
+    public int size() {
+        if (head == null) {
+            return 0;
+        }
+        Node temp = head;
+        int count = 0;
+        while (temp != null) {
+            ++count;
+            temp = temp.next;
+        }
+        return count;
+    }
+
 
 }
