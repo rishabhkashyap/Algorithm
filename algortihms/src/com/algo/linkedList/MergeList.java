@@ -28,16 +28,14 @@ public class MergeList {
         }
         display(head1);
         display(head2);
-        Node head = merge(head1, head2);
-        //Node head=mergeRecursively(head1,head2);
+       // Node head = merge(head1, head2);
+        Node head=mergeRecursively(head1,head2);
         if (head != null) {
             System.out.println("\nMerged list\n");
             display(head);
         } else {
             System.out.println("bot lists are empty !!\n");
         }
-
-
 
 
     }
@@ -51,37 +49,36 @@ public class MergeList {
 
         if (current1 == null) {
             return current2;
-        } else if (current2 == null) {
-            return current1;
-        } else if (current1 == null && current2 == null) {
-            return null;
-        } else {
-            while (current1 != null && current2 != null) {
-                if (current1.value < current2.value) {
-                    tail.next = current1;
-                    current1 = current1.next;
-                } else {
-                    tail.next = current2;
-                    current2 = current2.next;
-                }
-                tail = tail.next;
-            }
-            if (current1 != null) {
-                while (current1 != null) {
-                    tail.next = current1;
-                    tail = tail.next;
-                    current1 = current1.next;
-                }
-            }
-            if (current2 != null) {
-                while (current2 != null) {
-                    tail.next = current2;
-                    tail = tail.next;
-                    current2 = current2.next;
-                }
-            }
-            return head.next;
         }
+        if (current2 == null) {
+            return current1;
+        }
+
+        while (current1 != null && current2 != null) {
+            if (current1.value < current2.value) {
+                tail.next = current1;
+                current1 = current1.next;
+            } else {
+                tail.next = current2;
+                current2 = current2.next;
+            }
+            tail = tail.next;
+        }
+        if (current1 != null) {
+            while (current1 != null) {
+                tail.next = current1;
+                tail = tail.next;
+                current1 = current1.next;
+            }
+        }
+        if (current2 != null) {
+            while (current2 != null) {
+                tail.next = current2;
+                tail = tail.next;
+                current2 = current2.next;
+            }
+        }
+        return head.next;
 
 
     }
@@ -104,17 +101,18 @@ public class MergeList {
         Node head = null;
         if (current1 == null) {
             return current2;
-        } else if (current2 == null) {
-            return current1;
-        } else {
-            if (current1.value < current2.value) {
-                head = current1;
-                head.next = mergeRecursively(current1.next, current2);
-            } else {
-                head = current2;
-                head.next = mergeRecursively(current1, current2.next);
-            }
         }
+        if (current2 == null) {
+            return current1;
+        }
+        if (current1.value < current2.value) {
+            head = current1;
+            head.next = mergeRecursively(current1.next, current2);
+        } else {
+            head = current2;
+            head.next = mergeRecursively(current1, current2.next);
+        }
+
         return head;
     }
 
