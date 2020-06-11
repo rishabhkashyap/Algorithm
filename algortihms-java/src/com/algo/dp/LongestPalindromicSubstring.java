@@ -58,43 +58,43 @@ public class LongestPalindromicSubstring {
         boolean[][] dp = new boolean[string.length() + 1][string.length() + 1];
         //String of length 1
         int start = 0;
-        int end=0;
+        int end = 0;
         int maxLen = 1;
         for (int i = 0; i < string.length(); i++) {
             dp[i][i] = true;
-            start=i;
-            end=i;
+            start = i;
+            end = i;
         }
 
-        for (int i = 0; i < string.length() - 1; i++) {
-            if (string.charAt(i) == string.charAt(i + 1)) {
-                dp[i][i + 1] = true;
-                maxLen = 2;
-                start=i;
-                end=i+1;
-            }
-        }
-
-        //Strings grater than length 2
-        for (int len = 3; len <= string.length(); ++len) {
+        //Strings of length>=2
+        for (int len = 2; len <= string.length(); ++len) {
             //i represnts start index of substring
             for (int i = 0; i <= string.length() - len; ++i) {
                 //j represents end index of substring
                 int j = i + len - 1;
-                if (string.charAt(i) == string.charAt(j)
-                        && dp[i + 1][j - 1]) {
+                //Cheks of palindromic string greater than 2
+                if (string.charAt(i) == string.charAt(j) && dp[i + 1][j - 1]) {
                     dp[i][j] = true;
-                    if(len>maxLen){
-                        start=i;
-                        end=j;
-                        maxLen=len;
+                    if (len > maxLen) {
+                        start = i;
+                        end = j;
+                        maxLen = len;
                     }
 
+                }
+                //Checks palindromic string of length 2
+                if (string.charAt(i) == string.charAt(j) && i + 1 == j) {
+                    dp[i][j] = true;
+                    if (len > maxLen) {
+                        start = i;
+                        end = j;
+                        maxLen = len;
+                    }
                 }
             }
 
         }
-        System.out.println("Longest substring = "+string.substring(start,end+1));
+        System.out.println("Longest substring = " + string.substring(start, end + 1));
         return maxLen;
     }
 
