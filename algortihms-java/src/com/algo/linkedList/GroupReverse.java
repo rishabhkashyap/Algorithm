@@ -32,10 +32,11 @@ public class GroupReverse {
             next = current.next;
             current.next = prev;
             prev = current;
-            current=next;
+            current = next;
             ++i;
         }
-        //Once above loop is completed next will be ,use it to recursively reverse group of nodes
+        //Once above loop is completed next will be pointing to first node ofremaining linked list
+        // use it to recursively reverse group of nodes
 
         if (next != null) {
             head.next = reverse(next, k);
