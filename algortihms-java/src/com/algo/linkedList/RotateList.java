@@ -18,34 +18,114 @@ public class RotateList {
         list.add(n5);
         list.add(n6);
         Node head = list.getHead();
-        System.out.println("List before rotation");
+        System.out.println("Rotate list anti clockwise");
         list.display();
-        list.setHead(rotateList(head, 4));
-        System.out.println("List after rotation");
+        list.setHead(rotateListAntiClockwise(head, 2));
         list.display();
+        System.out.println("\nRotate list clockwise 1");
+        List list2 = new List();
+        for (int i = 1; i <= 5; i++) {
+            list2.addLast(new Node(i));
+        }
+        list2.display();
+        list2.setHead(rotateListClockwise1(list2.getHead(), 11));
+        list2.display();
+        List list3 = new List();
+        for (int i = 1; i <= 5; i++) {
+            list3.addLast(new Node(i));
+        }
+        System.out.println("\nRotate list clockwise 2");
+        list3.display();
+        list3.setHead(rotateListClockwise1(list3.getHead(), 11));
+        list3.display();
+
 
     }
 
-    private static Node rotateList(Node head, int k) {
+    //Move from front to back
+    //10	20	30	40	50	60	=> 30	40	50	60	10	20
+    // |_____|________________|
+    //       |________________|
+    private static Node rotateListAntiClockwise(Node head, int k) {
         Node current = head;
-        Node previous=null;
-        Node last=head;
+        Node previous = null;
+        Node last = head;
         //Convert linked list to circular linked list
 
-        while(last.next!=null){
-            last=last.next;
+        while (last.next != null) {
+            last = last.next;
         }
-        last.next=current;
+        last.next = current;
 
         //Rotate list
-        for(int i=0;i<k;i++){
-            previous=current;
-            current=current.next;
+        for (int i = 0; i < k; i++) {
+            previous = current;
+            current = current.next;
         }
-        previous.next=null;
-        head=current;
+        previous.next = null;
+        head = current;
         return head;
 
 
     }
+
+    //Moves elements from back to front
+    private static Node rotateListClockwise1(Node head, int k) {
+        if (head == null) {
+            return null;
+        }
+        int count = 1;
+        Node tail = head;
+        while (tail.next != null) {
+            ++count;
+            tail = tail.next;
+        }
+        if (k > count) {
+            k = k % count;
+
+        }
+        Node previous = null;
+        Node newHead = head;
+        int i = 0;
+        while (i < count - k) {
+            previous = newHead;
+            newHead = newHead.next;
+            ++i;
+        }
+        previous.next = null;
+        tail.next = head;
+        return newHead;
+
+    }
+
+    //Moves elements from back to front
+    private static Node rotateListClockwise2(Node head, int k) {
+
+        Node current = head;
+        Node previous = null;
+        Node last = head;
+        int count = 1;
+        //Convert linked list to circular linked list
+        while (last.next != null) {
+            last = last.next;
+            ++count;
+        }
+        last.next = current;
+        if (k > count) {
+            k = k % count;
+        }
+
+        //Rotate list
+        for (int i = 0; i < count - k; i++) {
+            previous = current;
+            current = current.next;
+        }
+        previous.next = null;
+        head = current;
+        return head;
+
+
+    }
+
+
 }
