@@ -36,7 +36,7 @@ public class RotateList {
         }
         System.out.println("\nRotate list clockwise 2");
         list3.display();
-        list3.setHead(rotateListClockwise1(list3.getHead(), 11));
+        list3.setHead(rotateListClockwise2(list3.getHead(), 11));
         list3.display();
 
 
