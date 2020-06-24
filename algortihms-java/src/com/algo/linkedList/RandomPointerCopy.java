@@ -16,7 +16,8 @@ public class RandomPointerCopy {
         head.next.next.next.random = head.next.next.next.next;
         head.next.next.next.next.random = head.next;
         display(head);
-        Node copyHead = copy(head);
+        //Node copyHead = copy1(head);
+        Node copyHead = copy2(head);
         System.out.println("\nCopy of list\n");
         display(copyHead);
 
@@ -47,7 +48,7 @@ public class RandomPointerCopy {
 
     }
 
-    private static Node copy(Node head) {
+    private static Node copy1(Node head) {
         if (head == null) {
             return head;
         }
@@ -65,6 +66,40 @@ public class RandomPointerCopy {
             temp = temp.next;
         }
         return map.get(head);
+    }
+
+    private static Node copy2(Node head) {
+        if (head == null) {
+            return null;
+        }
+        Node current = head;
+        //create copy of each node and make original node's next to copy node
+        //Make copy node's next to point to original next of head
+        while (current != null) {
+            Node temp = current.next;
+            Node node = new Node(current.data);
+            current.next = node;
+            node.next = temp;
+            current = temp;
+        }
+        current = head;
+        while (current != null) {
+            if (current.random != null) {
+                current.next.random = current.random.next;
+                current = current.next.next;
+            }
+        }
+        Node copyHead = new Node(0);
+        Node copyTail = copyHead;
+        current = head;
+        while (current != null) {
+            Node temp = current.next.next;
+            copyTail.next = current.next;
+            copyTail = current.next;
+            current.next = temp;
+            current = current.next;
+        }
+        return copyHead.next;
     }
 
     private static final class Node implements Cloneable {
