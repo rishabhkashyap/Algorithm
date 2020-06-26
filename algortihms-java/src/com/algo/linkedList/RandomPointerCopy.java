@@ -82,6 +82,8 @@ public class RandomPointerCopy {
             node.next = temp;
             current = temp;
         }
+
+        //Copy random pointers
         current = head;
         while (current != null) {
             if (current.random != null) {
@@ -89,6 +91,8 @@ public class RandomPointerCopy {
                 current = current.next.next;
             }
         }
+        //Reset next pointer of original linked list
+        //Reset next pointer of copied linked list
         Node copyHead = new Node(0);
         Node copyTail = copyHead;
         current = head;
