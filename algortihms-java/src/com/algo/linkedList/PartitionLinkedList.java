@@ -5,19 +5,27 @@ public class PartitionLinkedList {
 
     public static void main(String[] args) {
         List list = new List();
-        list.addLast(new Node(3));
-        list.addLast(new Node(7));
-        list.addLast(new Node(1));
-        list.addLast(new Node(8));
+//        list.addLast(new Node(1));
+//        list.addLast(new Node(4));
+//        list.addLast(new Node(3));
+//        list.addLast(new Node(2));
+//        list.addLast(new Node(5));
+//        list.addLast(new Node(2));
+//        list.addLast(new Node(3));
+
+
+//        list.addLast(new Node(1));
+//        list.addLast(new Node(4));
+//        list.addLast(new Node(2));
+//        list.addLast(new Node(10));
+        list.addLast(new Node(10));
         list.addLast(new Node(4));
-        list.addLast(new Node(9));
-        list.addLast(new Node(2));
-        list.addLast(new Node(21));
-        list.addLast(new Node(5));
-        list.addLast(new Node(56));
+        list.addLast(new Node(20));
+        list.addLast(new Node(10));
+        list.addLast(new Node(3));
         list.display();
         Node head = list.getHead();
-        head = partitionList(head, 4);
+        head = partitionList(head, 3);
         display(head);
     }
 
@@ -29,22 +37,46 @@ public class PartitionLinkedList {
         Node smallTail = smallHead;
         Node largeHead = new Node(0);
         Node largeTail = largeHead;
+        Node equalHead = new Node(0);
+        Node equalTail = equalHead;
         Node temp = head;
         while (temp != null) {
             Node node = temp;
             Node next = temp.next;
             node.next = null;
             if (temp.value < k) {
-                smallTail.next = node;
-                smallTail = smallTail.next;
+                smallTail = append(smallTail, node);
+            } else if (temp.value == k) {
+                equalTail = append(equalTail, node);
             } else {
-                largeTail.next = node;
-                largeTail = largeTail.next;
+                largeTail = append(largeTail, node);
             }
             temp = next;
         }
-        smallTail.next = largeHead.next;
-        return smallHead.next;
+        if (smallHead.next == null) {
+            equalTail.next = largeHead.next;
+            return equalHead.next;
+        } else if (equalHead.next == null) {
+            smallTail.next = largeHead.next;
+            return smallHead.next;
+        } else if (largeHead.next == null) {
+            smallTail.next = equalHead.next;
+            return smallHead.next;
+        } else {
+            smallTail.next = equalHead.next;
+            equalTail.next = largeHead.next;
+            return smallHead.next;
+        }
+
+    }
+
+    private static Node append(Node tail, Node node) {
+        if (tail == null) {
+            return null;
+        }
+        tail.next = node;
+        tail = tail.next;
+        return tail;
 
     }
 
