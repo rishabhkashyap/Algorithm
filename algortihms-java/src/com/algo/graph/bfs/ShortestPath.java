@@ -78,24 +78,23 @@ public class ShortestPath {
             queue.add(root);
             root.setVisited(true);
             while (!queue.isEmpty()) {
-                Vertex vertex = queue.remove();
-                List<Vertex> neighbours = adjacencyMap.get(vertex.getLabel());
-                for (Vertex vtx : neighbours) {
-                    if (!distanceMap.containsKey(vtx.getLabel())) {
-                        queue.add(vtx);
-                        int distance = distanceMap.get(vertex.getLabel());
-                        distanceMap.put(vtx.getLabel(), distance + 1);
+                Vertex parent = queue.remove();
+                List<Vertex> neighbours = adjacencyMap.get(parent.getLabel());
+                for (Vertex neighbour : neighbours) {
+                    if (!distanceMap.containsKey(neighbour.getLabel())) {
+                        queue.add(neighbour);
+                        int distance = distanceMap.get(parent.getLabel());
+                        distanceMap.put(neighbour.getLabel(), distance + 1);
 
                     }
                 }
-
             }
 
             Set<String> vertices = distanceMap.keySet();
+
             for (String vtx : vertices) {
                 System.out.println("Distance between  " + root.getLabel() + "  and  " + vtx + "  =  " + distanceMap.get(vtx));
             }
-
         }
 
     }
