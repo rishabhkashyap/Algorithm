@@ -30,6 +30,7 @@ public class SnakeLadder {
                     destination = 36;
                 }
                 Vertex dest = new Vertex(Integer.toString(destination));
+                bfsShortesDistance.addVertex(dest);
                 bfsShortesDistance.addEdge(source, dest);
             }
         }
