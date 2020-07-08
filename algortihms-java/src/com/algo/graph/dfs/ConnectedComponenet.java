@@ -68,8 +68,7 @@ public class ConnectedComponenet {
         }
 
         public int countConnectedComponent() {
-            int count = 1;
-            performDFS(this.vertices.get(0));
+            int count = 0;
             for (Vertex vertex : this.vertices) {
                 if (!vertex.isVisited()) {
                     performDFS(vertex);
