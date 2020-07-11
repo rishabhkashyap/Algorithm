@@ -73,28 +73,8 @@ public class TopologicalSort {
 
         public void performTopologicalSort() {
             Queue<Vertex> queue = new LinkedList<>();
-            Map<String, Integer> indegreeMap = new HashMap<>();
-            for (Vertex source : this.vertices) {
-                List<Vertex> neighbours = this.adjacencyMap.get(source.getLabel());
-                if (neighbours != null && !neighbours.isEmpty()) {
-                    for (Vertex neighbour : neighbours) {
-                        if (indegreeMap.containsKey(neighbour.getLabel())) {
-                            int count = indegreeMap.get(neighbour.getLabel());
-                            ++count;
-                            indegreeMap.put(neighbour.getLabel(), count);
-                        } else {
-                            indegreeMap.put(neighbour.getLabel(), 1);
-                        }
-                    }
-                }
-            }
-
-            for (Vertex vertex : this.vertices) {
-                if (indegreeMap.get(vertex.getLabel()) == null) {
-                    queue.add(vertex);
-                }
-            }
-
+            Map<String, Integer> indegreeMap = getIndegreeMap();
+            addZeroIndegreeVertices(queue, indegreeMap);
             while (!queue.isEmpty()) {
                 Vertex vtx = queue.remove();
                 System.out.print(vtx.getLabel() + " --->  ");
@@ -103,8 +83,7 @@ public class TopologicalSort {
                     for (Vertex neighbour : neighbours) {
                         if (indegreeMap.containsKey(neighbour.getLabel())) {
                             int count = indegreeMap.get(neighbour.getLabel());
-                            --count;
-                            indegreeMap.put(neighbour.getLabel(), count);
+                            indegreeMap.put(neighbour.getLabel(), --count);
                             if (count == 0) {
                                 queue.add(neighbour);
 
@@ -115,6 +94,34 @@ public class TopologicalSort {
                     }
                 }
             }
+        }
+
+        private Map<String, Integer> getIndegreeMap() {
+            Map<String, Integer> indegreeMap = new HashMap<>();
+            for (Vertex source : this.vertices) {
+                List<Vertex> neighbours = this.adjacencyMap.get(source.getLabel());
+                if (neighbours != null && !neighbours.isEmpty()) {
+                    for (Vertex neighbour : neighbours) {
+                        if (indegreeMap.containsKey(neighbour.getLabel())) {
+                            int count = indegreeMap.get(neighbour.getLabel());
+                            indegreeMap.put(neighbour.getLabel(), ++count);
+                        } else {
+                            indegreeMap.put(neighbour.getLabel(), 1);
+                        }
+                    }
+                }
+            }
+
+            return indegreeMap;
+        }
+
+        private void addZeroIndegreeVertices(Queue<Vertex> queue, Map<String, Integer> indegreeMap) {
+            for (Vertex vertex : this.vertices) {
+                if (indegreeMap.get(vertex.getLabel()) == null) {
+                    queue.add(vertex);
+                }
+            }
+
         }
 
     }
