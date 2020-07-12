@@ -101,10 +101,8 @@ public class TopologicalSort {
         public void sort() {
             Stack<Vertex> stack = new Stack<>();
             for (Vertex vertex : this.vertices) {
-                if (!vertex.isVisited()) {
-                    //Do dfs for each node
-                    sortUtil(vertex, stack);
-                }
+                //Do dfs for each node
+                sortUtil(vertex, stack);
             }
             while (!stack.isEmpty()) {
                 System.out.print(stack.pop().getLabel() + "  -->  ");
