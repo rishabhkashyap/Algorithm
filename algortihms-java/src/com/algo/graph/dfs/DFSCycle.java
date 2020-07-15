@@ -25,8 +25,8 @@ public class DFSCycle {
         cycle.addEdge(v3, v2);
         cycle.addEdge(v3, v0);
         cycle.addEdge(v0, v3);
-        System.out.println("Cycle exist = " + cycle.detectCycleByIteration(v0));
-        // System.out.println("Cycle exist = " + cycle.isCyclicRecursive(v0));
+        //System.out.println("Cycle exist = " + cycle.detectCycleByIteration(v0));
+        System.out.println("Cycle exist = " + cycle.isCyclicRecursive(v0));
 
     }
 
@@ -72,7 +72,7 @@ public class DFSCycle {
                 if (neighbours != null && !neighbours.isEmpty()) {
                     Vertex parent = parentMap.get(vertex.getLabel());
                     for (Vertex neighbour : neighbours) {
-                        if (neighbour.isVisited() && !neighbour.getLabel().equals(parent.getLabel())) {
+                        if (neighbour.isVisited() && !isParentVertex(parent, neighbour)) {
                             return true;
                         } else if (!neighbour.isVisited()) {
                             unvisitedVertex = neighbour;
@@ -104,7 +104,7 @@ public class DFSCycle {
             List<Vertex> neighbours = this.adjacencyMap.get(source.getLabel());
             if (neighbours != null && !neighbours.isEmpty()) {
                 for (Vertex neighbour : neighbours) {
-                    if (neighbour.isVisited() && !neighbour.getLabel().equals(parent.getLabel())) {
+                    if (neighbour.isVisited() && !isParentVertex(parent, neighbour)) {
                         return true;
                     } else if (!neighbour.isVisited()) {
                         return isCyclicHelper(neighbour, source);
@@ -112,6 +112,10 @@ public class DFSCycle {
                 }
             }
             return false;
+        }
+
+        private boolean isParentVertex(Vertex parent, Vertex vertex) {
+            return (parent != null && parent.getLabel().equals(vertex.getLabel())) ? true : false;
         }
     }
 }
