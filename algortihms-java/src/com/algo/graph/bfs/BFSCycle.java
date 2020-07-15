@@ -72,9 +72,9 @@ public class BFSCycle {
                 if (neighbours != null && !neighbours.isEmpty()) {
                     Vertex parent = parentMap.get(vertex.getLabel());
                     for (Vertex neighbour : neighbours) {
-                        if (neighbour.isVisited() && parent != null && !parent.getLabel().equals(neighbour.getLabel())) {
+                        if (neighbour.isVisited() && !isParentVertex(parent, neighbour)) {
                             return true;
-                        } else if(!neighbour.isVisited()) {
+                        } else if (!neighbour.isVisited()) {
                             parentMap.put(neighbour.getLabel(), vertex);
                             neighbour.setVisited(true);
                             queue.add(neighbour);
@@ -83,6 +83,10 @@ public class BFSCycle {
                 }
             }
             return false;
+        }
+
+        private boolean isParentVertex(Vertex parent, Vertex vertex) {
+            return (parent != null && parent.getLabel().equals(vertex.getLabel())) ? true : false;
         }
 
 
