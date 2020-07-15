@@ -68,7 +68,7 @@ public class BFSCycle {
             queue.add(source);
             while (!queue.isEmpty()) {
                 Vertex vertex = queue.remove();
-                List<Vertex> neighbours = this.adjacencyMap.get(vertex.getLabel());
+                List<Vertex> neighbours = getNeighbours(vertex);
                 if (neighbours != null && !neighbours.isEmpty()) {
                     Vertex parent = parentMap.get(vertex.getLabel());
                     for (Vertex neighbour : neighbours) {
@@ -87,6 +87,10 @@ public class BFSCycle {
 
         private boolean isParentVertex(Vertex parent, Vertex vertex) {
             return (parent != null && parent.getLabel().equals(vertex.getLabel())) ? true : false;
+        }
+
+        private List<Vertex> getNeighbours(Vertex vertex) {
+            return adjacencyMap.get(vertex.getLabel());
         }
 
 
