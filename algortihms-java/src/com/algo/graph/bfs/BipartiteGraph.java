@@ -65,23 +65,29 @@ public class BipartiteGraph {
                 List<Vertex> neighbours = this.adjacencyMap.get(vertex.getLabel());
                 if (neighbours != null && !neighbours.isEmpty()) {
                     for (Vertex neighbour : neighbours) {
-                        if (neighbour.getColour() == null) {
-                            if (vertex.getColour().equals("red")) {
-                                neighbour.setColour("green");
-                            } else if (vertex.getColour().equals("green")) {
-                                neighbour.setColour("red");
-                            }
-                            neighbour.setVisited(true);
-                            queue.add(neighbour);
-                        }
+                        colourNeighbour(vertex, neighbour);
                         if (vertex.getColour().equals(neighbour.getColour())) {
                             bipartite = false;
                             break;
                         }
+                        neighbour.setVisited(true);
+                        queue.add(neighbour);
                     }
                 }
             }
             return bipartite;
+
+        }
+
+        private void colourNeighbour(Vertex source, Vertex neighbour) {
+            if (neighbour.getColour() != null) {
+                return;
+            }
+            if (source.getColour().equals("red")) {
+                neighbour.setColour("green");
+            } else if (source.getColour().equals("green")) {
+                neighbour.setColour("red");
+            }
 
         }
 
