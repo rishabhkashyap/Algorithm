@@ -20,7 +20,7 @@ public class BipartiteGraph {
         graph.addEdge(v1, v4);
         graph.addEdge(v3, v2);
         graph.addEdge(v3, v4);
-        graph.addEdge(v1, v3);
+//        graph.addEdge(v1, v3);
         System.out.println("Bipartite graph = " + graph.isBipartite(v1));
 
     }
@@ -56,8 +56,6 @@ public class BipartiteGraph {
 
         public boolean isBipartite(Vertex source) {
             Queue<Vertex> queue = new LinkedList<>();
-            boolean bipartite = true;
-            source.setVisited(true);
             source.setColour("red");
             queue.add(source);
             while (!queue.isEmpty()) {
@@ -67,15 +65,13 @@ public class BipartiteGraph {
                     for (Vertex neighbour : neighbours) {
                         colourNeighbour(vertex, neighbour);
                         if (vertex.getColour().equals(neighbour.getColour())) {
-                            bipartite = false;
-                            break;
+                            return false;
                         }
-                        neighbour.setVisited(true);
                         queue.add(neighbour);
                     }
                 }
             }
-            return bipartite;
+            return true;
 
         }
 
