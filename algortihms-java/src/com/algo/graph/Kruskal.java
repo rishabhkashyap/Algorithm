@@ -66,10 +66,10 @@ public class Kruskal {
             sortEdges();
             int i = 0;
             int edgesCovered = 0;
-            while (edgesCovered < nVertices && i < edges.size()) {
+            while (edgesCovered < nVertices - 1 && i < edges.size()) {
                 Edge edge = edges.get(i++);
                 if (!isCyclePresent(edge)) {
-                    union(new Vertex(edge.getSource()), new Vertex(edge.getDestination()));
+                    union(edge);
                     spanningTree.add(edge);
                     ++edgesCovered;
                 }
@@ -81,7 +81,9 @@ public class Kruskal {
             this.edges.sort((e1, e2) -> e1.getWeight() - e2.getWeight());
         }
 
-        private void union(Vertex x, Vertex y) {
+        private void union(Edge edge) {
+            Vertex x = new Vertex(edge.getSource());
+            Vertex y = new Vertex(edge.getDestination());
             String xRoot = find(x);
             String yRoot = find(y);
             Subset xSubset = subsetMap.get(xRoot);
