@@ -63,7 +63,7 @@ public class Kruskal {
 
         public List<Edge> getMinSpanningTree() {
             List<Edge> spanningTree = new ArrayList<>();
-            this.edges.sort((e1, e2) -> e1.getWeight() - e2.getWeight());
+            sortEdges();
             int i = 0;
             int edgesCovered = 0;
             while (edgesCovered < nVertices && i < edges.size()) {
@@ -75,6 +75,10 @@ public class Kruskal {
                 }
             }
             return spanningTree;
+        }
+
+        private void sortEdges() {
+            this.edges.sort((e1, e2) -> e1.getWeight() - e2.getWeight());
         }
 
         private void union(Vertex x, Vertex y) {
