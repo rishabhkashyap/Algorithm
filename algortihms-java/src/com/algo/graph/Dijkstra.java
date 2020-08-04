@@ -68,9 +68,6 @@ public class Dijkstra {
             return label;
         }
 
-        public void setLabel(String label) {
-            this.label = label;
-        }
 
         public Vertex getPredecessor() {
             return predecessor;
@@ -143,9 +140,7 @@ public class Dijkstra {
             return distance;
         }
 
-        public void setDistance(Integer distance) {
-            this.distance = distance;
-        }
+
     }
 
     private static class Graph {
@@ -180,11 +175,11 @@ public class Dijkstra {
             source.setDistance(0);
             queue.add(source);
             while (!queue.isEmpty()) {
-                Vertex vertex = queue.poll();
+                Vertex vertex = queue.remove();
                 List<Neighbour> neighbours = vertex.getNeighbours();
-                for (Neighbour neighbour : neighbours) {
-                    Vertex destination = neighbour.getDestination();
-                    if (!destination.isVisited()) {
+                if (neighbours != null && !neighbours.isEmpty()) {
+                    for (Neighbour neighbour : neighbours) {
+                        Vertex destination = neighbour.getDestination();
                         if (getDistance(vertex, neighbour.getDistance()) < destination.getDistance()) {
                             queue.remove(destination);
                             destination.setDistance(getDistance(vertex, neighbour.getDistance()));
@@ -192,10 +187,14 @@ public class Dijkstra {
                             queue.add(destination);
 
                         }
+
                     }
                 }
-                vertex.setVisited(true);
             }
+        }
+
+        private int getDistance(Vertex vertex, int distance) {
+            return vertex.getDistance() + distance;
         }
 
         public List<Vertex> shortestPath(Vertex desination) {
@@ -206,10 +205,6 @@ public class Dijkstra {
             }
             Collections.reverse(path);
             return path;
-        }
-
-        private int getDistance(Vertex vertex, int distance) {
-            return vertex.getDistance() + distance;
         }
 
     }
