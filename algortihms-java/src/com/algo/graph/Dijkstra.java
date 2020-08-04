@@ -181,7 +181,6 @@ public class Dijkstra {
                     for (Neighbour neighbour : neighbours) {
                         Vertex destination = neighbour.getDestination();
                         if (getDistance(vertex, neighbour.getDistance()) < destination.getDistance()) {
-                            queue.remove(destination);
                             destination.setDistance(getDistance(vertex, neighbour.getDistance()));
                             destination.setPredecessor(vertex);
                             queue.add(destination);
