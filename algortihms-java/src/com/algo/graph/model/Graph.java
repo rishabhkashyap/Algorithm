@@ -16,8 +16,12 @@ public class Graph {
         this.vertices.add(vertex);
     }
 
+    public void addVertices(List<Vertex> vertexList) {
+        this.vertices.addAll(vertexList);
+    }
+
     public void addEdge(Vertex source, Vertex destination) {
-        List<Vertex> neighbours ;
+        List<Vertex> neighbours;
         if (adjacencyMap.containsKey(source.getLabel())) {
             neighbours = adjacencyMap.get(source.getLabel());
             neighbours.add(destination);
@@ -37,17 +41,33 @@ public class Graph {
         return Collections.unmodifiableMap(adjacencyMap);
     }
 
-
     public List<Vertex> getNeighbours(Vertex vertex) {
         List<Vertex> neighbours = adjacencyMap.get(vertex.getLabel());
         if (neighbours != null && !neighbours.isEmpty()) {
-            return Collections.unmodifiableList(null);
+            return Collections.unmodifiableList(neighbours);
         }
         return null;
     }
 
     public int getSize() {
         return size;
+    }
+
+    public Graph getTranspose() {
+        Graph graph = new Graph(vertices.size());
+        this.vertices.forEach(e -> e.setVisited(false));
+        graph.addVertices(vertices);
+        for (Vertex vertex : vertices) {
+            List<Vertex> neighbours = getNeighbours(vertex);
+            if (neighbours != null && !neighbours.isEmpty()) {
+                for (Vertex neighbour : neighbours) {
+                    graph.addEdge(neighbour, vertex);
+                }
+            }
+        }
+        return graph;
+
+
     }
 
 }
