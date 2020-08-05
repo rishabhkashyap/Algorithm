@@ -39,7 +39,7 @@ public class Dijkstra {
     }
 
     private static class Vertex implements Comparable<Vertex> {
-        private String label;
+        private final String label;
         private Vertex predecessor;
         private Integer distance;
         private List<Neighbour> neighbours;
@@ -98,14 +98,12 @@ public class Dijkstra {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             Vertex vertex = (Vertex) o;
-            return label.equals(vertex.label) &&
-                    predecessor.equals(vertex.predecessor) &&
-                    visited.equals(vertex.visited);
+            return label.equals(vertex.label);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(label, predecessor, visited);
+            return Objects.hash(label);
         }
 
         @Override
@@ -183,6 +181,9 @@ public class Dijkstra {
                         if (getDistance(vertex, neighbour.getDistance()) < destination.getDistance()) {
                             destination.setDistance(getDistance(vertex, neighbour.getDistance()));
                             destination.setPredecessor(vertex);
+                            if (queue.contains(destination)) {
+                                queue.remove(destination);
+                            }
                             queue.add(destination);
 
                         }
