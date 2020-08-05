@@ -44,4 +44,18 @@ public class Vertex {
         this.colour = colour;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vertex vertex = (Vertex) o;
+        return visited == vertex.visited &&
+                label.equals(vertex.label) &&
+                colour.equals(vertex.colour);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(label, visited, colour);
+    }
 }
