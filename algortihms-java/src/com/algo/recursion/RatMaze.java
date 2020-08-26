@@ -1,13 +1,13 @@
 package com.algo.recursion;
 
-public class RatInMaze {
+public class RatMaze {
     private char[][] maze;
     private char[][] solution;
     private int row;
     private int column;
     private int noOfRoutes;
 
-    public RatInMaze(int row, int column, char[][] maze) {
+    public RatMaze(int row, int column, char[][] maze) {
         this.row = row;
         this.column = column;
         this.maze = maze;
@@ -20,13 +20,14 @@ public class RatInMaze {
     }
 
     public static void main(String[] args) {
-        char[][] maze = {{'0', '0', '0', '0'},
+        char[][] maze = {
+                {'0', '0', '0', '0'},
                 {'0', '0', 'X', '0'},
                 {'0', '0', '0', 'X'},
                 {'0', 'X', '0', '0'}};
-        RatInMaze ratInMaze = new RatInMaze(4, 4, maze);
-        ratInMaze.findPaths(0, 0);
-        System.out.println("Total number of routes = " + ratInMaze.getNoOfRoutes());
+        RatMaze ratMaze = new RatMaze(4, 4, maze);
+        ratMaze.findPaths(0, 0);
+        System.out.println("Total number of routes = " + ratMaze.getNoOfRoutes());
     }
 
     public boolean findPaths(int i, int j) {
@@ -49,6 +50,30 @@ public class RatInMaze {
         if (right || down) {
             return true;
         }
+        return false;
+
+    }
+
+    public boolean findPath(int i, int j) {
+        if (i == row - 1 && j == column - 1) {
+            solution[i][j] = '1';
+            printPath();
+            ++noOfRoutes;
+            return true;
+        }
+        if (i >= row || j >= column) {
+            return false;
+        }
+        if (maze[i][j] == 'X') {
+            return false;
+        }
+        solution[i][j] = '1';
+        boolean right = findPaths(i, j + 1);
+        boolean down = findPaths(i + 1, j);
+        if (right || down) {
+            return true;
+        }
+        solution[i][j]='0';
         return false;
 
     }
