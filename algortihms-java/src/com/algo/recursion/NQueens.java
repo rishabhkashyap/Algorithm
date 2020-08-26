@@ -10,8 +10,10 @@ public class NQueens {
     }
 
     private static boolean arrangeQueen(int[][] board, int i, int numberOfQueens) {
+
+        //If returned false when this condition is true,we will get all possible arrangement
+        //of queens in matrix
         if (i == numberOfQueens) {
-            //Base case
             printBoard(board, numberOfQueens);
             return true;
         }
