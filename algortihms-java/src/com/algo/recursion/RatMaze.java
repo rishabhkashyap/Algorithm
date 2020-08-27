@@ -26,8 +26,11 @@ public class RatMaze {
                 {'0', '0', '0', 'X'},
                 {'0', 'X', '0', '0'}};
         RatMaze ratMaze = new RatMaze(4, 4, maze);
+        //Prints all possible paths
         ratMaze.findPaths(0, 0);
         System.out.println("Total number of routes = " + ratMaze.getNoOfRoutes());
+        //Prints anyone of possible path
+        //ratMaze.findPath(0,0);
     }
 
     public boolean findPaths(int i, int j) {
@@ -46,10 +49,11 @@ public class RatMaze {
         solution[i][j] = '1';
         boolean right = findPaths(i, j + 1);
         boolean down = findPaths(i + 1, j);
-        solution[i][j] = '0';
+
         if (right || down) {
             return true;
         }
+        solution[i][j] = '0';
         return false;
 
     }
@@ -68,12 +72,14 @@ public class RatMaze {
             return false;
         }
         solution[i][j] = '1';
-        boolean right = findPaths(i, j + 1);
-        boolean down = findPaths(i + 1, j);
-        if (right || down) {
+        if (findPaths(i, j + 1)) {
             return true;
         }
-        solution[i][j]='0';
+        if (findPaths(i + 1, j)) {
+            return true;
+        }
+
+        solution[i][j] = '0';
         return false;
 
     }
