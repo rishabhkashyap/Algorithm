@@ -27,12 +27,9 @@ public class LongestCommonSubstring {
 
     private static String findLongestCommonSubstr(String string1, String string2) {
         int[][] dp = new int[string1.length() + 1][string2.length() + 1];
-        String maxLenString = "";
         int row = 0;
         int col = 0;
         int maxLen = Integer.MIN_VALUE;
-
-        StringBuilder stringBuilder = new StringBuilder("");
         for (int i = 1; i <= string1.length(); i++) {
             for (int j = 1; j < string2.length(); j++) {
                 if (string1.charAt(i - 1) == string2.charAt(j - 1)) {
