@@ -13,8 +13,9 @@ public class SumItUpRepeated {
 
         int[] input = {2, 3, 5, 6, 8};
         int target = 10;
-        // Arrays.sort(input);
         printSumCombination(input, target);
+        System.out.println("********************************************");
+        printSumCombination2(input, target);
     }
 
     private static void printSumCombination(int[] input, int target) {
@@ -43,6 +44,28 @@ public class SumItUpRepeated {
 
         }
         return false;
+    }
+
+
+    private static void printSumCombination2(int[] input, int target) {
+        List<Integer> sumNumber = new ArrayList<>();
+        printSumCombination2(input, target, sumNumber, 0);
+    }
+
+    private static void printSumCombination2(int[] input, int target, List<Integer> sumNumber, int start) {
+        if (target == 0) {
+            printList(sumNumber);
+            return;
+        }
+        if (target < 0) {
+            return;
+        }
+
+        for (int j = start; j < input.length; j++) {
+            sumNumber.add(input[j]);
+            printSumCombinationHelper(input, target - input[j], sumNumber, j);
+            sumNumber.remove(sumNumber.size() - 1);
+        }
     }
 
 
