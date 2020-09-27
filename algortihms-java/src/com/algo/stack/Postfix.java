@@ -21,7 +21,7 @@ public class Postfix {
             } else if (ch == ')') {
                 removeFromStack(stack, result);
             } else {
-                addOperandToStack(ch, stack, result);
+                addOperatorToStack(ch, stack, result);
             }
         }
         while (!stack.isEmpty()) {
@@ -40,7 +40,7 @@ public class Postfix {
 
     }
 
-    private static void addOperandToStack(char ch, Stack<Character> stack, StringBuilder result) {
+    private static void addOperatorToStack(char ch, Stack<Character> stack, StringBuilder result) {
         while (!stack.isEmpty() && getPrcedence(ch) <= getPrcedence(stack.peek())) {
             result.append(stack.pop());
         }
