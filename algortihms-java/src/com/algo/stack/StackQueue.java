@@ -5,14 +5,14 @@ import java.util.Stack;
 public class StackQueue {
     public static void main(String[] args) {
         Queue queue = new Queue();
-        queue.add(1);
+        queue.enqueue(1);
         System.out.println("Top element = " + queue.peek());
-        queue.add(2);
-        queue.add(3);
-        queue.add(4);
-        queue.add(5);
-        System.out.println("Removed element = " + queue.remove());
-        System.out.println("Removed element = " + queue.remove());
+        queue.enqueue(2);
+        queue.enqueue(3);
+        queue.enqueue(4);
+        queue.enqueue(5);
+        System.out.println("Removed element = " + queue.dequeue());
+        System.out.println("Removed element = " + queue.dequeue());
 
     }
 
@@ -25,11 +25,11 @@ public class StackQueue {
             this.stack2 = new Stack<>();
         }
 
-        public void add(int item) {
+        public void enqueue(int item) {
             stack1.push(item);
         }
 
-        public int remove() {
+        public int dequeue() {
             if (stack1.isEmpty()) {
                 return -1;
             }
