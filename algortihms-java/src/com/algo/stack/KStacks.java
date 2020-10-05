@@ -81,7 +81,7 @@ public class KStacks {
             value = stackData[currentIndex];
             //Get previous top value from next indes
             topOfStack[stackIndex] = nextIndex[currentIndex];
-            //Since element is poped from stack ,next index must have vaccant location,
+            //Since element is poped from stack ,next index must have vacant location,
             // so copy next available value to it
             nextIndex[currentIndex] = nextAvailable;
             //since element is deleted from current index ,so it will become next available
