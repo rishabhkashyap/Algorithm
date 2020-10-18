@@ -2,7 +2,7 @@ package com.algo.queue;
 
 import java.util.Arrays;
 
-public class Queue<I extends Number> {
+public class Queue {
 
     public static void main(String[] args) {
 
@@ -14,11 +14,9 @@ public class Queue<I extends Number> {
         queueArray.enqueue(4);
         //queueArray.enqueue(5);
         queueArray.display();
-        System.out.println("Dequeued element = "+queueArray.dequeue());
+        System.out.println("Dequeued element = " + queueArray.dequeue());
         queueArray.enqueue(10);
         queueArray.display();
-
-
 
 
     }
@@ -73,7 +71,7 @@ public class Queue<I extends Number> {
             } else {
                 System.out.println();
 
-                Arrays.stream(queue,front,rear+1).forEach(e -> System.out.print(e + "\t"));
+                Arrays.stream(queue, front, rear + 1).forEach(e -> System.out.print(e + "\t"));
                 System.out.println("\n");
             }
         }
