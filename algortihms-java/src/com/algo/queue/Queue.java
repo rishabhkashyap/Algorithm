@@ -1,13 +1,14 @@
 package com.algo.queue;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public class Queue {
 
     public static void main(String[] args) {
 
         QueueArray queueArray = new QueueArray(5);
-        queueArray.display();
+        //queueArray.dequeue();
         queueArray.enqueue(1);
         queueArray.enqueue(2);
         queueArray.enqueue(3);
@@ -37,7 +38,7 @@ public class Queue {
 
         public void enqueue(int element) {
             if (isFull()) {
-                System.out.println("Queue is full");
+                throw new IllegalStateException("Queue is full");
             } else {
                 ++size;
                 queue[++rear] = element;
@@ -47,7 +48,7 @@ public class Queue {
         public int dequeue() {
             int element = -9999;
             if (isEmpty()) {
-                System.out.println("Queue is empty");
+                throw new NoSuchElementException("Queue is empty");
             } else {
                 element = queue[front];
                 ++front;
