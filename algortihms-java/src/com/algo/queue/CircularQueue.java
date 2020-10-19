@@ -1,6 +1,7 @@
 package com.algo.queue;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public class CircularQueue {
 
@@ -13,9 +14,12 @@ public class CircularQueue {
         queue.enqueue(2);
         queue.enqueue(1);
         queue.display();
-        queue.enqueue(1);
         System.out.println("Dequeued element = " + queue.dequeue());
-
+        queue.enqueue(15);
+        queue.display();
+        System.out.println("Dequeued element = " + queue.dequeue());
+        System.out.println("Dequeued element = " + queue.dequeue());
+        System.out.println("Peek of queue = " + queue.peek());
     }
 
     static class Queue {
@@ -34,7 +38,7 @@ public class CircularQueue {
 
         public void enqueue(int element) {
             if (isFull()) {
-                System.out.println("Queue is full\n");
+                throw new IllegalStateException("Queue is full");
             } else {
 
                 rear = (rear + 1) % queue.length;
@@ -53,9 +57,9 @@ public class CircularQueue {
 
 
         public int dequeue() {
-            int element = -9999;
+            int element = 0;
             if (isEmpty()) {
-                System.out.println("Queue is full");
+                throw new NoSuchElementException("Queue is empty");
             } else {
                 element = queue[front];
                 front = (front + 1) % queue.length;
@@ -63,6 +67,13 @@ public class CircularQueue {
 
             }
             return element;
+        }
+
+        public Integer peek() {
+            if (isEmpty()) {
+                return null;
+            }
+            return queue[front];
         }
 
         private boolean isEmpty() {
@@ -73,10 +84,9 @@ public class CircularQueue {
             if (isEmpty()) {
                 System.out.println("Queue is empty");
             } else {
-                System.out.println();
-                Arrays.stream(queue, front, rear + 1)
+                Arrays.stream(queue)
                         .forEach(e -> System.out.print(e + "\t"));
-                System.out.println("\n");
+                System.out.println();
             }
         }
     }
