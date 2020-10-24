@@ -32,6 +32,10 @@ class LinkedList:
         self._head: Optional[Node] = None
         self._count: int = 0
 
+    @property
+    def head(self) -> Optional[Node]:
+        return self._head
+
     def add_first(self, node: Node):
         if self._head is None:
             self._head = node
