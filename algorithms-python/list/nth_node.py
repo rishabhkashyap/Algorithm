@@ -6,9 +6,9 @@ from list.linked_list import Node, LinkedList
 def find_node_from_end(node: Node, n: int) -> Optional[Node]:
     if node is None:
         return None
-    i: int = 0
+    i: int = 1
     temp: Node = node
-    while i < n - 1:
+    while i < n:
         temp = temp.next
         i += 1
     nth_node: Optional[Node] = None
