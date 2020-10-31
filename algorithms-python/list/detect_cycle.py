@@ -32,5 +32,5 @@ if __name__ == '__main__':
     list1.add_last(Node(4))
     list1.add_last(Node(5))
     head: Node = list1.head
-    # convert_to_circular_list(head)
+    convert_to_circular_list(head)
     print(f" List has cycle = {cycle_exist(head)}")
