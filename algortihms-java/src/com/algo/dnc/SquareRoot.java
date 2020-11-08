@@ -4,7 +4,7 @@ public class SquareRoot {
 
     public static void main(String[] args) {
         int number = 13;
-        int precision = 3;
+        int precision = 4;
         System.out.println("Square root of " + number + " = " + getSquareRoot(number, precision));
     }
 
@@ -26,10 +26,12 @@ public class SquareRoot {
             }
         }
         float step = 0.1F;
-        for (int i = 0; i <= precison; i++) {
-            while (ans * ans <= number) {
+        for (int i = 0; i < precison; i++) {
+            while (ans * ans < number) {
                 ans += step;
             }
+            //take a step back and start adding smaller steps to answer to get more
+            //precise square root
             ans -= step;
             step = step / 10;
         }
