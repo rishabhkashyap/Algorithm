@@ -1,6 +1,6 @@
 package com.algo.dnc;
 
-public class BinarySearchPivot {
+public class BinarySearchRotatedLargestElement {
     public static void main(String[] args) {
         int[] arr = {5, 6, 1, 2, 3, 4};
         System.out.println("Largest element in rotated array = " + getLargest(arr));
