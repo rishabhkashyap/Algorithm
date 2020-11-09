@@ -42,7 +42,7 @@ public class MaxElementSubArray {
     }
 
     private static void removeFromWindow(Deque<Integer> deque, int k, int index) {
-        while (!deque.isEmpty() && deque.peek() <= index - k) {
+        while (!deque.isEmpty() && deque.peekFirst() <= index - k) {
             deque.removeFirst();
         }
     }
