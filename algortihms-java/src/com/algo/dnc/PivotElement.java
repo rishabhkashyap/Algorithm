@@ -3,7 +3,7 @@ package com.algo.dnc;
 public class PivotElement {
     public static void main(String[] args) {
         // int[] arr = {5, 6, 7, 8, 9, 10, 1, 2, 3};
-        int[] arr = {5, 6, 7, 10, 1, 2, 3, 4};
+        int[] arr = {6, 7, 10, 2, 3, 4};
         int pivot = findPivot(arr);
         if (pivot >= 0) {
             System.out.println("Pivot element = " + pivot);
@@ -18,6 +18,8 @@ public class PivotElement {
             if (arr[mid] > arr[mid + 1]) {
                 return arr[mid + 1];
             }
+            //Array is sorted from arr[low] to arr[mid]
+            //therefore pivot is present in other half of array
             if (arr[low] < arr[mid]) {
                 low = mid + 1;
             } else {
