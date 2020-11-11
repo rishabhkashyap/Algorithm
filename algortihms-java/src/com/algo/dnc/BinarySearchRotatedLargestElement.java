@@ -13,10 +13,10 @@ public class BinarySearchRotatedLargestElement {
         int pivot = -99999;
         while (start <= end) {
             int mid = (start + end) / 2;
-            if (mid > start && arr[mid] < arr[mid - 1]) {
+            if (arr[mid] < arr[mid - 1]) {
                 pivot = arr[mid - 1];
                 break;
-            } else if (mid < end && arr[mid] > arr[mid + 1]) {
+            } else if (arr[mid] > arr[mid + 1]) {
                 pivot = arr[mid];
                 break;
             } else if (arr[start] >= arr[mid]) {
@@ -36,10 +36,10 @@ public class BinarySearchRotatedLargestElement {
         int pivot = -99999;
         while (start <= end) {
             int mid = (start + end) / 2;
-            if (mid > start && arr[mid] > arr[mid - 1]) {
+            if (arr[mid] > arr[mid - 1]) {
                 pivot = arr[mid - 1];
                 break;
-            } else if (mid < end && arr[mid] < arr[mid + 1]) {
+            } else if (arr[mid] < arr[mid + 1]) {
                 pivot = arr[mid];
                 break;
             } else if (arr[start] >= arr[mid]) {
