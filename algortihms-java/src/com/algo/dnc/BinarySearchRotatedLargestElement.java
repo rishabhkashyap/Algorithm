@@ -36,11 +36,11 @@ public class BinarySearchRotatedLargestElement {
         int pivot = -99999;
         while (start <= end) {
             int mid = (start + end) / 2;
-            if (arr[mid] > arr[mid - 1]) {
-                pivot = arr[mid - 1];
-                break;
-            } else if (arr[mid] < arr[mid + 1]) {
+            if (arr[mid] < arr[mid - 1]) {
                 pivot = arr[mid];
+                break;
+            } else if (arr[mid] > arr[mid + 1]) {
+                pivot = arr[mid+1];
                 break;
             } else if (arr[start] >= arr[mid]) {
                 //Left part of array is unsorted
