@@ -12,7 +12,7 @@ public class BinarySearchRotatedLargestElement {
         int end = arr.length - 1;
         int pivot = -99999;
         while (start <= end) {
-            int mid = (start + end) / 2;
+            int mid = start + (end - start) / 2;
             if (arr[mid] < arr[mid - 1]) {
                 pivot = arr[mid - 1];
                 break;
@@ -35,12 +35,12 @@ public class BinarySearchRotatedLargestElement {
         int end = arr.length - 1;
         int pivot = -99999;
         while (start <= end) {
-            int mid = (start + end) / 2;
+            int mid = start + (end - start) / 2;
             if (arr[mid] < arr[mid - 1]) {
                 pivot = arr[mid];
                 break;
             } else if (arr[mid] > arr[mid + 1]) {
-                pivot = arr[mid+1];
+                pivot = arr[mid + 1];
                 break;
             } else if (arr[start] >= arr[mid]) {
                 //Left part of array is unsorted
