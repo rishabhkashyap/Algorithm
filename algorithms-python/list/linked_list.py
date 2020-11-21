@@ -26,19 +26,25 @@ class Node:
 
 
 class LinkedList:
-    __slots__ = ["_head", "_count"]
+    __slots__ = ["_head", "_tail", "_count"]
 
     def __init__(self):
         self._head: Optional[Node] = None
+        self._tail: Optional[Node] = None
         self._count: int = 0
 
     @property
     def head(self) -> Optional[Node]:
         return self._head
 
+    @property
+    def tail(self) -> Optional[Node]:
+        return self._tail
+
     def add_first(self, node: Node):
         if self._head is None:
             self._head = node
+            self._tail = node
             return
         node.next = self._head
         self._head = node
@@ -46,11 +52,13 @@ class LinkedList:
     def add_last(self, node: Node):
         if self._head is None:
             self._head = node
+            self._tail = node
             return
         temp: Node = self._head
         while temp.next is not None:
             temp = temp.next
         temp.next = node
+        self._tail = node
 
     def search(self, element: int) -> bool:
         temp: Node = self._head
