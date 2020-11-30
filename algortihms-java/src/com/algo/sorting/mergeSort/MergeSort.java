@@ -18,7 +18,7 @@ public class MergeSort {
         // check if low is smaller than high, if not then the array is sorted
         if (low < high) {
             // Get the index of the element which is in the middle
-            int middle = low + (high - low) / 2;
+            int middle = (high - low) / 2;
             // Sort the left side of the array
             mergesort(low, middle);
             // Sort the right side of the array
