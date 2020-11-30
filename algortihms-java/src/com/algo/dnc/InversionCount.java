@@ -33,7 +33,7 @@ public class InversionCount {
         private int mergeSort(int start, int end) {
             int inversionCount = 0;
             if (start < end) {
-                int mid = (start + end) / 2;
+                int mid = start+(end - start) / 2;
                 inversionCount = mergeSort(start, mid);
                 inversionCount += mergeSort(mid + 1, end);
                 inversionCount += merge(start, mid, end);
