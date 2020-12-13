@@ -1,4 +1,4 @@
-from list.linked_list import Node, LinkedList
+from list.linked_list import LinkedList, Node
 
 
 def display(head: Node) -> None:
@@ -10,14 +10,11 @@ def display(head: Node) -> None:
         temp = temp.next
 
 
-def is_list_even_len(head: Node) -> bool:
+def reverse_iterate(head: Node) -> None:
     if head is None:
-        raise ValueError("Head of node is null or has invalid")
-    fast_node: Node = head
-    while (fast_node is not None) and (fast_node.next is not None):
-        fast_node = fast_node.next.next
-    result: bool = True if fast_node is None else False
-    return result
+        return
+    reverse_iterate(head.next)
+    print(head.data, end="\t")
 
 
 def main():
@@ -27,10 +24,11 @@ def main():
     linked_list.add_last(Node(3))
     linked_list.add_last(Node(4))
     linked_list.add_last(Node(5))
-
-    linked_list.add_last(Node(6))
     head: Node = linked_list.head
-    print(f"Length of list is even = {is_list_even_len(head=head)}")
+    print("Original list")
+    display(head=head)
+    print("\n\nReversed list")
+    reverse_iterate(head=head)
 
 
 if __name__ == '__main__':
