@@ -2,8 +2,8 @@ package com.algo.dnc;
 
 public class MissingTerm {
     public static void main(String[] args) {
-        int[] arr = {1,4,7,13,16};
-                //{5, 7, 9, 11, 15};
+        int[] arr = {1, 4, 7, 13, 16};
+        //int[] arr = {5, 7, 9, 11, 15};
         int missingTerm = findMissingTerm(arr);
         System.out.println("Missing term = " + missingTerm);
     }
