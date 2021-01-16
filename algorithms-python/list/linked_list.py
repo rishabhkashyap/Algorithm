@@ -4,7 +4,7 @@ from typing import Optional
 class Node:
     __slots__ = ["_data", "_next"]
 
-    def __init__(self, data):
+    def __init__(self, data=0):
         self._data: int = data
         self._next: Optional[Node] = None
 
