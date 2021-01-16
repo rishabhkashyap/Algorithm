@@ -34,6 +34,22 @@ def merge_lists_iteration(head1: Node, head2: Node) -> Optional[Node]:
     return merged_head.next
 
 
+def merge_lists_recursive(head1: Node, head2: Node) -> Optional[Node]:
+    if head1 is None:
+        return head2
+    if head2 is None:
+        return head1
+    if (head1 is None) and (head2 is None):
+        return None
+    if head1.data < head2.data:
+        temp = head1
+        temp.next = merge_lists_recursive(head1.next, head2)
+    else:
+        temp = head2
+        temp.next = merge_lists_recursive(head1, head2.next)
+    return temp
+
+
 def main():
     linked_list1: LinkedList = LinkedList()
     linked_list2: LinkedList = LinkedList()
@@ -65,7 +81,8 @@ def main():
     linked_list1.display()
     print("\nList 2")
     linked_list2.display()
-    head = merge_lists_iteration(linked_list1.head, linked_list2.head)
+    # head = merge_lists_iteration(linked_list1.head, linked_list2.head)
+    head = merge_lists_recursive(linked_list1.head, linked_list2.head)
     print("\nMerged list")
     util.display(head)
 
