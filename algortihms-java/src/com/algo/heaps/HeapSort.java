@@ -13,7 +13,7 @@ public class HeapSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = {5, 4, 3, 2, 1};
+        int[] arr = {10,5, 4, 3,6, 2, 1,8};
         HeapSort hs = new HeapSort(arr);
         System.out.println("Unsorted array :");
         hs.displayArr();
@@ -25,19 +25,17 @@ public class HeapSort {
 
     public void sort() {
         for (int i = size / 2 - 1; i >= 0; i--) {
-            heapify(i);
+            maxHeapify(i);
         }
         for (int i = arr.length - 1; i >= 0; i--) {
-            int temp = arr[0];
-            arr[0] = arr[size - 1];
-            arr[size - 1] = temp;
+            swap(0, size - 1);
             --size;
-            heapify(0);
+            maxHeapify(0);
         }
 
     }
 
-    private void heapify(int i) {
+    private void maxHeapify(int i) {
         int leftChildIndex = getLeftChildIndex(i);
         int rightChildIndex = getRightChildIndex(i);
         int largestIndex = i;
@@ -48,11 +46,9 @@ public class HeapSort {
             largestIndex = rightChildIndex;
         }
         if (largestIndex != i) {
-            int swap = arr[i];
-            arr[i] = arr[largestIndex];
-            arr[largestIndex] = swap;
+            swap(i, largestIndex);
             // Recursively heapify affected subtree
-            heapify(largestIndex);
+            maxHeapify(largestIndex);
         }
 
     }
@@ -63,6 +59,12 @@ public class HeapSort {
 
     private int getLeftChildIndex(int i) {
         return 2 * i + 1;
+    }
+
+    private void swap(int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 
     public void displayArr() {
