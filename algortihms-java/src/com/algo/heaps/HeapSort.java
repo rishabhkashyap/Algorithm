@@ -2,40 +2,41 @@ package com.algo.heaps;
 
 
 public class HeapSort {
-
-    int size;
     private int[] arr;
 
     public HeapSort(int[] arr) {
         super();
         this.arr = arr;
-        this.size = arr.length;
     }
 
     public static void main(String[] args) {
-        int[] arr = {10,5, 4, 3,6, 2, 1,8};
+        int[] arr = {10, 5, 4, 3, 6, 2, 1, 8};
+        // int[] arr = {22, 21, 3, 25, 26, 7};
+        //int arr[] = { 12, 11, 13, 5, 6, 7 };
         HeapSort hs = new HeapSort(arr);
         System.out.println("Unsorted array :");
         hs.displayArr();
         hs.sort();
-        System.out.println("\nSorted array :");
+        System.out.println("\n\nSorted array :");
         hs.displayArr();
 
     }
 
     public void sort() {
-        for (int i = size / 2 - 1; i >= 0; i--) {
-            maxHeapify(i);
+        for (int i = arr.length / 2 - 1; i >= 0; i--) {
+            maxHeapify(i, arr.length);
         }
-        for (int i = arr.length - 1; i >= 0; i--) {
-            swap(0, size - 1);
+        int size = arr.length - 1;
+        while (size >= 0) {
+            swap(0, size);
+            maxHeapify(0, size);
             --size;
-            maxHeapify(0);
         }
+
 
     }
 
-    private void maxHeapify(int i) {
+    private void maxHeapify(int i, int size) {
         int leftChildIndex = getLeftChildIndex(i);
         int rightChildIndex = getRightChildIndex(i);
         int largestIndex = i;
@@ -48,7 +49,7 @@ public class HeapSort {
         if (largestIndex != i) {
             swap(i, largestIndex);
             // Recursively heapify affected subtree
-            maxHeapify(largestIndex);
+            maxHeapify(largestIndex, size);
         }
 
     }
