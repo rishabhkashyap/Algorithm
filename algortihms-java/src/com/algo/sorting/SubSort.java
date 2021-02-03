@@ -35,25 +35,6 @@ public class SubSort {
 		System.out.println(" \nIndex begin = " + leftIndex + "\t Index end = " + rightIndex);
 	}
 
-	private static int updateRightIndex(int[] arr, int rightIndex, int end, int subSortMax) {
-
-		for (int i = rightIndex + 1; i <= end; i++) {
-			if (arr[i] < subSortMax) {
-				rightIndex = i;
-			}
-		}
-		return rightIndex;
-	}
-
-	private static int updateLeftIndex(int[] arr, int begin, int leftIndex, int subSortMin) {
-		for (int i = begin; i < leftIndex; i++) {
-			if (arr[i] > subSortMin) {
-				leftIndex = i;
-			}
-		}
-		return leftIndex;
-	}
-
 	private static int getLeftIndex(int[] arr) {
 		int leftIndex = 0;
 		for (int i = 1; i < arr.length; i++) {
@@ -88,6 +69,25 @@ public class SubSort {
 		OptionalInt minElementOpt = null;
 		minElementOpt = Arrays.stream(arr, leftMin, rightMax).min();
 		return minElementOpt.getAsInt();
+	}
+
+	private static int updateRightIndex(int[] arr, int rightIndex, int end, int subSortMax) {
+
+		for (int i = rightIndex + 1; i <= end; i++) {
+			if (arr[i] < subSortMax) {
+				rightIndex = i;
+			}
+		}
+		return rightIndex;
+	}
+
+	private static int updateLeftIndex(int[] arr, int begin, int leftIndex, int subSortMin) {
+		for (int i = begin; i < leftIndex; i++) {
+			if (arr[i] > subSortMin) {
+				leftIndex = i;
+			}
+		}
+		return leftIndex;
 	}
 
 }
