@@ -18,21 +18,6 @@ public class FrequencyBasedSort {
         return sortedArray(getFreqMap(arr), arr.length);
     }
 
-    private static Map<Integer, ElementData> getFreqMap(int[] arr) {
-        Map<Integer, ElementData> freqMap = new LinkedHashMap<>();
-        for (int i = 0; i < arr.length; i++) {
-            if (freqMap.containsKey(arr[i])) {
-                ElementData elementData = freqMap.get(arr[i]);
-                elementData.setCount(elementData.getCount() + 1);
-                freqMap.put(arr[i], elementData);
-            } else {
-                ElementData elementData = new ElementData(arr[i], i, 1);
-                freqMap.put(arr[i], elementData);
-            }
-        }
-        return freqMap;
-    }
-
     private static int[] sortedArray(Map<Integer, ElementData> freqMap, int size) {
         List<Map.Entry<Integer, ElementData>> entryList = new ArrayList<>(freqMap.entrySet());
         entryList.sort((e1, e2) -> compareTo(e1.getValue(), e2.getValue()));
@@ -47,6 +32,21 @@ public class FrequencyBasedSort {
             }
         return resultArr;
 
+    }
+
+    private static Map<Integer, ElementData> getFreqMap(int[] arr) {
+        Map<Integer, ElementData> freqMap = new LinkedHashMap<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (freqMap.containsKey(arr[i])) {
+                ElementData elementData = freqMap.get(arr[i]);
+                elementData.setCount(elementData.getCount() + 1);
+                freqMap.put(arr[i], elementData);
+            } else {
+                ElementData elementData = new ElementData(arr[i], i, 1);
+                freqMap.put(arr[i], elementData);
+            }
+        }
+        return freqMap;
     }
 
 
