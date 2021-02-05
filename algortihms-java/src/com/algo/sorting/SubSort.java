@@ -15,6 +15,7 @@ public class SubSort {
 	public static void main(String[] args) {
 		//int[] arr = { 10, 12, 20, 30, 25, 40, 32, 31, 35, 50, 60 };
 		int[] arr = { 5, 7, 9, 13, 16, 12, 15, 8, 14, 18, 17, 20 };
+//		int[] arr = {0,1,15,25,6,7,30,40,50};
 		int subSortMax = 0;
 		int subSortMin = 0;
 		int leftIndex = getLeftIndex(arr);
@@ -48,7 +49,7 @@ public class SubSort {
 
 	private static int getRightIndex(int[] arr) {
 		int rightIndex = 0;
-		for (int i = arr.length - 1; i > 0; i--) {
+		for (int i = arr.length - 1; i >= 0; i--) {
 			if (arr[i] < arr[i - 1]) {
 				rightIndex = i;
 				break;
@@ -60,20 +61,20 @@ public class SubSort {
 
 	private static int getMax(int[] arr, int leftMin, int rightMax) {
 		OptionalInt maxElementOpt = null;
-		maxElementOpt = Arrays.stream(arr, leftMin, rightMax).max();
+		maxElementOpt = Arrays.stream(arr, leftMin, rightMax+1).max();
 
 		return maxElementOpt.getAsInt();
 	}
 
 	private static int getMin(int[] arr, int leftMin, int rightMax) {
 		OptionalInt minElementOpt = null;
-		minElementOpt = Arrays.stream(arr, leftMin, rightMax).min();
+		minElementOpt = Arrays.stream(arr, leftMin, rightMax+1).min();
 		return minElementOpt.getAsInt();
 	}
 
 	private static int updateRightIndex(int[] arr, int rightIndex, int end, int subSortMax) {
 
-		for (int i = rightIndex + 1; i <= end; i++) {
+		for (int i = end ; i >=rightIndex; i--) {
 			if (arr[i] < subSortMax) {
 				rightIndex = i;
 			}
@@ -82,7 +83,7 @@ public class SubSort {
 	}
 
 	private static int updateLeftIndex(int[] arr, int begin, int leftIndex, int subSortMin) {
-		for (int i = begin; i < leftIndex; i++) {
+		for (int i = begin; i <= leftIndex; i++) {
 			if (arr[i] > subSortMin) {
 				leftIndex = i;
 			}
