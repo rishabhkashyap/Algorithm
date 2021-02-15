@@ -27,42 +27,7 @@ public class MergeSortList {
         middle.next = null;
         Node left = sortList(head);
         Node right = sortList(middleNext);
-        Node sortedListHead = merge(left, right);
-
-        return sortedListHead;
-    }
-
-    private static Node merge(Node left, Node right) {
-        if (left == null && right == null) {
-            return null;
-        } else if (left == null) {
-            return right;
-        } else if (right == null) {
-            return left;
-        } else {
-            Node mergeHead = null;
-            Node mergeTail = new Node();
-            mergeHead = mergeTail;
-            while (left != null && right != null) {
-                if (left.value < right.value) {
-                    mergeTail.next = left;
-                    left = left.next;
-                } else {
-                    mergeTail.next = right;
-                    right = right.next;
-                }
-                mergeTail = mergeTail.next;
-            }
-
-            if (left != null) {
-                mergeTail.next = left;
-                mergeTail = left;
-            }
-            if (right != null) {
-                mergeTail.next = right;
-            }
-            return mergeHead.next;
-        }
+        return merge(left, right);
     }
 
     private static Node getMiddle(Node head) {
@@ -86,8 +51,40 @@ public class MergeSortList {
 
     }
 
-
     private static boolean isListLengthEven(Node head) {
         return head == null;
     }
+
+    private static Node merge(Node left, Node right) {
+        if (left == null && right == null) {
+            return null;
+        } else if (left == null) {
+            return right;
+        } else if (right == null) {
+            return left;
+        } else {
+            Node mergeHead = new Node();
+            Node mergeTail = mergeHead;
+            while (left != null && right != null) {
+                if (left.value < right.value) {
+                    mergeTail.next = left;
+                    left = left.next;
+                } else {
+                    mergeTail.next = right;
+                    right = right.next;
+                }
+                mergeTail = mergeTail.next;
+            }
+
+            if (left != null) {
+                mergeTail.next = left;
+                mergeTail = left;
+            }
+            if (right != null) {
+                mergeTail.next = right;
+            }
+            return mergeHead.next;
+        }
+    }
+
 }
