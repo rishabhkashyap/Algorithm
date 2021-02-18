@@ -28,15 +28,26 @@ public class MergeList {
         }
         display(head1);
         display(head2);
-       // Node head = merge(head1, head2);
-        Node head=mergeRecursively(head1,head2);
+        // Node head = merge(head1, head2);
+        Node head = mergeRecursively(head1, head2);
         if (head != null) {
             System.out.println("\nMerged list\n");
             display(head);
         } else {
-            System.out.println("bot lists are empty !!\n");
+            System.out.println("Both lists are empty !!\n");
         }
 
+
+    }
+
+    private static void display(Node head) {
+        Node current = head;
+        System.out.println();
+        while (current != null) {
+            System.out.print(current.value + "\t");
+            current = current.next;
+        }
+        System.out.println();
 
     }
 
@@ -64,33 +75,18 @@ public class MergeList {
             }
             tail = tail.next;
         }
+
         if (current1 != null) {
-            while (current1 != null) {
-                tail.next = current1;
-                tail = tail.next;
-                current1 = current1.next;
-            }
+            tail.next = current1;
         }
+
+
         if (current2 != null) {
-            while (current2 != null) {
-                tail.next = current2;
-                tail = tail.next;
-                current2 = current2.next;
-            }
+            tail.next = current2;
         }
+
         return head.next;
 
-
-    }
-
-    private static void display(Node head) {
-        Node current = head;
-        System.out.println();
-        while (current != null) {
-            System.out.print(current.value + "\t");
-            current = current.next;
-        }
-        System.out.println();
 
     }
 
