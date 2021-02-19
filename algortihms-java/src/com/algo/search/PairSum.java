@@ -11,7 +11,7 @@ public class PairSum {
         System.out.println("Finding pairs using hashset");
         findPairUsingHashset(arr, k);
         System.out.println("\nFinding pairs using sorting");
-        findPairUsingSortig(arr, k);
+        findPairUsingSorting(arr, k);
 
     }
 
@@ -20,22 +20,20 @@ public class PairSum {
         for (int number : arr) {
             int difference = k - number;
             if (set.contains(difference)) {
-                System.out.println("Number = " + number);
-                System.out.println("Number = " + difference);
+                System.out.println("Number1 = " + number + "  Number2 = " + difference);
             }
             set.add(number);
         }
     }
 
-    private static void findPairUsingSortig(int[] arr, int k) {
+    private static void findPairUsingSorting(int[] arr, int k) {
         Arrays.sort(arr);
         int low = 0;
         int high = arr.length - 1;
         while (low < high) {
             int sum = arr[low] + arr[high];
             if (sum == k) {
-                System.out.println("Number = " + arr[low]);
-                System.out.println("Number = " + arr[high]);
+                System.out.println("Number1 = " + arr[low] + "  Number2 = " + arr[high]);
                 ++low;
                 --high;
             } else if (sum > k) {
