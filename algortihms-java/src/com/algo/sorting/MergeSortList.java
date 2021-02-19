@@ -78,7 +78,6 @@ public class MergeSortList {
 
             if (left != null) {
                 mergeTail.next = left;
-                mergeTail = left;
             }
             if (right != null) {
                 mergeTail.next = right;
