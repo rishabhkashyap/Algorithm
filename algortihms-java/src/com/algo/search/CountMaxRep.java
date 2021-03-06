@@ -10,7 +10,7 @@ public class CountMaxRep {
         // int[] arr1 = {3, 2, 1, 2, 2, 5};
         int[] arr1 = {3, 3, 4, 4, 5, 5, 2, 3, 6, 7, 8, 3};
         System.out.println("\nMax repeated element in range 0...k");
-        System.out.println("Max repeated element = " + getMaxRepeatedElementInRange(arr1, 5));
+        System.out.println("Max repeated element = " + getMaxRepeatedElementInRange(arr1, 8));
 
 
     }
@@ -75,7 +75,6 @@ public class CountMaxRep {
 //        for (int i = 0; i < arr.length; i++) {
 //            arr[i] = arr[i] % k;
 //        }
-        System.out.println("Max count = " + maxCount);
         return index;
     }
 }
