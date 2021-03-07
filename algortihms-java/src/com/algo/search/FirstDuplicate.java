@@ -12,6 +12,7 @@ public class FirstDuplicate {
 
     }
 
+    //Use sorting and binary search
     private static int getFirstDuplicate(int[] arr) {
         int[] temp = Arrays.copyOf(arr, arr.length);
         Arrays.sort(temp);
