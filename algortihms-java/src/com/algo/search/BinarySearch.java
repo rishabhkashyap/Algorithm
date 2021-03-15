@@ -6,7 +6,7 @@ public class BinarySearch {
         System.out.println("Location of 7 = " + binarySearchIterative(arr, 7));
         System.out.println("Location of 7 = " + binarySearchRecursive(arr, 7));
         int[] arr2 = {8, 7, 6, 5, 4, 3, 2, 1};
-        System.out.println("Location of 7 =>" + binarySearchDecreasingOrder(arr2, 6));
+        System.out.println("Location of 7 = " + binarySearchDecreasingOrder(arr2, 6));
     }
 
     private static int binarySearchIterative(int[] arr, int key) {
