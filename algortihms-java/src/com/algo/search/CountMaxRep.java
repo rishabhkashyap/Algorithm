@@ -9,8 +9,9 @@ public class CountMaxRep {
         System.out.println("Max repeated element = " + getMaxRepeatedElementSorting(arr));
         // int[] arr1 = {3, 2, 1, 2, 2, 5};
         int[] arr1 = {3, 3, 4, 4, 5, 5, 2, 3, 6, 7, 8, 3};
+        //int [] arr1={1,3,5,4,5,5};
         System.out.println("\nMax repeated element in range 0...k");
-        System.out.println("Max repeated element = " + getMaxRepeatedElementInRange(arr1, 8));
+        System.out.println("Max repeated element = " + getMaxRepeatedElementInRange(arr1, 9));
 
 
     }
@@ -58,6 +59,8 @@ public class CountMaxRep {
 
     }
 
+    //This approach works iff
+    //Given an array of size n, the array contains numbers in range from 0 to k-1 where k is a positive integer and k <= n.
     private static int getMaxRepeatedElementInRange(int[] arr, int k) {
 
         int maxCount = Integer.MIN_VALUE;
