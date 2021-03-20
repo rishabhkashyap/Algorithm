@@ -32,6 +32,7 @@ public class BitonicPoint {
             if (arr[mid - 1] < arr[mid]) {
                 low = mid + 1;
             } else {
+                //elements are in sorted order in second part, look in first part
                 high = mid - 1;
             }
         }
