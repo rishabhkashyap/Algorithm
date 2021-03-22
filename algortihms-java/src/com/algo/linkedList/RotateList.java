@@ -18,25 +18,25 @@ public class RotateList {
         list.add(n5);
         list.add(n6);
         Node head = list.getHead();
-        System.out.println("Rotate list anti clockwise");
+        System.out.println("Rotate list front to back");
         list.display();
-        list.setHead(rotateListAntiClockwise(head, 2));
+        list.setHead(rotateListFrontToback(head, 2));
         list.display();
-        System.out.println("\nRotate list clockwise 1");
+        System.out.println("\nRotate list back to front");
         List list2 = new List();
         for (int i = 1; i <= 5; i++) {
             list2.addLast(new Node(i));
         }
         list2.display();
-        list2.setHead(rotateListClockwise1(list2.getHead(), 11));
+        list2.setHead(rotateListBackToFront1(list2.getHead(), 2));
         list2.display();
         List list3 = new List();
         for (int i = 1; i <= 5; i++) {
             list3.addLast(new Node(i));
         }
-        System.out.println("\nRotate list clockwise 2");
+        System.out.println("\nRotate list back to front");
         list3.display();
-        list3.setHead(rotateListClockwise2(list3.getHead(), 11));
+        list3.setHead(rotateListBackToFront2(list3.getHead(), 11));
         list3.display();
 
 
@@ -46,7 +46,7 @@ public class RotateList {
     //10	20	30	40	50	60	=> 30	40	50	60	10	20
     // |_____|________________|
     //       |________________|
-    private static Node rotateListAntiClockwise(Node head, int k) {
+    private static Node rotateListFrontToback(Node head, int k) {
         Node current = head;
         Node previous = null;
         Node last = head;
@@ -70,7 +70,7 @@ public class RotateList {
     }
 
     //Moves elements from back to front
-    private static Node rotateListClockwise1(Node head, int k) {
+    private static Node rotateListBackToFront1(Node head, int k) {
         if (head == null) {
             return null;
         }
@@ -99,7 +99,7 @@ public class RotateList {
     }
 
     //Moves elements from back to front
-    private static Node rotateListClockwise2(Node head, int k) {
+    private static Node rotateListBackToFront2(Node head, int k) {
 
         Node current = head;
         Node previous = null;
