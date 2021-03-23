@@ -80,6 +80,9 @@ public class RotateList {
             ++count;
             tail = tail.next;
         }
+        if (count - k == 0) {
+            return head;
+        }
         if (k > count) {
             k = k % count;
 
@@ -102,7 +105,6 @@ public class RotateList {
     private static Node rotateListBackToFront2(Node head, int k) {
 
         Node current = head;
-        Node previous = null;
         Node last = head;
         int count = 1;
         //Convert linked list to circular linked list
@@ -110,12 +112,17 @@ public class RotateList {
             last = last.next;
             ++count;
         }
+        if (count - k == 0) {
+            return head;
+        }
+
         last.next = current;
         if (k > count) {
             k = k % count;
         }
 
         //Rotate list
+        Node previous = null;
         for (int i = 0; i < count - k; i++) {
             previous = current;
             current = current.next;
