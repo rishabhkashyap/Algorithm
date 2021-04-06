@@ -12,10 +12,10 @@ public class FractionalKanpsack {
         int[] weight = {10, 20, 30};
         int[] value = {60, 100, 120};
         int capacity = 50;
-        System.out.println("Max value = " + getMAxValue(capacity, weight, value));
+        System.out.println("Max value = " + getMaxValue(capacity, weight, value));
     }
 
-    private static double getMAxValue(int capacity, int[] weight, int[] value) {
+    private static double getMaxValue(int capacity, int[] weight, int[] value) {
         if (weight.length != value.length) {
             throw new IllegalArgumentException("Number of weights and values are not equal");
         }
