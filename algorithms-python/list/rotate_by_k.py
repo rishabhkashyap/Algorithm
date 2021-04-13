@@ -16,8 +16,8 @@ def size(head: Node):
 def rotate_nodes_back_to_front1(head: Node, k: int):
     if head is None:
         raise ValueError("Node cannot be none")
-    len: int = size(head)
-    remaining_nodes: int = len - k
+    length: int = size(head)
+    remaining_nodes: int = length - k
     i: int = 0
     current: Optional[Node] = head
     tail: Optional[Node] = None
@@ -37,7 +37,13 @@ def rotate_nodes_back_to_front1(head: Node, k: int):
 
 
 # Moves k nodes from back to front and return new head
-# Turn linked list to circular list and place pointer in such a way that it
+'''
+    1. Count number of nodes in list
+    2. move temp node(initially point to head) to count-k nodes
+    3. Convert list to circular list and return temp as new head
+'''
+
+
 def rotate_nodes_back_to_front2(head: Node, k: int):
     if head is None:
         raise ValueError("Node cannot be none")
@@ -64,7 +70,15 @@ def rotate_nodes_back_to_front2(head: Node, k: int):
 
 
 # Turn linked list to circular list
-# Moves k nodes from back to front and return new head
+'''
+    Similar to previous approach but list is converted to circular list before moving 
+    temp(initially pointing to original head)to count-k nodes
+    1. Count number of nodes in list
+    2. Convert list to circular list and return temp as new head 
+    3. move temp node(initially point to head) to count-k nodes 
+'''
+
+
 def rotate_nodes_back_to_front3(head: Node, k: int):
     if head is None:
         raise ValueError("Node cannot be none")
@@ -100,7 +114,7 @@ def main():
     # linked_list.add_last(Node(6))
     # linked_list.add_last(Node(7))
     # linked_list.add_last(Node(8))
-    print("Orignal list")
+    print("Original list")
     util.display(linked_list.head)
     # head: Node = rotate_nodes_back_to_front(linked_list.head, 2)
     # head: Node = rotate_nodes_back_to_front2(linked_list.head, 5)
