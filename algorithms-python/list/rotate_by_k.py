@@ -104,6 +104,31 @@ def rotate_nodes_back_to_front3(head: Node, k: int):
     return temp
 
 
+def rotate_nodes_front_to_back(head: Node, k: int):
+    if head is None:
+        raise ValueError("head cannot be none")
+    if k == 0:
+        return head
+    length: int = 1
+    tail: Node = head
+    while tail.next is not None:
+        length += 1
+        tail = tail.next
+    # convert list to circular list
+    tail.next = head
+    if k > length:
+        k %= length
+    count: int = 0
+    temp: Node = head
+    previous: Node = head
+    while count < k:
+        previous = temp
+        temp = temp.next
+        count += 1
+    previous.next = None
+    return temp
+
+
 def main():
     linked_list: LinkedList = LinkedList()
     linked_list.add_last(Node(1))
@@ -118,7 +143,8 @@ def main():
     util.display(linked_list.head)
     # head: Node = rotate_nodes_back_to_front(linked_list.head, 2)
     # head: Node = rotate_nodes_back_to_front2(linked_list.head, 5)
-    head: Node = rotate_nodes_back_to_front3(linked_list.head, 3)
+    # head: Node = rotate_nodes_back_to_front3(linked_list.head, 3)
+    head: Node = rotate_nodes_front_to_back(linked_list.head, 3)
     print("\n\nList after rotating k nodes")
     util.display(head)
 
