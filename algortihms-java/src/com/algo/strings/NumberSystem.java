@@ -18,23 +18,6 @@ public class NumberSystem {
         System.out.println("Decimal to octal = " + fromDecimal(decimal3, 8));
     }
 
-    private static String fromDecimal(int number, int base) {
-        StringBuilder stringBuilder = new StringBuilder();
-        while (number != 0) {
-            stringBuilder.append(getValue(number % base));
-            number /= base;
-        }
-        return stringBuilder.reverse().toString();
-    }
-
-    private static char getValue(int digit) {
-        if (digit >= 0 && digit <= 9) {
-            return (char) (digit + 48);
-        } else {
-            return (char) (digit - 10 + 65);
-        }
-    }
-
     private static int toDecimal(String number, int base) {
         int result = 0;
         int multiplier = 1;
@@ -50,6 +33,23 @@ public class NumberSystem {
             return character - '0';
         } else {
             return character - 'A' + 10;
+        }
+    }
+
+    private static String fromDecimal(int number, int base) {
+        StringBuilder stringBuilder = new StringBuilder();
+        while (number != 0) {
+            stringBuilder.append(getValue(number % base));
+            number /= base;
+        }
+        return stringBuilder.reverse().toString();
+    }
+
+    private static char getValue(int digit) {
+        if (digit >= 0 && digit <= 9) {
+            return (char) (digit + '0');
+        } else {
+            return (char) (digit - 10 + 'A');
         }
     }
 }
