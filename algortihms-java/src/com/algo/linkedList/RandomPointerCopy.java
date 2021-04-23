@@ -73,8 +73,8 @@ public class RandomPointerCopy {
             return null;
         }
         Node current = head;
-        //create copy of each node and make original node's next to copy node
-        //Make copy node's next to point to original next of head
+        //create copy of each node and make original node's next to point at copy node
+        //Make copy node's next to point to original's next
         while (current != null) {
             Node temp = current.next;
             Node node = new Node(current.data);
