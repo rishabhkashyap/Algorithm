@@ -99,7 +99,7 @@ public class RandomPointerCopy {
         while (current != null) {
             Node temp = current.next.next;
             copyTail.next = current.next;
-            copyTail = current.next;
+            copyTail = copyTail.next;
             current.next = temp;
             current = current.next;
         }
