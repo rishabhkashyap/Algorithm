@@ -17,7 +17,8 @@ public class PreOrderTraversal {
         node2.setLeft(node4);
         node2.setRight(node5);
         node3.setLeft(node6);
-        //preOrder1(node1);
+        preOrder1(node1);
+        System.out.println("\n");
         preOrder2(node1);
 
     }

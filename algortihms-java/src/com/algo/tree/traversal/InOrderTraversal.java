@@ -18,7 +18,9 @@ public class InOrderTraversal {
         node2.setLeft(node4);
         node2.setRight(node5);
         node3.setLeft(node6);
-//        printInOrder1(node1);
+
+        printInOrder1(node1);
+        System.out.println("\n");
         printInOrder2(node1);
     }
 
