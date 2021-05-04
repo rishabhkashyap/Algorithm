@@ -33,23 +33,9 @@ public class Evaluator {
                 addOperator(operatorStack, numberStack, ch);
             }
         }
-
-        if (!opertatorStack.isEmpty()) {
-            while (!opertatorStack.isEmpty()) {
-                float operand1 = 0;
-                float operand2 = 0;
-                if (numberStack.size() >= 2) {
-                    operand1 = numberStack.pop();
-                    operand2 = numberStack.pop();
-                    char operator = opertatorStack.pop();
-                    float result = applyOperands(operand1, operand2, operator);
-                    numberStack.push(result);
-                }
-
-
-            }
+        while (!operatorStack.isEmpty()) {
+            numberStack.push(reduce(numberStack, operatorStack));
         }
-
         return numberStack.peek();
     }
 
@@ -64,51 +50,6 @@ public class Evaluator {
         }
     }
 
-    private static float applyOperands(float operand1, float operand2, char operator) {
-
-        float result = 0;
-
-        switch (operator) {
-            case '+':
-                result = operand1 + operand2;
-                break;
-            case '-':
-                result = operand1 - operand2;
-                break;
-            case '*':
-                result = operand1 * operand2;
-                break;
-            case '/':
-                result = operand1 / operand2;
-                break;
-            default:
-                result = -999;
-
-
-        }
-        return result;
-    }
-
-    private static float applyOperands(float operand1, float operand2, char operator) {
-        float result = 0;
-        switch (operator) {
-            case '+':
-                result = operand1 + operand2;
-                break;
-            case '-':
-                result = operand1 - operand2;
-                break;
-            case '*':
-                result = operand1 * operand2;
-                break;
-            case '/':
-                result = operand1 / operand2;
-                break;
-            default:
-                result = -999;
-        }
-        return result;
-    }
 
     private static String parseNumber(String expression, int index) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -118,6 +59,60 @@ public class Evaluator {
             ++i;
         }
         return stringBuilder.toString();
+    }
+
+    private static float reduce(Stack<Float> operands, Stack<Character> operators) {
+        if (operands.size() < 2) {
+            return 0;
+        }
+        float op2 = operands.pop();
+        float op1 = operands.pop();
+        char operator = operators.pop();
+        return applyOperands(op1, op2, operator);
+    }
+
+    private static float applyOperands(float operand1, float operand2, char operator) {
+        float result = 0;
+        switch (operator) {
+            case '+':
+                result = operand1 + operand2;
+                break;
+            case '-':
+                result = operand1 - operand2;
+                break;
+            case '*':
+                result = operand1 * operand2;
+                break;
+            case '/':
+                result = operand1 / operand2;
+                break;
+            default:
+                result = -999;
+        }
+        return result;
+    }
+
+    private static int getPrecedence(Character operator) {
+
+        int preference = -1;
+
+        switch (operator) {
+            case '+':
+                preference = 1;
+                break;
+            case '-':
+                preference = 1;
+                break;
+            case '*':
+                preference = 2;
+                break;
+            case '/':
+                preference = 2;
+                break;
+            default:
+                preference = 0;
+        }
+        return preference;
     }
 
 
