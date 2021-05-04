@@ -8,17 +8,20 @@ public class Evaluator {
 
         String expression1 = "10+6*2";
         String expression2 = "100*2+12";
+        String expression3 = "100*2+12/2";
 
         float result = evaluateExpression(expression1);
         System.out.println(result);
         result = evaluateExpression(expression2);
+        System.out.println(result);
+        result = evaluateExpression(expression3);
         System.out.println(result);
 
     }
 
     private static float evaluateExpression(String expression) {
         Stack<Float> numberStack = new Stack<>();
-        Stack<Character> opertatorStack = new Stack<>();
+        Stack<Character> operatorStack = new Stack<>();
 
         for (int i = 0; i < expression.length(); i++) {
             char ch = expression.charAt(i);
@@ -27,28 +30,7 @@ public class Evaluator {
                 numberStack.push(Float.parseFloat(numString));
                 i += numString.length() - 1;
             } else {
-                if (opertatorStack.isEmpty()) {
-                    opertatorStack.push(ch);
-                } else {
-
-                    while (!opertatorStack.isEmpty() && getPrcedence(opertatorStack.peek()) > getPrcedence(ch)) {
-                        float operand1 = 0;
-                        float operand2 = 0;
-                        if (numberStack.size() >= 2) {
-                            operand1 = numberStack.pop();
-                            operand2 = numberStack.pop();
-                            char operator = opertatorStack.pop();
-                            float result = applyOperands(operand1, operand2, operator);
-                            numberStack.push(result);
-                        }
-
-                    }
-
-                    opertatorStack.push(ch);
-
-
-                }
-
+                addOperator(operatorStack, numberStack, ch);
             }
         }
 
@@ -69,6 +51,17 @@ public class Evaluator {
         }
 
         return numberStack.peek();
+    }
+
+    private static void addOperator(Stack<Character> operators, Stack<Float> operands, char ch) {
+        if (operators.isEmpty()) {
+            operators.push(ch);
+        } else {
+            while (!operators.isEmpty() && getPrecedence(operators.peek()) > getPrecedence(ch)) {
+                operands.push(reduce(operands, operators));
+            }
+            operators.push(ch);
+        }
     }
 
     private static float applyOperands(float operand1, float operand2, char operator) {
@@ -96,27 +89,25 @@ public class Evaluator {
         return result;
     }
 
-    private static int getPrcedence(Character operator) {
-
-        int preference = -1;
-
+    private static float applyOperands(float operand1, float operand2, char operator) {
+        float result = 0;
         switch (operator) {
             case '+':
-                preference = 1;
+                result = operand1 + operand2;
                 break;
             case '-':
-                preference = 1;
+                result = operand1 - operand2;
                 break;
             case '*':
-                preference = 2;
+                result = operand1 * operand2;
                 break;
             case '/':
-                preference = 2;
+                result = operand1 / operand2;
                 break;
             default:
-                preference = 0;
+                result = -999;
         }
-        return preference;
+        return result;
     }
 
     private static String parseNumber(String expression, int index) {
