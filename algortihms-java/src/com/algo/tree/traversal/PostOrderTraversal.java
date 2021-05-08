@@ -20,6 +20,8 @@ public class PostOrderTraversal {
         postOrder1(node1);
         System.out.println("\n");
         postOrder2(node1);
+        System.out.println("\n");
+        postOrder3(node1);
     }
 
     private static void postOrder1(Node root) {
@@ -52,6 +54,41 @@ public class PostOrderTraversal {
         while (!stack2.isEmpty()) {
             System.out.print(stack2.pop().getData() + "\t");
         }
+
+    }
+
+    //Iterative postorder traversal using 1 stack
+    //1.Check if right child exist
+    //2.if it exist, push to stack
+    //3.push root to stack
+    //4.pop element from stack
+    //5.check if new top element of stack is right child of recently popped element
+    //6.if yes pop it push root node in stack and set root to its right child
+    //7.if right child in not new top element in stack then print it and set root to null
+    private static void postOrder3(Node root) {
+        if (root == null) {
+            throw new IllegalArgumentException("Root of tree cannot be null");
+        }
+        Stack<Node> stack = new Stack<>();
+        do {
+            while (root != null) {
+                if (root.getRight() != null) {
+                    stack.push(root.getRight());
+                }
+                stack.push(root);
+                root = root.getLeft();
+            }
+            root = stack.pop();
+            if (!stack.isEmpty() && root.getRight() == stack.peek()) {
+                stack.pop();
+                stack.push(root);
+                root = root.getRight();
+            } else {
+                System.out.print(root.getData() + "\t");
+                root = null;
+            }
+
+        } while (!stack.isEmpty());
 
 
     }
