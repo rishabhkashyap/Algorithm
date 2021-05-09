@@ -1,3 +1,4 @@
+from __future__ import annotations
 from typing import Optional
 
 
@@ -9,7 +10,7 @@ class Node:
         self._next: Optional[Node] = None
 
     @property
-    def data(self):
+    def data(self) -> int:
         return self._data
 
     @data.setter
@@ -21,7 +22,7 @@ class Node:
         return self._next
 
     @next.setter
-    def next(self, node):
+    def next(self, node: Optional[Node]):
         self._next = node
 
 
