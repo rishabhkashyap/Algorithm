@@ -39,6 +39,16 @@ public class Evaluator {
         return numberStack.peek();
     }
 
+    private static String parseNumber(String expression, int index) {
+        StringBuilder stringBuilder = new StringBuilder();
+        int i = index;
+        while (i < expression.length() && Character.isDigit(expression.charAt(i))) {
+            stringBuilder.append(expression.charAt(i));
+            ++i;
+        }
+        return stringBuilder.toString();
+    }
+
     private static void addOperator(Stack<Character> operators, Stack<Float> operands, char ch) {
         if (operators.isEmpty()) {
             operators.push(ch);
@@ -50,16 +60,6 @@ public class Evaluator {
         }
     }
 
-
-    private static String parseNumber(String expression, int index) {
-        StringBuilder stringBuilder = new StringBuilder();
-        int i = index;
-        while (i < expression.length() && Character.isDigit(expression.charAt(i))) {
-            stringBuilder.append(expression.charAt(i));
-            ++i;
-        }
-        return stringBuilder.toString();
-    }
 
     private static float reduce(Stack<Float> operands, Stack<Character> operators) {
         if (operands.size() < 2) {
