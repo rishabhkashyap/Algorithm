@@ -30,8 +30,8 @@ public class StackQueue {
         }
 
         public int dequeue() {
-            if (stack1.isEmpty()) {
-                return -1;
+            if (stack1.isEmpty() && stack2.isEmpty()) {
+                throw new RuntimeException("Queue is empty");
             }
             if (!stack2.isEmpty()) {
                 return stack2.pop();
