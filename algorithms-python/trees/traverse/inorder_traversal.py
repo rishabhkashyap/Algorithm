@@ -1,6 +1,16 @@
 from trees.node import Node
 from collections import deque
 
+'''
+                        1
+                    /      \
+                    2        3
+                  /   \        \
+                4        5       6
+                                /
+                               7           
+'''
+
 
 def inorder2(root: Node) -> None:
     if root is None:
