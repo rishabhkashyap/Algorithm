@@ -7,10 +7,10 @@ public class DoubleStack {
         DStack dStack = new DStack(5);
         dStack.pushToStack1(1);
         dStack.pushToStack1(2);
-//        dStack.pushToStack2(3);
-//        dStack.pushToStack2(4);
-//        dStack.pushToStack2(5);
-//
+        dStack.pushToStack2(3);
+        dStack.pushToStack2(4);
+        dStack.pushToStack2(5);
+
         System.out.println("\n-----------------Stack1---------------------------------");
         System.out.print(dStack.popFromStack1()+"\t");
         System.out.print(dStack.popFromStack1()+"\t");
