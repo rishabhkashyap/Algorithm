@@ -1,4 +1,4 @@
-package com.algo.tree.traversal;
+package com.algo.tree;
 
 import com.algo.tree.Node;
 
