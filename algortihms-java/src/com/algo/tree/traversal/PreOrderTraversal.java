@@ -23,7 +23,7 @@ public class PreOrderTraversal {
 
     }
 
-    private static void preOrder1(Node root) {
+    public static void preOrder1(Node root) {
         if (root == null) {
             return;
         }
