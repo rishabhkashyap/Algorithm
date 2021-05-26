@@ -42,7 +42,7 @@ public class LeveLOrderTraversal {
 
     private static void levelOrder2(Node root) {
         int height = getHeight(root);
-        for (int i = 0; i <= height; i++) {
+        for (int i = 0; i < height; i++) {
             levelOrder2(root, i, 0);
         }
 
