@@ -27,7 +27,7 @@ public class ReverseLeveLOrderTraversal {
 
     private static void reverseLevelOrder1(Node root) {
         int height = findHeight(root);
-        for (int i = height; i >= 0; i--) {
+        for (int i = height-1; i >= 0; i--) {
             printLevel(root, i);
         }
     }
