@@ -18,9 +18,9 @@ public class HeightOfTree {
         node8.setRight(node5);
         node2.setLeft(node7);
         node7.setRight(new Node(22));
-        int h = getHeight1(root);
-        System.out.println("Size of tree = " + h);
+        System.out.println("Size of tree = " + getHeight1(root));
         System.out.println("Size of tree = " + getHeight2(root));
+        System.out.println("Size of  tree = "+getHeight3(root));
 
 
     }
@@ -61,6 +61,30 @@ public class HeightOfTree {
             }
         }
         return height;
+    }
+
+    private static int getHeight3(Node root) {
+        if (root == null) {
+            return 0;
+        }
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        int height = 0;
+        while (!queue.isEmpty()) {
+            int nodesInlevel = queue.size();
+            while (nodesInlevel-- > 0) {
+                Node node = queue.remove();
+                if (node.getLeft() != null) {
+                    queue.add(node.getLeft());
+                }
+                if (node.getRight() != null) {
+                    queue.add(node.getRight());
+                }
+            }
+            ++height;
+        }
+        return height;
+
     }
 
 }
