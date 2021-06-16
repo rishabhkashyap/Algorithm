@@ -19,9 +19,7 @@ public class NxtGreaterElementRight {
         Stack<Integer> stack = new Stack<>();
         stack.push(arr[arr.length - 1]);
         result[arr.length - 1] = -1;
-
         for (int i = arr.length - 2; i >= 0; --i) {
-
             while (!stack.isEmpty() && arr[i] > stack.peek()) {
                 stack.pop();
             }
@@ -32,7 +30,6 @@ public class NxtGreaterElementRight {
             }
             stack.push(arr[i]);
         }
-
         return result;
     }
 }
