@@ -17,22 +17,22 @@ public class NxtGreaterElementRight {
     private static int[] findNextGreatestElement(int[] arr) {
         int[] result = new int[arr.length];
         Stack<Integer> stack = new Stack<>();
-        for (int i = arr.length - 1; i >= 0; --i) {
-            if (stack.isEmpty()) {
-                result[i] = -1;
-                stack.push(arr[i]);
-            } else {
-                while (!stack.isEmpty() && arr[i] > stack.peek()) {
-                    stack.pop();
-                }
-                if (!stack.isEmpty()) {
-                    result[i] = stack.peek();
-                } else {
-                    result[i] = -1;
-                }
-                stack.push(arr[i]);
+        stack.push(arr[arr.length - 1]);
+        result[arr.length - 1] = -1;
+
+        for (int i = arr.length - 2; i >= 0; --i) {
+
+            while (!stack.isEmpty() && arr[i] > stack.peek()) {
+                stack.pop();
             }
+            if (!stack.isEmpty()) {
+                result[i] = stack.peek();
+            } else {
+                result[i] = -1;
+            }
+            stack.push(arr[i]);
         }
+
         return result;
     }
 }
