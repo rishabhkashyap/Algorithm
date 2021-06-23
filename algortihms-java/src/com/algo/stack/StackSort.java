@@ -22,6 +22,7 @@ public class StackSort {
 
     }
 
+    //Iterative approach
     private static Stack<Integer> sort1(Stack<Integer> stack) {
         Stack<Integer> temp = new Stack<>();
         while (!stack.isEmpty()) {
@@ -34,6 +35,7 @@ public class StackSort {
         return temp;
     }
 
+    //Using recursion
     private static void sort2(Stack<Integer> stack) {
         if (stack.isEmpty()) {
             return;
