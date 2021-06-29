@@ -1,5 +1,8 @@
 package com.algo.tree;
 
+import java.util.Queue;
+import java.util.LinkedList;
+
 public class DeepNode {
 
     public static void main(String[] args) {
@@ -19,10 +22,15 @@ public class DeepNode {
         node7.setRight(node22);
         node22.setLeft(node23);
         node23.setRight(new Node(35));
-        int height = getHeight(root);
-        findDeepestNode(root, height);
-        //System.out.println("Deepest node in tree = " + deepestNode.getData());
+        findDeepestNode1(root);
 
+        System.out.println("Deepest node in tree = " + findDeepestNode2(root).getData());
+        System.out.println("Deepest node in tree = " + findDeepestNode3(root).getData());
+
+    }
+
+    private static void findDeepestNode1(Node root) {
+        findDeepestNode1(root, getHeight(root));
     }
 
     private static int getHeight(Node root) {
@@ -34,15 +42,87 @@ public class DeepNode {
         return 1 + Math.max(leftHeight, rightHeight);
     }
 
-    private static void findDeepestNode(Node root, int height) {
+    private static void findDeepestNode1(Node root, int height) {
 
         if (root != null) {
             if (height == 1) {
-                System.out.println(root.getData());
+                System.out.println("Deepest node in tree = " + root.getData());
             } else if (height > 1) {
-                findDeepestNode(root.getLeft(), --height);
-                findDeepestNode(root.getRight(), height);
+                findDeepestNode1(root.getLeft(), --height);
+                findDeepestNode1(root.getRight(), height);
             }
         }
     }
+
+    //This approach gives height and deepest node in one cycle of recursion calls
+
+    private static Node findDeepestNode2(Node root) {
+        DeepNodeInfo deepNodeInfo = new DeepNodeInfo(-1);
+        findDeepestNode2(root, deepNodeInfo, 1);
+        return deepNodeInfo.getNode();
+
+    }
+
+    private static void findDeepestNode2(Node root, DeepNodeInfo deepNodeInfo, int level) {
+        if (root == null) {
+            return;
+        }
+        if (level > deepNodeInfo.getMaxLevel()) {
+            deepNodeInfo.setNode(root);
+            deepNodeInfo.setMaxLevel(level);
+        }
+        findDeepestNode2(root.getLeft(), deepNodeInfo, level + 1);
+        findDeepestNode2(root.getRight(), deepNodeInfo, level + 1);
+
+    }
+
+    private static class DeepNodeInfo {
+
+        private int maxLevel;
+        private Node node;
+
+        public DeepNodeInfo(int maxLevel) {
+            this.maxLevel = maxLevel;
+            this.node = null;
+        }
+
+
+        public int getMaxLevel() {
+            return maxLevel;
+        }
+
+        public void setMaxLevel(int maxLevel) {
+            this.maxLevel = maxLevel;
+        }
+
+        public Node getNode() {
+            return node;
+        }
+
+        public void setNode(Node node) {
+            this.node = node;
+        }
+
+    }
+
+    //Finding deepest node using level order traversal
+    private static Node findDeepestNode3(Node root) {
+        if (root == null) {
+            return null;
+        }
+        Node node = null;
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            node = queue.remove();
+            if (node.getLeft() != null) {
+                queue.add(node.getLeft());
+            }
+            if (node.getRight() != null) {
+                queue.add(node.getRight());
+            }
+        }
+        return node;
+    }
+
 }
