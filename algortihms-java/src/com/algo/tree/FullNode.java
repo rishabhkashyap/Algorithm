@@ -1,5 +1,8 @@
 package com.algo.tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class FullNode {
 
     public static void main(String[] args) {
@@ -20,20 +23,41 @@ public class FullNode {
         node3.setRight(node7);
         node7.setLeft(node8);
         node7.setRight(node9);
-        System.out.println("Number of full nodes = " + countFullNodes(root));
+        System.out.println("Number of full nodes = " + countFullNodes1(root));
+        System.out.println("Number of full nodes = " + countFullNodes2(root));
     }
 
-    private static int countFullNodes(Node root) {
+    private static int countFullNodes1(Node root) {
         if (root == null) {
             return 0;
         }
         int count = 0;
         if (root.getLeft() != null && root.getRight() != null) {
-            ++count;
+            count = 1;
         }
-        int leftCount = countFullNodes(root.getLeft());
-        int rightCount = countFullNodes(root.getRight());
+        int leftCount = countFullNodes1(root.getLeft());
+        int rightCount = countFullNodes1(root.getRight());
 
         return count + leftCount + rightCount;
+    }
+
+    private static int countFullNodes2(Node root) {
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        int count = 0;
+        while (!queue.isEmpty()) {
+            Node node = queue.remove();
+            if (node.getLeft() != null && node.getRight() != null) {
+                ++count;
+            }
+            if (node.getLeft() != null) {
+                queue.add(node.getLeft());
+            }
+            if (node.getRight() != null) {
+                queue.add(node.getRight());
+            }
+        }
+        return count;
+
     }
 }
