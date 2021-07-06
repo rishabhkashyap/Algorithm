@@ -1,6 +1,6 @@
 package com.algo.tree;
 
-public class TruncatedTree {
+public class TruncatedTreePathSum {
     public static void main(String[] args) {
         Node node1 = new Node(1);
         Node node2 = new Node(2);
