@@ -1,3 +1,5 @@
+from typing import Deque
+
 from trees.node import Node
 from collections import deque
 
@@ -12,11 +14,21 @@ from collections import deque
 '''
 
 
-def preorder2(node1):
-    pass
+def preorder2(root: Node) -> None:
+    if root is None:
+        return
+    stack: Deque[Node] = deque()
+    stack.append(root)
+    while stack:
+        node: Node = stack.pop()
+        print(node.data, end="\t")
+        if node.right is not None:
+            stack.append(node.right)
+        if node.left is not None:
+            stack.append(node.left)
 
 
-def preorder1(root: Node) -> Node:
+def preorder1(root: Node) -> None:
     if root is None:
         return
     print(root.data, end="\t")
@@ -39,6 +51,7 @@ def main():
     node3.right = node6
     node6.left = node7
     preorder1(node1)
+    print()
     preorder2(node1)
 
 
