@@ -32,7 +32,7 @@ public class TruncatedTreePathLength {
         if (root == null) {
             return null;
         }
-        length+=1;
+        ++length;
         root.setLeft(truncateTree(root.getLeft(), k, length));
         root.setRight(truncateTree(root.getRight(), k, length));
         if (length < k && isLeaf(root)) {
