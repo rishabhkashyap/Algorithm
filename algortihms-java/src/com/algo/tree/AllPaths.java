@@ -40,8 +40,7 @@ public class AllPaths {
         if (root == null) {
             return;
         }
-        path[len] = root.getData();
-        len++;
+        path[len++] = root.getData();
         if (root.getLeft() == null && root.getRight() == null) {
             paths.add(Arrays.copyOfRange(path, 0, len));
         } else {
