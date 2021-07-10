@@ -1,3 +1,4 @@
+from typing import Deque
 from trees.node import Node
 from collections import deque
 
@@ -15,7 +16,7 @@ from collections import deque
 def inorder2(root: Node) -> None:
     if root is None:
         return
-    stack: deque = deque()
+    stack: Deque[Node] = deque()
     while True:
         while root is not None:
             stack.append(root)
