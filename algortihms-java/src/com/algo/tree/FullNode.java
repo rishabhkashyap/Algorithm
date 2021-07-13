@@ -25,6 +25,7 @@ public class FullNode {
         node7.setRight(node9);
         System.out.println("Number of full nodes = " + countFullNodes1(root));
         System.out.println("Number of full nodes = " + countFullNodes2(root));
+        System.out.println("Number of full nodes = " + countFullNodes3(root));
     }
 
     private static int countFullNodes1(Node root) {
@@ -59,5 +60,17 @@ public class FullNode {
         }
         return count;
 
+    }
+
+    private  static int countFullNodes3(Node root){
+        if(root==null){
+            return 0;
+        }
+        int left=countFullNodes3(root.getLeft());
+        int right=countFullNodes3(root.getRight());
+        if(root.getLeft()!=null && root.getRight()!=null){
+            return left+right+1;
+        }
+        return left+right;
     }
 }
