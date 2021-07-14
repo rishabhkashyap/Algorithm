@@ -18,7 +18,6 @@ public class InPreTree {
     private static Node constructTreeHelper(int[] inOrder, int[] preOrder, int start, int end, Index preIndex) {
         if (start > end) {
             return null;
-
         }
         Node root = new Node(preOrder[preIndex.i++]);
         if (start == end) {
@@ -28,7 +27,6 @@ public class InPreTree {
         root.setLeft(constructTreeHelper(inOrder, preOrder, start, inIndex - 1, preIndex));
         root.setRight(constructTreeHelper(inOrder, preOrder, inIndex + 1, end, preIndex));
         return root;
-
 
     }
 
