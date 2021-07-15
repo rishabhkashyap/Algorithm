@@ -24,21 +24,21 @@ public class InPreTree {
             return root;
         }
         int inIndex = search(inOrder, root.getData(), start, end);
-        root.setLeft(constructTreeHelper(inOrder, preOrder, start, inIndex - 1, preIndex));
-        root.setRight(constructTreeHelper(inOrder, preOrder, inIndex + 1, end, preIndex));
+        if (inIndex >= 0) {
+            root.setLeft(constructTreeHelper(inOrder, preOrder, start, inIndex - 1, preIndex));
+            root.setRight(constructTreeHelper(inOrder, preOrder, inIndex + 1, end, preIndex));
+        }
         return root;
 
     }
 
     private static int search(int[] inOrder, int key, int start, int end) {
-        int index = -1;
         for (int i = start; i <= end; i++) {
             if (inOrder[i] == key) {
-                index = i;
-                break;
+                return i;
             }
         }
-        return index;
+        return -1;
     }
 
     private static void traversePostorder(Node root) {
