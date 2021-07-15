@@ -4,6 +4,8 @@ public class PrePostTree {
     public static void main(String[] args) {
         int[] pre = {1, 2, 4, 8, 9, 5, 3, 6, 7};
         int[] post = {8, 9, 4, 5, 2, 6, 7, 3, 1};
+//        int[] pre = {1, 2, 4, 5, 3, 6, 8, 9, 7};
+//        int[] post = {4, 5, 2, 8, 9, 6, 7, 3, 1};
         Node root = construct(pre, post);
         TreeUtil.inOrder(root);
     }
