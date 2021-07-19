@@ -27,41 +27,48 @@ public class ZigZag {
     }
 
     private static void performZigzagTraversal(Node root) {
-        if (root != null) {
-            Stack<Node> currentLevel = new Stack<>();
-            Stack<Node> nextLevel = new Stack<>();
-            boolean leftToRight = true;
-            currentLevel.push(root);
-            while (!currentLevel.isEmpty()) {
-                Node node = currentLevel.pop();
-                System.out.print(node.getData() + "\t");
-                Node left = node.getLeft();
-                Node right = node.getRight();
-                if (leftToRight) {
 
-                    if (left != null) {
-                        nextLevel.push(left);
-                    }
-                    if (right != null) {
-                        nextLevel.push(right);
-                    }
-                } else {
-                    if (right != null) {
-                        nextLevel.push(right);
-                    }
-                    if (left != null) {
-                        nextLevel.push(left);
-                    }
-                }
+        if (root == null) {
+            throw new IllegalArgumentException("Root cannot be null");
+        }
 
-                if (currentLevel.isEmpty()) {
-                    leftToRight = !leftToRight;
-                    Stack<Node> tempStack = currentLevel;
-                    currentLevel = nextLevel;
-                    nextLevel = tempStack;
+        Stack<Node> currentLevel = new Stack<>();
+        Stack<Node> nextLevel = new Stack<>();
+        boolean leftToRight = true;
+        currentLevel.push(root);
+        while (!currentLevel.isEmpty()) {
+            Node node = currentLevel.pop();
+            System.out.print(node.getData() + "\t");
+            if (leftToRight) {
+                insertLeftChild(nextLevel, node);
+                insertRightChild(nextLevel, node);
 
-                }
+            } else {
+                insertRightChild(nextLevel, node);
+                insertLeftChild(nextLevel, node);
             }
+
+            if (currentLevel.isEmpty()) {
+                leftToRight = !leftToRight;
+                Stack<Node> tempStack = currentLevel;
+                currentLevel = nextLevel;
+                nextLevel = tempStack;
+
+            }
+        }
+
+    }
+
+    private static void insertLeftChild(Stack<Node> stack, Node root) {
+        if (root.getLeft() != null) {
+            stack.push(root.getLeft());
+        }
+
+    }
+
+    private static void insertRightChild(Stack<Node> stack, Node root) {
+        if (root.getRight() != null) {
+            stack.push(root.getRight());
         }
     }
 }
