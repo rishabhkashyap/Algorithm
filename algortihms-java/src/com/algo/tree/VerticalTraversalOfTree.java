@@ -50,11 +50,6 @@ public class VerticalTraversalOfTree {
             return;
         }
         List<Node> nodes = verticalNodes.getOrDefault(hd, new ArrayList<>());
-//		if(verticalNodes.containsKey(hd)){
-//			nodes=verticalNodes.get(hd);
-//		}else{
-//			nodes=new ArrayList<>();
-//		}
         nodes.add(root);
         verticalNodes.put(hd, nodes);
         calculateHd(root.getLeft(), hd - 1, verticalNodes);
