@@ -1,4 +1,6 @@
-package com.algo.tree;
+package com.algo.tree.traversal;
+
+import com.algo.tree.Node;
 
 import java.util.ArrayList;
 import java.util.HashMap;
