@@ -42,7 +42,9 @@ public class VerticalTraversalOfTree {
         Map<Integer, List<Node>> verticalNodes = new HashMap<>();
         calculateHd(root, 0, verticalNodes);
         if (verticalNodes.size() > 0) {
-            verticalNodes.entrySet().stream()
+            verticalNodes.entrySet()
+                    .stream()
+                    .sorted(comparingByKey())
                     .forEach(
                             e -> {
                                 e.getValue().forEach(e1 -> System.out.print(e1.getData() + " "));
