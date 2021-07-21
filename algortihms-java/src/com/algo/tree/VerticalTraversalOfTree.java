@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.Map.Entry.comparingByKey;
+
 public class VerticalTraversalOfTree {
 
     public static void main(String[] args) {
@@ -26,7 +28,10 @@ public class VerticalTraversalOfTree {
         node3.setRight(node7);
         node6.setRight(node8);
         node7.setRight(node9);
+        System.out.println("Vertical traversal");
         doVerticalTraversal(root);
+        System.out.println("\nVertical sum");
+        printVerticalSum(root);
 
 
     }
@@ -56,5 +61,29 @@ public class VerticalTraversalOfTree {
         calculateHd(root.getRight(), hd + 1, verticalNodes);
 
     }
+
+    private static void printVerticalSum(Node root) {
+        if (root == null) {
+            return;
+        }
+        Map<Integer, Integer> map = new HashMap<>();
+        printVerticalSum(root, 0, map);
+        map.entrySet()
+                .stream()
+                .sorted(comparingByKey())
+                .forEach(e -> System.out.println(e.getValue()));
+    }
+
+    private static void printVerticalSum(Node root, int hd, Map<Integer, Integer> map) {
+        if (root == null) {
+            return;
+        }
+        int sum = map.getOrDefault(hd, 0);
+        map.put(hd, sum + root.getData());
+        printVerticalSum(root.getLeft(), hd - 1, map);
+        printVerticalSum(root.getRight(), hd + 1, map);
+
+    }
+
 
 }
