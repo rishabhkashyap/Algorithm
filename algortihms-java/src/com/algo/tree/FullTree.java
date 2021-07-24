@@ -23,7 +23,7 @@ public class FullTree {
 
     private static boolean isTreeFull(Node root) {
         if (root == null) {
-            return false;
+            return true;
         }
 
         if (root.getLeft() == null && root.getRight() == null) {
