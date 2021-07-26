@@ -10,20 +10,25 @@ public class BST {
         Node root = null;
         root = insertRecursively(root, new Node(8));
         //root = insertRecursively(root, new Node(50));
-//        insertIteratively(root, new Node(30));
-//        insertIteratively(root, new Node(20));
-//        insertIteratively(root, new Node(40));
-//        insertIteratively(root, new Node(70));
-//        insertIteratively(root, new Node(60));
-//        insertIteratively(root, new Node(80));
-        insertRecursively(root, new Node(3));
-        insertRecursively(root, new Node(10));
-        insertRecursively(root, new Node(1));
-        insertRecursively(root, new Node(6));
-        insertRecursively(root, new Node(14));
-        insertRecursively(root, new Node(4));
-        insertRecursively(root, new Node(7));
-        insertRecursively(root, new Node(13));
+        insertIteratively(root, new Node(30));
+        insertIteratively(root, new Node(20));
+        insertIteratively(root, new Node(70));
+        insertIteratively(root, new Node(60));
+        insertIteratively(root, new Node(80));
+        insertIteratively(root, new Node(3));
+        insertIteratively(root, new Node(1));
+        insertIteratively(root, new Node(40));
+        insertIteratively(root, new Node(6));
+
+
+//        insertRecursively(root, new Node(3));
+//        insertRecursively(root, new Node(10));
+//        insertRecursively(root, new Node(1));
+//        insertRecursively(root, new Node(6));
+//        insertRecursively(root, new Node(14));
+//        insertRecursively(root, new Node(4));
+//        insertRecursively(root, new Node(7));
+//        insertRecursively(root, new Node(13));
         TreeUtil.inOrder(root);
         deleteNode(root, 3).getData();
 
@@ -40,24 +45,24 @@ public class BST {
         if (root == null) {
             root = node;
             return root;
-        } else {
-            Node current = root;
-            Node previous = null;
-            while (current != null) {
-                previous = current;
-                if (current.getData() > node.getData()) {
-                    current = current.getLeft();
-                } else {
-                    current = current.getRight();
-
-                }
-            }
-            if (node.getData() > previous.getData()) {
-                previous.setRight(node);
+        }
+        Node current = root;
+        Node previous = null;
+        while (current != null) {
+            previous = current;
+            if (current.getData() > node.getData()) {
+                current = current.getLeft();
             } else {
-                previous.setLeft(node);
+                current = current.getRight();
+
             }
         }
+        if (node.getData() > previous.getData()) {
+            previous.setRight(node);
+        } else {
+            previous.setLeft(node);
+        }
+
         return root;
     }
 
