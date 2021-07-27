@@ -37,9 +37,9 @@ public class MaxPathSum {
             return 0;
         }
         int leftSum = maxPathSum(root.getLeft(), pathSum);
-        int rigthSum = maxPathSum(root.getRight(), pathSum);
-        int maxSum = Math.max(Math.max(leftSum, rigthSum) + root.getData(), root.getData());
-        int rootIncluded = leftSum + rigthSum + root.getData();
+        int rightSum = maxPathSum(root.getRight(), pathSum);
+        int maxSum = Math.max(Math.max(leftSum, rightSum) + root.getData(), root.getData());
+        int rootIncluded = leftSum + rightSum + root.getData();
         pathSum.setSum(Math.max(rootIncluded, pathSum.getSum()));
         return maxSum;
     }
