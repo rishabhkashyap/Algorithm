@@ -34,7 +34,8 @@ public class BST {
 
         System.out.println("\n\nAfter deleting node 3");
         TreeUtil.inOrder(root);
-        System.out.println("\n\nSmallest element in tree = " + findMinValue(root));
+        System.out.println("\n\nSmallest element in tree using recursion = " + findMinValue(root));
+        System.out.println("\n\nSmallest element in tree using iterative approach = " + findMinIterative(root));
         System.out.println("\nLargest element in tree = " + findMax(root));
         System.out.println("\nElement 13 is present in BST = " + search(root, 13));
 
@@ -139,6 +140,19 @@ public class BST {
         } else {
             return search(root.getRight(), key);
         }
+    }
+
+    private static int findMinIterative(Node root) {
+        if (root == null) {
+            throw new IllegalArgumentException("Root cannot be null");
+        }
+        Node current = root;
+        Node prev = null;
+        while (current != null) {
+            prev = current;
+            current = current.getLeft();
+        }
+        return prev.getData();
     }
 
 }
