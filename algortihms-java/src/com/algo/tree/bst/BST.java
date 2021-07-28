@@ -30,14 +30,15 @@ public class BST {
 //        insertRecursively(root, new Node(7));
 //        insertRecursively(root, new Node(13));
         TreeUtil.inOrder(root);
-        deleteNode(root, 3).getData();
+        root = deleteNode(root, 3);
 
-        System.out.println("\n\nAfter deleting node 3");
+        System.out.println("\nAfter deleting node 3");
         TreeUtil.inOrder(root);
-        System.out.println("\n\nSmallest element in tree using recursion = " + findMinValue(root));
-        System.out.println("\n\nSmallest element in tree using iterative approach = " + findMinIterative(root));
+        System.out.println("\nSmallest element in tree using recursion = " + findMinValue(root));
+        System.out.println("\nSmallest element in tree using iterative approach = " + findMinIterative(root));
         System.out.println("\nLargest element in tree = " + findMax(root));
-        System.out.println("\nElement 13 is present in BST = " + search(root, 13));
+        System.out.println("\nElement 13 is present in BST recursive = " + containsRecursive(root, 13));
+        System.out.println("\nElement 13 is present in BST iterative = " + containsIterative(root, 8));
 
 
     }
@@ -83,7 +84,7 @@ public class BST {
     private static Node deleteNode(Node root, int key) {
 
         if (root == null) {
-            return root;
+            return null;
         }
 
         if (root.getData() > key) {
@@ -105,7 +106,7 @@ public class BST {
                 int minValue = findMinValue(root.getRight());
                 root.setData(minValue);
                 root.setRight(deleteNode(root.getRight(), minValue));
-
+                return root;
             }
         }
         return root;
@@ -121,27 +122,6 @@ public class BST {
 
     }
 
-    private static int findMax(Node root) {
-        if (root.getRight() != null) {
-            return findMax(root.getRight());
-        }
-        return root.getData();
-    }
-
-    private static boolean search(Node root, int key) {
-        if (root == null) {
-            return false;
-        }
-        if (root.getData() == key) {
-            return true;
-        }
-        if (key < root.getData()) {
-            return search(root.getLeft(), key);
-        } else {
-            return search(root.getRight(), key);
-        }
-    }
-
     private static int findMinIterative(Node root) {
         if (root == null) {
             throw new IllegalArgumentException("Root cannot be null");
@@ -153,6 +133,45 @@ public class BST {
             current = current.getLeft();
         }
         return prev.getData();
+    }
+
+    private static int findMax(Node root) {
+        if (root.getRight() != null) {
+            return findMax(root.getRight());
+        }
+        return root.getData();
+    }
+
+    private static boolean containsRecursive(Node root, int key) {
+        if (root == null) {
+            return false;
+        }
+        if (root.getData() == key) {
+            return true;
+        }
+        if (key < root.getData()) {
+            return containsRecursive(root.getLeft(), key);
+        } else {
+            return containsRecursive(root.getRight(), key);
+        }
+    }
+
+    private static boolean containsIterative(Node root, int key) {
+        if (root == null) {
+            return false;
+        }
+        Node current = root;
+        while (current != null) {
+            if (current.getData() == key) {
+                return true;
+            }
+            if (current.getData() > key) {
+                current = current.getLeft();
+            } else {
+                current = current.getRight();
+            }
+        }
+        return false;
     }
 
 }
