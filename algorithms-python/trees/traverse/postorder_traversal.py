@@ -23,7 +23,7 @@ def postorder3(root: Optional[Node]) -> None:
                 stack.append(root.right)
             stack.append(root)
             root = root.left
-        if deque:
+        if stack:
             root = stack.pop()
         # if top element of stack is right of popped element
         # then put root back and process right node
