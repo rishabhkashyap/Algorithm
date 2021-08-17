@@ -1,6 +1,6 @@
 package com.algo.tree;
 
-public class ConvertorDLL {
+public class ConvertCircularDLL {
 
     public static void main(String[] args) {
 
