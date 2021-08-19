@@ -21,10 +21,25 @@ public class KSmallest {
         node2.setRight(node3);
         node6.setRight(node7);
         node6.setLeft(node5);
-//      System.out.println("3th smallest element in tree = " + kthSmallestElement(root, 3).getData());
+        System.out.println("3th smallest element in tree = " + kthSmallestElement(root, 3).getData());
         System.out.println("3th smallest element in tree = " + kThSmallestUsingStack(root, 3));
+        System.out.println("4th largest element in tree = " + kthLargestElement1(root, 4).getData());
+        System.out.println("2nd largest element in tree = " + kthLargestElement2(root, 2).getData());
 
 
+    }
+
+    //Kth largest node is (n-k+1)th smallest node in inorder traversal of bst
+    private static Node kthLargestElement1(Node root, int k) {
+        Counter counter = new Counter();
+        return kthSmallestElement(root, counter, countNodes(root) - k + 1);
+    }
+
+    private static int countNodes(Node root) {
+        if (root == null) {
+            return 0;
+        }
+        return countNodes(root.getLeft()) + countNodes(root.getRight()) + 1;
     }
 
 
@@ -40,20 +55,20 @@ public class KSmallest {
             return null;
         }
         Node node = kthSmallestElement(root.getLeft(), counter, k);
-
-
-        if (counter.k != k) {
-            counter.k++;
-            node = root;
-        }
-        if (counter.k == k) {
+        //if left node is not null that means its kth smallest element
+        if (node != null) {
             return node;
+        }
+        counter.k++;
+        if (counter.k == k) {
+            return root;
         } else {
             return kthSmallestElement(root.getRight(), counter, k);
         }
 
 
     }
+
 
     public static int kThSmallestUsingStack(Node root, int k) {
         if (root == null) {
@@ -82,6 +97,26 @@ public class KSmallest {
 
         }
         return kthSmallest;
+    }
+
+    private static Node kthLargestElement2(Node root, int k) {
+        Counter counter = new Counter();
+        return kthLargestElement2(root, k, counter);
+    }
+
+    private static Node kthLargestElement2(Node root, int k, Counter counter) {
+        if (root == null) {
+            return null;
+        }
+        Node right = kthLargestElement2(root.getRight(), k, counter);
+        if (right != null) {
+            return right;
+        }
+        counter.k++;
+        if (counter.k == k) {
+            return root;
+        }
+        return kthLargestElement2(root.getLeft(), k, counter);
     }
 
     private static class Counter {
