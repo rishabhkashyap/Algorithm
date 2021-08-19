@@ -18,8 +18,8 @@ public class DLLToBST {
             return;
         }
         traversal(root.getLeft());
+        traversal(root.getRight());
         System.out.print(root.getData() + "\t");
-        traversal(root.getLeft());
     }
 
     private static class DLL {
