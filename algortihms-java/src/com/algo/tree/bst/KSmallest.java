@@ -62,9 +62,8 @@ public class KSmallest {
         counter.k++;
         if (counter.k == k) {
             return root;
-        } else {
-            return kthSmallestElement(root.getRight(), counter, k);
         }
+        return kthSmallestElement(root.getRight(), counter, k);
 
 
     }
