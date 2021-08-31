@@ -20,6 +20,19 @@ public class Heap {
         ++size;
     }
 
+    private void hapifyUp(int index) {
+        int value = heap[index];
+        int parent = (index-1) / 2;
+        while (index > 0 && heap[parent] < value) {
+            heap[index] = heap[parent];
+            index = parent;
+            parent = (parent-1) / 2;
+
+        }
+        heap[index] = value;
+
+    }
+
     public int delete() {
         int deletedElement = heap[0];
         heap[0] = heap[size - 1];
@@ -48,19 +61,6 @@ public class Heap {
         }
         heap[index] = top;
 
-
-    }
-
-    private void hapifyUp(int index) {
-        int value = heap[index];
-        int parent = (index-1) / 2;
-        while (index > 0 && heap[parent] < value) {
-            heap[index] = heap[parent];
-            index = parent;
-            parent = (parent-1) / 2;
-
-        }
-        heap[index] = value;
 
     }
 
