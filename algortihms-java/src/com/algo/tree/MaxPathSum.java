@@ -1,7 +1,5 @@
 package com.algo.tree;
 
-import sun.security.krb5.internal.PAData;
-
 public class MaxPathSum {
     public static void main(String[] args) {
         Node root = new Node(10);
