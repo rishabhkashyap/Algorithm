@@ -28,9 +28,6 @@ public class HeapCheck {
         for (int i = 0; i <= (heap.length-2) / 2; i++) {
             int rightIndex = 2 * i + 1;
             int leftIndex = 2 * i + 2;
-//            if (rightIndex >= size || leftIndex >= size) {
-//                return false;
-//            }
             if ((rightIndex <size && leftIndex < size) &&
                     (heap[i] < heap[leftIndex] || heap[i] < heap[rightIndex])) {
                 return false;
