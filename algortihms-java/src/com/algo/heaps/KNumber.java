@@ -9,16 +9,16 @@ public class KNumber {
     public static void main(String[] args) {
         int[] arr = {7, 10, 4, 3, 20, 15};
         int k = 3;
-        int kSmallest = findKthSmallestElement(arr, k);
+
         System.out.println("Approach 1");
-        System.out.println(k + "th smallest element = " + kSmallest);
-        System.out.println(k + "th smallest element = " + findSmallestElement(arr, k));
+        System.out.println(k + "th smallest element = " + findKthSmallestElement1(arr, k));
+        System.out.println(k + "th largest element = " + findKthLargestElement1(arr, k));
         System.out.println("\nApproach 2");
-        System.out.println(k + "th largest element = " + findLargestElement2(arr, k));
-        System.out.println(k + "th smallest element = " + findSmallestElement(arr, k));
+        System.out.println(k + "th smallest element = " + findKthSmallestElement2(arr, k));
+        System.out.println(k + "th largest element = " + findKthLargestElement2(arr, k));
     }
 
-    private static int findKthSmallestElement(int[] arr, int k) {
+    private static int findKthSmallestElement1(int[] arr, int k) {
         Queue<Integer> queue = new PriorityQueue<>();
         int kthSmallest = Integer.MAX_VALUE;
 
@@ -33,8 +33,8 @@ public class KNumber {
         return kthSmallest;
     }
 
-    private static int findSmallestElement(int[] arr, int k) {
-        Queue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
+    private static int findKthSmallestElement2(int[] arr, int k) {
+        Queue<Integer> queue = new PriorityQueue<>(k,Collections.reverseOrder());
         for (int i = 0; i < k; i++) {
             queue.add(arr[i]);
         }
@@ -47,9 +47,24 @@ public class KNumber {
         return queue.peek();
     }
 
-    private static int findLargestElement2(int[] arr, int k) {
+    private static int findKthLargestElement1(int[] arr, int k) {
+        Queue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
+        int kthLargest = Integer.MIN_VALUE;
 
-        Queue<Integer> queue = new PriorityQueue<>();
+        for (int element : arr) {
+            queue.add(element);
+        }
+        int i = 0;
+        while (!queue.isEmpty() && i < k) {
+            kthLargest = queue.remove();
+            ++i;
+        }
+        return kthLargest;
+    }
+
+    private static int findKthLargestElement2(int[] arr, int k) {
+
+        Queue<Integer> queue = new PriorityQueue<>(k);
         for (int i = 0; i < k; i++) {
             queue.add(arr[i]);
         }
