@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-public class KNonRepeatedCharacter {
+public class KthNonRepeatedCharacter {
 
     public static void main(String[] args) {
         String str = "abcbcdeabf";
