@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class Medain {
+public class Median {
 
     public static void main(String[] args) {
         int[] stream = {5, 15, 1, 3, 2, 8, 7, 9, 10, 6, 11, 4};
