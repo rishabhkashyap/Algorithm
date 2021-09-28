@@ -13,7 +13,6 @@ public class MinMaxHeap {
     }
 
     private static void convertToMaxHeap(int[] minHeap) {
-        int size = 0;
         for (int i = (minHeap.length - 1) / 2; i >= 0; i--) {
             heapify(minHeap, i);
         }
