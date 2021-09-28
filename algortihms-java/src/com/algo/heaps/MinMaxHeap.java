@@ -19,7 +19,6 @@ public class MinMaxHeap {
     }
 
     private static void heapify(int[] minHeap, int i) {
-        int top = minHeap[i];
         int largeIndex = i;
         int size = minHeap.length;
 
