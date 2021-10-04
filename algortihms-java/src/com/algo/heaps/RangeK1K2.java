@@ -15,6 +15,9 @@ public class RangeK1K2 {
     }
 
     private static int getSumInRange(int[] arr, int k1th, int k2th) {
+        if (k1th > k2th) {
+            throw new IllegalArgumentException("K1 cannot be greater than k2");
+        }
         Queue<Integer> queue = new PriorityQueue<>();
         int difference = k2th - k1th - 1;
         int sum = 0;
