@@ -1,100 +1,104 @@
 package com.algo.recursion;
 
 public class RatMaze {
-    private char[][] maze;
-    private char[][] solution;
-    private int row;
-    private int column;
-    private int noOfRoutes;
+	private char[][] maze;
 
-    public RatMaze(int row, int column, char[][] maze) {
-        this.row = row;
-        this.column = column;
-        this.maze = maze;
-        solution = new char[row][column];
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < column; j++) {
-                solution[i][j] = '0';
-            }
-        }
-    }
+	private char[][] solution;
 
-    public static void main(String[] args) {
-        char[][] maze = {
-                {'0', '0', '0', '0'},
-                {'0', '0', 'X', '0'},
-                {'0', '0', '0', 'X'},
-                {'0', 'X', '0', '0'}};
-        RatMaze ratMaze = new RatMaze(4, 4, maze);
-        //Prints all possible paths
-        ratMaze.findPaths(0, 0);
-        System.out.println("Total number of routes = " + ratMaze.getNoOfRoutes());
-        //Prints anyone of possible path
-        //ratMaze.findPath(0,0);
-    }
+	private int row;
 
-    public boolean findPaths(int i, int j) {
-        if (i == row - 1 && j == column - 1) {
-            solution[i][j] = '1';
-            printPath();
-            ++noOfRoutes;
-            return true;
-        }
-        if (i >= row || j >= column) {
-            return false;
-        }
-        if (maze[i][j] == 'X') {
-            return false;
-        }
-        solution[i][j] = '1';
-        boolean right = findPaths(i, j + 1);
-        boolean down = findPaths(i + 1, j);
+	private int column;
 
-        if (right || down) {
-            return true;
-        }
-        solution[i][j] = '0';
-        return false;
+	private int noOfRoutes;
 
-    }
+	public RatMaze(int row, int column, char[][] maze) {
+		this.row = row;
+		this.column = column;
+		this.maze = maze;
+		solution = new char[row][column];
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < column; j++) {
+				solution[i][j] = '0';
+			}
+		}
+	}
 
-    public boolean findPath(int i, int j) {
-        if (i == row - 1 && j == column - 1) {
-            solution[i][j] = '1';
-            printPath();
-            ++noOfRoutes;
-            return true;
-        }
-        if (i >= row || j >= column) {
-            return false;
-        }
-        if (maze[i][j] == 'X') {
-            return false;
-        }
-        solution[i][j] = '1';
-        if (findPaths(i, j + 1)) {
-            return true;
-        }
-        if (findPaths(i + 1, j)) {
-            return true;
-        }
+	public static void main(String[] args) {
+		char[][] maze = {
+				{ '0', '0', '0', '0' },
+				{ '0', '0', 'X', '0' },
+				{ '0', '0', '0', 'X' },
+				{ '0', 'X', '0', '0' } };
+		RatMaze ratMaze = new RatMaze(4, 4, maze);
+		//Prints all possible paths
+		ratMaze.findPaths(0, 0);
+		//System.out.println("Total number of routes = " + ratMaze.getNoOfRoutes());
+		//Prints anyone of possible path
+		//ratMaze.findPath(0,0);
+	}
 
-        solution[i][j] = '0';
-        return false;
+	public boolean findPaths(int i, int j) {
+		if (i == row - 1 && j == column - 1) {
+			solution[i][j] = '1';
+			printPath();
+			++noOfRoutes;
+			return true;
+		}
+		if (i >= row || j >= column) {
+			return false;
+		}
+		if (maze[i][j] == 'X') {
+			return false;
+		}
+		solution[i][j] = '1';
+		boolean right = findPaths(i, j + 1);
+		boolean down = findPaths(i + 1, j);
 
-    }
+		if (right || down) {
+			return true;
+		}
+		solution[i][j] = '0';
+		return false;
 
-    private void printPath() {
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < column; j++) {
-                System.out.print(solution[i][j] + "\t");
-            }
-            System.out.println();
-        }
-        System.out.println("\n\n");
-    }
+	}
 
-    public int getNoOfRoutes() {
-        return noOfRoutes;
-    }
+	public boolean findPath(int i, int j) {
+		if (i == row - 1 && j == column - 1) {
+			solution[i][j] = '1';
+			printPath();
+			++noOfRoutes;
+			return true;
+		}
+		if (i >= row || j >= column) {
+			return false;
+		}
+		if (maze[i][j] == 'X') {
+			return false;
+		}
+		solution[i][j] = '1';
+		if (findPath(i, j + 1)) {
+			return true;
+		}
+		if (findPath(i + 1, j)) {
+			return true;
+		}
+
+		solution[i][j] = '0';
+		return false;
+
+	}
+
+	private void printPath() {
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < column; j++) {
+				System.out.print(solution[i][j] + "\t");
+			}
+			System.out.println();
+		}
+		System.out.println("\n\n");
+	}
+
+	public int getNoOfRoutes() {
+		return noOfRoutes;
+	}
 }
