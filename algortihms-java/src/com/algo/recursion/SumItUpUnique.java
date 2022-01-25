@@ -30,11 +30,11 @@ public class SumItUpUnique {
 
 	public static void combinationSum(int[] arr, int target, List<Integer> combination,
 			List<List<Integer>> result, int i, int sum) {
-		if (i > arr.length) {
-			return;
-		}
 		if (sum == target) {
 			result.add(new ArrayList<>(combination));
+			return;
+		}
+		if (i >= arr.length) {
 			return;
 		}
 		if (sum > target) {
