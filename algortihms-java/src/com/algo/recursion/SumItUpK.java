@@ -27,6 +27,9 @@ public class SumItUpK {
 
 	}
 
+	// We do not check whether the previous element is same as current element before
+	// adding to list because all the number that are being used to generate combination
+	// are unique
 	private static void combinationSum3(List<Integer> nums, int i, int k, int n, List<List<Integer>> result) {
 		if (nums.size() == k && n == 0) {
 			result.add(new ArrayList<>(nums));
