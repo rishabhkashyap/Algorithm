@@ -10,15 +10,15 @@ public class ArrayCombination {
         int[] arr = {1, 2, 3, 4};
         int k = 2;
         List<Integer> combination = new ArrayList<>();
-        System.out.println("combinatination witout repition");
+        System.out.println("sets with repition");
         createCombination(arr, k, combination, 0);
-        System.out.println("\n\ncombinatination witout repition");
+        System.out.println("\nsets without repetition");
         createCombinationWithNoReps(arr, k, combination, 0);
     }
 
     private static void createCombinationWithNoReps(int[] arr, int k, List<Integer> combination, int index) {
         if (combination.size() == k) {
-            print(combination);
+            System.out.println(combination);
             return;
         }
         for (int i = index; i < arr.length; i++) {
@@ -31,7 +31,7 @@ public class ArrayCombination {
 
     private static void createCombination(int[] arr, int k, List<Integer> combination, int index) {
         if (combination.size() == k) {
-            print(combination);
+            System.out.println(combination);
             return;
         }
         for (int i = index; i < arr.length; i++) {
