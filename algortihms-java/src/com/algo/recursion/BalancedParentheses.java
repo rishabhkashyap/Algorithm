@@ -25,7 +25,8 @@ public class BalancedParentheses {
 		for (int i = 0; i < str.length(); i++) {
 			if(str.charAt(i) == '(') {
 				stack.push(str.charAt(i));
-			} else {
+			}
+			if(str.charAt(i) == ')') {
 				if(stack.isEmpty() || stack.peek() == ')') {
 					stack.push(str.charAt(i));
 				} else {
