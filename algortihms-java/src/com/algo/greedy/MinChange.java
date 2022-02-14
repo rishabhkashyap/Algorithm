@@ -8,7 +8,7 @@ import java.util.List;
 public class MinChange {
     public static void main(String[] args) {
         List<Integer> availableChange = Arrays.asList(1, 2, 5, 10, 20, 50, 100, 500, 200, 2000);
-        int amount = 121;
+        int amount = 2194;
         int minChange = getMinChangeCount(amount, availableChange);
         System.out.println("\n\nGet minimum change = " + minChange);
         System.out.println("\n");
@@ -67,7 +67,7 @@ public class MinChange {
         List<Integer> result = new ArrayList<>();
         int count = 0;
         for (Integer change : denomination) {
-            if (amount >= change) {
+            while (amount >= change) {
                 result.add(change);
                 amount -= change;
                 ++count;
