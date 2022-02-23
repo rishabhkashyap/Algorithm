@@ -18,14 +18,15 @@ public class JobSequence {
         return result[1];
 
     }
+
     private static int[] jobScheduling(Job arr[], int n) {
         Arrays.sort(arr, (e1, e2) -> e2.profit - e1.profit);
         int count = 0;
         int profit = 0;
         boolean[] timeSlot = new boolean[arr.length + 1];
         for (Job job : arr) {
-            int availableSlotIndex = Math.min(n, job.deadline - 1);
-            while (availableSlotIndex >= 0) {
+            int availableSlotIndex = Math.min(n, job.deadline);
+            while (availableSlotIndex >= 1) {
                 if (timeSlot[availableSlotIndex] == false) {
                     profit += job.profit;
                     ++count;
