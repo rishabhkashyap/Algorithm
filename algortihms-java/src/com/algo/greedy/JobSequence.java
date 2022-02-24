@@ -6,7 +6,9 @@ public class JobSequence {
     public static void main(String[] args) {
         int[] deadline = {4, 1, 1, 1};
         int[] profit = {20, 10, 40, 30};
-        System.out.println(findMaxProfit(deadline, profit));
+//        int[] deadline = {2, 1, 2, 1, 1};
+//        int[] profit = {100, 19, 27, 25, 15};
+        System.out.println("Max profit = " + findMaxProfit(deadline, profit));
     }
 
     private static int findMaxProfit(int[] deadline, int[] profit) {
@@ -37,6 +39,7 @@ public class JobSequence {
             }
         }
         int[] result = {count, profit};
+        System.out.println("Number of jobs that can be completed = " + count);
         return result;
     }
 
