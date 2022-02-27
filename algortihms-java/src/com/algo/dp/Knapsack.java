@@ -38,17 +38,14 @@ public class Knapsack {
 
     private static int maxValue2(int[] val, int[] wt, int weight) {
         int[][] dp = new int[val.length + 1][weight + 1];
-        for (int i = 0; i <= val.length; i++) {
+        for (int i = 1; i <= val.length; i++) {
             for (int j = 1; j <= weight; j++) {
-                if (i == 0 || j == 0) {
-                    dp[i][j] = 0;
+                if (j >= wt[i - 1]) {
+                    dp[i][j] = Math.max(dp[i - 1][j - wt[i - 1]] + val[i - 1], dp[i - 1][j]);
                 } else {
-                    if (j >= wt[i-1]) {
-                        dp[i][j] = Math.max(dp[i - 1][j - wt[i-1]] + val[i-1], dp[i - 1][j]);
-                    } else {
-                        dp[i][j] = dp[i - 1][j];
-                    }
+                    dp[i][j] = dp[i - 1][j];
                 }
+
             }
         }
         return dp[val.length][weight];
