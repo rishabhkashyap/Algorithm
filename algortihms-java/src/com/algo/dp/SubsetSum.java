@@ -33,8 +33,6 @@ public class SubsetSum {
                         dp[i][j] = dp[i - 1][j];
                     }
                 }
-
-
             }
         }
         return dp[arr.length][sum];
