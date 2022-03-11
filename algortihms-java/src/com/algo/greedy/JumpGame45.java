@@ -1,8 +1,9 @@
 package com.algo.greedy;
 
 import java.util.Arrays;
-//Problem: https://leetcode.com/problems/jump-game-ii/submissions/
-public class Jump45 {
+
+//Problem: https://leetcode.com/problems/jump-game-ii/
+public class JumpGame45 {
     public static void main(String[] args) {
         int[] arr = {2, 3, 1, 1, 4};
 
