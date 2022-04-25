@@ -9,6 +9,8 @@ public class SumKSubarray {
         System.out.println(largestSubarrayLen(arr, k));
     }
 
+
+    //This approach works on positive numbers
     private static int largestSubarrayLen(int[] arr, int k) {
         int i = 0;
         int j = 0;
