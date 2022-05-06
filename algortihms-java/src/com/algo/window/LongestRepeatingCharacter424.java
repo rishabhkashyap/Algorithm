@@ -10,6 +10,7 @@ public class LongestRepeatingCharacter424 {
         System.out.println(longestStringLen(string, k));
     }
 
+    //Similar to consecutive ones(leetcode problem no 1004)
     private static int longestStringLen(String string, int k) {
         int i = 0;
         int j = 0;
