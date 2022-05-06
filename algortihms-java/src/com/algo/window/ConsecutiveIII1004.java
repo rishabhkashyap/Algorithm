@@ -1,5 +1,6 @@
 package com.algo.window;
 
+//Problem: https://leetcode.com/problems/max-consecutive-ones-iii/
 public class ConsecutiveIII1004 {
     public static void main(String[] args) {
         int[] arr = {1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0};
