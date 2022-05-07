@@ -26,7 +26,7 @@ public class FirstNegative {
                 queue.add(arr[j]);
             }
             if (j - i + 1 > k) {
-                if (arr[i] < 0 && queue.peek() == arr[i]) {
+                if (!queue.isEmpty() && queue.peek() == arr[i]) {
                     queue.remove();
                 }
                 ++i;
