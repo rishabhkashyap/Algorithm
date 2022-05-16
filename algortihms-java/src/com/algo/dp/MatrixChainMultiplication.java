@@ -22,7 +22,7 @@ public class MatrixChainMultiplication {
     }
 
     private static int getMinOperations1(int[] arr, int i, int j) {
-        if (i == j) {
+        if (i >= j) {
             return 0;
         }
         int min = Integer.MAX_VALUE;
