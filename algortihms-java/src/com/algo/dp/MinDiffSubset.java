@@ -17,12 +17,11 @@ public class MinDiffSubset {
             for (int j = 0; j <= sum; j++) {
                 if (j == 0) {
                     dp[i][0] = true;
+                }
+                if (j < arr[i - 1]) {
+                    dp[i][j] = dp[i - 1][j];
                 } else {
-                    if (j < arr[i - 1]) {
-                        dp[i][j] = dp[i - 1][j];
-                    } else {
-                        dp[i][j] = dp[i - 1][j] || dp[i - 1][j - arr[i - 1]];
-                    }
+                    dp[i][j] = dp[i - 1][j] || dp[i - 1][j - arr[i - 1]];
                 }
             }
         }
