@@ -23,7 +23,7 @@ public class UKnapsack {
     }
 
     private static int findMaxProfit1(int w, int[] weights, int[] values, int i, int[][] dp) {
-        if (i < 0 || w < 0) {
+        if (i < 0 || w <= 0) {
             return 0;
         }
         if (dp[i][w] != -1) {
