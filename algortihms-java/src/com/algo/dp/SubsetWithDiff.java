@@ -8,8 +8,41 @@ public class SubsetWithDiff {
 //        int diff = 1;
         int[] arr = {1, 6, 11, 5};
         int diff = 1;
+        System.out.println(countWays1(arr, diff));
         System.out.println(countWays2(arr, diff));
 
+
+    }
+
+    private static int countWays1(int[] arr, int diff) {
+        int sum = Arrays.stream(arr).sum();
+        if (sum < Math.abs(diff) || (sum + diff) % 2 != 0) {
+            return 0;
+        }
+        int[][] dp = new int[arr.length + 1][(diff + sum) / 2 + 1];
+        for (int[] dpArr : dp) {
+            Arrays.fill(dpArr, -1);
+        }
+        return countWays2(arr, (diff + sum) / 2, arr.length - 1, dp);
+
+    }
+
+    private static int countWays2(int[] arr, int sum, int i, int[][] dp) {
+        if (sum == 0) {
+            return 1;
+        }
+        if (i < 0 || sum < 0) {
+            return 0;
+        }
+        if (dp[i][sum] != -1) {
+            return dp[i][sum];
+        }
+        if (sum < arr[i]) {
+            return countWays2(arr, sum, i - 1, dp);
+        }
+        dp[i][sum] = countWays2(arr, sum, i - 1, dp)
+                + countWays2(arr, sum - arr[i], i - 1, dp);
+        return dp[i][sum];
     }
 
     private static int countWays2(int[] arr, int target) {
