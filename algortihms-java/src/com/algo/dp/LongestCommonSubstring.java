@@ -7,6 +7,7 @@ public class LongestCommonSubstring {
 //        String string1 = "zxabcdezy";
 //        String string2 = "yzabcdezx";
         System.out.println("Longest common substring length = " + findLongestCommonSubstrLen(string1, string2));
+        System.out.println("Longest common substring length = " + findLongestCommonSubstrLen2(string1, string2));
         System.out.println("Longest common substring = " + findLongestCommonSubstr(string1, string2));
     }
 
@@ -23,6 +24,35 @@ public class LongestCommonSubstring {
             }
         }
         return maxLen;
+    }
+
+    private static int findLongestCommonSubstrLen2(String string1, String string2) {
+        int[][][] dp = new int[string1.length() + 1][string2.length() + 1][Math.min(string1.length(), string2.length())];
+        for (int i = 0; i < string1.length(); i++) {
+            for (int j = 0; j < string2.length(); j++) {
+                for (int k = 0; k < Math.min(string1.length(), string2.length()); k++) {
+                    dp[i][j][k] = -1;
+                }
+            }
+        }
+        return findLongestCommonSubstrLen2(string1, string2, string1.length() - 1, string2.length() - 1, 0, dp);
+    }
+
+    private static int findLongestCommonSubstrLen2(String string1, String string2, int i, int j, int count, int[][][] dp) {
+        if (i < 0 || j < 0) {
+            return count;
+        }
+        if (dp[i][j][count] != -1) {
+            return dp[i][j][count];
+        }
+        int len1 = count;
+        if (string1.charAt(i) == string2.charAt(j)) {
+            len1 = findLongestCommonSubstrLen2(string1, string2, i - 1, j - 1, count + 1, dp);
+        }
+        int len2 = findLongestCommonSubstrLen2(string1, string2, i - 1, j, 0, dp);
+        int len3 = findLongestCommonSubstrLen2(string1, string2, i, j - 1, 0, dp);
+        dp[i][j][count] = Math.max(len1, Math.max(len2, len3));
+        return dp[i][j][count];
     }
 
     private static String findLongestCommonSubstr(String string1, String string2) {
