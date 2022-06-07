@@ -2,7 +2,7 @@ package com.algo.dp;
 
 //Problem: https://leetcode.com/problems/shortest-common-supersequence/
 
-public class SuperSequence {
+public class SuperSequence1092 {
     public static void main(String[] args) {
 //        String str1 = "AGGTAB";
 //        String str2 = "GXTXAYB";
