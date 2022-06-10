@@ -4,9 +4,10 @@ import java.util.Arrays;
 
 public class LongestRepeatingSubseq {
     public static void main(String[] args) {
-        String str = "axxzxy";
-        System.out.println(longestRepeatingSubseqLen(str));
-        System.out.println(longestRepeatingSubseqLen2(str));
+        String str = "aabebcdd";
+        System.out.println("Length of longest repeating subsequence = "+longestRepeatingSubseqLen(str));
+        System.out.println("Length of longest repeating subsequence = "+longestRepeatingSubseqLen2(str));
+        System.out.println("Longest repeating subsequence = " + printLongestRepeatingSubseq(str));
     }
 
     private static int longestRepeatingSubseqLen(String str) {
@@ -40,7 +41,7 @@ public class LongestRepeatingSubseq {
         for (int i = 1; i <= str.length(); i++) {
             for (int j = 1; j <= str.length(); j++) {
                 if ((i - 1 != j - 1) && (str.charAt(i - 1) == str.charAt(j - 1))) {
-                    dp[i][j] = dp[i-1][j-1] + 1;
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
                 }
                 else {
                     dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
@@ -48,5 +49,38 @@ public class LongestRepeatingSubseq {
             }
         }
         return dp[str.length()][str.length()];
+    }
+
+    private static String printLongestRepeatingSubseq(String str) {
+        int[][] dp = new int[str.length() + 1][str.length() + 1];
+        for (int i = 1; i <= str.length(); i++) {
+            for (int j = 1; j <= str.length(); j++) {
+                if ((i - 1 != j - 1) && (str.charAt(i - 1) == str.charAt(j - 1))) {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                }
+                else {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+        int i = str.length();
+        int j = str.length();
+        StringBuilder stringBuilder = new StringBuilder();
+        while (i > 0 && j > 0) {
+            if ((i - 1 != j - 1) && (str.charAt(i - 1) == str.charAt(j - 1))) {
+                stringBuilder.insert(0, str.charAt(i - 1));
+                --i;
+                --j;
+            }
+            else {
+                if (dp[i - 1][j] > dp[i][j - 1]) {
+                    --i;
+                }
+                else {
+                    --j;
+                }
+            }
+        }
+        return stringBuilder.toString();
     }
 }
