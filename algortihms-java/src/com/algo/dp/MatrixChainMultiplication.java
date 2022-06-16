@@ -11,8 +11,6 @@ public class MatrixChainMultiplication {
                 + getMinOperations1(arr));
         System.out.println("Minimum operation required to do matrix multiplication = "
                 + getMinOperations2(arr));
-
-
     }
 
 
