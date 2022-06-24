@@ -36,10 +36,10 @@ public class EggDrop {
         int minTrials = Integer.MAX_VALUE;
         for (int i = 1; i <= floors; i++) {
             int result = Math.max(findTrialCount(eggs - 1, i - 1, dp),
-                    findTrialCount(eggs, floors - i, dp));
+                    findTrialCount(eggs, floors - i, dp))+1;
             minTrials = Math.min(minTrials, result);
         }
-        dp[eggs][floors] = minTrials + 1;
+        dp[eggs][floors] = minTrials;
         return dp[eggs][floors];
     }
 }
