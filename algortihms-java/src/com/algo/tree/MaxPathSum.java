@@ -1,5 +1,7 @@
 package com.algo.tree;
 
+//Problem: https://leetcode.com/problems/binary-tree-maximum-path-sum/
+
 public class MaxPathSum {
     public static void main(String[] args) {
         Node root = new Node(10);
@@ -34,9 +36,10 @@ public class MaxPathSum {
         if (root == null) {
             return 0;
         }
-        int leftSum = maxPathSum(root.getLeft(), pathSum);
-        int rightSum = maxPathSum(root.getRight(), pathSum);
-        int maxSum = Math.max(Math.max(leftSum, rightSum) + root.getData(), root.getData());
+        //If left or right sub tree sum comes as zero, it's not added as to the sum
+        int leftSum = Math.max(maxPathSum(root.getLeft(), pathSum), 0);
+        int rightSum = Math.max(maxPathSum(root.getRight(), pathSum), 0);
+        int maxSum = Math.max(leftSum, rightSum) + root.getData();
         int rootIncluded = leftSum + rightSum + root.getData();
         pathSum.setSum(Math.max(rootIncluded, pathSum.getSum()));
         return maxSum;
