@@ -20,18 +20,15 @@ public class LongestSubarrayWithSumK {
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < arr.length; i++) {
             prefixSum += arr[i];
-            if (arr[i] == target && maxLen == 0) {
-                maxLen = 1;
-            }
             if (prefixSum == target) {
                 maxLen = Math.max(maxLen, i + 1);
             }
-            if (map.containsKey(prefixSum - target)) {
-                maxLen = Math.max(maxLen, i - map.get(prefixSum - target));
-            } else {
+            if (!map.containsKey(prefixSum)) {
                 map.put(prefixSum, i);
             }
-
+            if (map.containsKey(prefixSum - target)) {
+                maxLen = Math.max(maxLen, i - map.get(prefixSum - target));
+            }
         }
         return maxLen;
     }
