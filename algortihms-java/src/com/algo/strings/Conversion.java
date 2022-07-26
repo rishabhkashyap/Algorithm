@@ -5,28 +5,21 @@ public class Conversion {
     public static void main(String[] args) {
         int number = -1234;
         System.out.println("Number to string = " + numberToString(number));
-        String str = "-54321ui";
+        String str = "-54321";
         System.out.println("String to integer = " + stringToInteger(str));
     }
 
     private static String numberToString(int number) {
-        boolean negativeNum = false;
+        StringBuilder stringBuilder = new StringBuilder();
         if (number < 0) {
-            negativeNum = true;
+            stringBuilder.append('-');
             number = -number;
         }
-
         int divider = (int) Math.pow(10, Math.ceil(Math.log10(number)) - 1);
-
-        StringBuilder stringBuilder = new StringBuilder();
         while (number != 0) {
             stringBuilder.append(number / divider);
             number %= divider;
             divider /= 10;
-        }
-        //stringBuilder.reverse();
-        if (negativeNum) {
-            stringBuilder.insert(0, "-");
         }
         return stringBuilder.toString();
     }
