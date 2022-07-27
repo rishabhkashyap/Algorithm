@@ -16,6 +16,8 @@ public class Conversion {
             number = -number;
         }
         if (number % 10 == 0) {
+            //Taking log10 of any number will give count of digits in number
+            //Here count of zeroes are needed in case input is multiple of 10
             int zeroes = (int) Math.ceil(Math.log10(number)) - 1;
             stringBuilder.append('1');
             while (zeroes >= 0) {
