@@ -3,7 +3,7 @@ package com.algo.strings;
 public class Conversion {
 
     public static void main(String[] args) {
-        int number = -1234;
+        int number = 100;
         System.out.println("Number to string = " + numberToString(number));
         String str = "-54321";
         System.out.println("String to integer = " + stringToInteger(str));
@@ -14,6 +14,15 @@ public class Conversion {
         if (number < 0) {
             stringBuilder.append('-');
             number = -number;
+        }
+        if (number % 10 == 0) {
+            int zeroes = (int) Math.ceil(Math.log10(number)) - 1;
+            stringBuilder.append('1');
+            while (zeroes >= 0) {
+                stringBuilder.append('0');
+                --zeroes;
+            }
+            return stringBuilder.toString();
         }
         int divider = (int) Math.pow(10, Math.ceil(Math.log10(number)) - 1);
         while (number != 0) {
