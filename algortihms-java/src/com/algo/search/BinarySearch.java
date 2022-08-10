@@ -9,10 +9,12 @@ package com.algo.search;
 public class BinarySearch {
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-        System.out.println("Location of 7 = " + binarySearchIterative(arr, 7));
-        System.out.println("Location of 7 = " + binarySearchRecursive(arr, 7));
+        int key=7;
+        System.out.println("Location of 7 = " + binarySearchIterative(arr, key));
+        System.out.println("Location of 7 = " + binarySearchRecursive(arr, key));
         int[] arr2 = {8, 7, 6, 5, 4, 3, 2, 1};
-        System.out.println("Location of 7 = " + binarySearchDecreasingOrder(arr2, 6));
+        key=6;
+        System.out.println("Location of 6 = " + binarySearchDecreasingOrder(arr2, key));
     }
 
     private static int binarySearchIterative(int[] arr, int key) {
