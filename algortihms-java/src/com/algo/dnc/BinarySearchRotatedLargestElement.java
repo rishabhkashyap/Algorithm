@@ -9,6 +9,7 @@ public class BinarySearchRotatedLargestElement {
         System.out.println("Smallest element in rotated array = " + getSmallest(arr));
     }
 
+    //Largest element is only element that is greater than next element in array
     private static int getLargest(int[] arr) {
         int start = 0;
         int end = arr.length - 1;
@@ -32,6 +33,8 @@ public class BinarySearchRotatedLargestElement {
         return Integer.MIN_VALUE;
     }
 
+
+    //Smallest element is the only element which is smaller than its previous element
     private static int getSmallest(int[] arr) {
         int start = 0;
         int end = arr.length - 1;
