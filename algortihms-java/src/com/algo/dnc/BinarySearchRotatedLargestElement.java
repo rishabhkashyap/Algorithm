@@ -22,12 +22,12 @@ public class BinarySearchRotatedLargestElement {
                 return arr[mid - 1];
             } else if (mid < end && arr[mid] > arr[mid + 1]) {
                 return arr[mid];
-            } else if (arr[start] >= arr[mid]) {
+            } else if (arr[start] <= arr[mid]) {
                 //Left part of array is unsorted
-                end = mid - 1;
-            } else if (arr[end] <= arr[mid]) {
-                //Right part of array is not sorted
                 start = mid + 1;
+            } else {
+                //Right part of array is not sorted
+                end = mid - 1;
             }
         }
         return Integer.MIN_VALUE;
