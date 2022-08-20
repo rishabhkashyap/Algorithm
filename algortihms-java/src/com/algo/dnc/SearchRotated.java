@@ -30,7 +30,7 @@ public class SearchRotated {
                 }
             } else {
                 //Second half is sorted
-                if (key > arr[mid] && key <= arr[end]) {
+                if (key <= arr[end] && key > arr[mid]) {
                     start = mid + 1;
                 } else {
                     end = mid - 1;
