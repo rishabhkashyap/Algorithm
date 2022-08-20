@@ -14,11 +14,11 @@ public class BookAllocation {
     private static int getMinimumPages(int[] books, int totalStudents) {
         int start = books[books.length - 1];
         int totalPages = Arrays.stream(books).sum();
-        int pagesToRead = 0;
+        int pagesToRead = Integer.MAX_VALUE;
         while (start <= totalPages) {
             int mid = start + (totalPages - start) / 2;
             if (validDistribution(books, totalStudents, mid)) {
-                pagesToRead = mid;
+                pagesToRead = Math.min(pagesToRead, mid);
                 totalPages = mid - 1;
             } else {
                 start = mid + 1;
