@@ -8,10 +8,11 @@ public class CountMaxRep {
         System.out.println("Max repeated element = " + getMaxRepeatedElementBruteForce(arr));
         System.out.println("Max repeated element = " + getMaxRepeatedElementSorting(arr));
         // int[] arr1 = {3, 2, 1, 2, 2, 5};
-        int[] arr1 = {3, 3, 4, 4, 5, 5, 2, 3, 6, 7, 8, 3};
+        //  int[] arr1 = {3, 3, 4, 4, 5, 5, 2, 3, 6, 7, 8, 3};
         //int [] arr1={1,3,5,4,5,5};
+        int[] arr1 = {4, 1, 5, 2, 1, 5, 9, 8, 6, 5, 3, 2, 4, 7};
         System.out.println("\nMax repeated element in range 0...k");
-        System.out.println("Max repeated element = " + getMaxRepeatedElementInRange(arr1, 9));
+        System.out.println("Max repeated element = " + getMaxRepeatedElementInRange(arr1));
 
 
     }
@@ -22,8 +23,8 @@ public class CountMaxRep {
         int index = 0;
         for (int i = 0; i < arr.length; i++) {
             int maxCountSoFar = 0;
-            for (int j = 0; j < arr.length; ++j) {
-                if (arr[i] == arr[j]) {
+            for (int k : arr) {
+                if (arr[i] == k) {
                     ++maxCountSoFar;
                 }
             }
@@ -61,16 +62,16 @@ public class CountMaxRep {
 
     //This approach works iff
     //Given an array of size n, the array contains numbers in range from 0 to k-1 where k is a positive integer and k <= n.
-    private static int getMaxRepeatedElementInRange(int[] arr, int k) {
+    private static int getMaxRepeatedElementInRange(int[] arr) {
 
         int maxCount = Integer.MIN_VALUE;
         int index = 0;
         for (int i = 0; i < arr.length; i++) {
-            arr[arr[i] % k] += k;
+            arr[arr[i] % arr.length] += arr.length;
         }
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] / k > maxCount) {
-                maxCount = arr[i] / k;
+            if (arr[i] / arr.length > maxCount) {
+                maxCount = arr[i] / arr.length;
                 index = i;
             }
         }
