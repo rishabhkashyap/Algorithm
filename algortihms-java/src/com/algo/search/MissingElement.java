@@ -1,13 +1,16 @@
 package com.algo.search;
 
+import java.util.Arrays;
+
 public class MissingElement {
     public static void main(String[] args) {
         int[] arr = {1, 2, 4, 6, 3, 7, 8};
         int[] arr1 = {1, 2, 2, 6, 3, 7, 8};
-        int missingElelemt = getMissingElement(arr);
-        System.out.println("Get missing element = " + missingElelemt);
-        missingElelemt = getmissingElelementDuplicate(arr1);
-        System.out.println("Get missing element = " + missingElelemt);
+        int missingElement = getMissingElement(arr);
+        System.out.println("Get missing element = " + missingElement);
+        System.out.println("Get missing element = " + getMissingElement1(arr));
+        missingElement = getMissingElelementDuplicate(arr1);
+        System.out.println("Get missing element = " + missingElement);
     }
 
     private static int getMissingElement(int[] arr) {
@@ -22,7 +25,7 @@ public class MissingElement {
         return x1 ^ x2;
     }
 
-    private static int getmissingElelementDuplicate(int[] arr) {
+    private static int getMissingElelementDuplicate(int[] arr) {
         int missingNumber = -1;
         boolean[] isAvailable = new boolean[20];
         for (int i = 0; i < arr.length; i++) {
@@ -36,6 +39,13 @@ public class MissingElement {
             }
         }
         return missingNumber;
+    }
+
+    private static int getMissingElement1(int[] arr) {
+        int n = arr.length + 1;
+        int sum = n * (n + 1) / 2;
+        int arrSum = Arrays.stream(arr).sum();
+        return sum - arrSum;
     }
 
 
