@@ -1,5 +1,7 @@
 package com.algo.search;
 
+//Problem: https://leetcode.com/problems/search-a-2d-matrix/
+
 public class SortedMatrixSearch {
     public static void main(String[] args) {
         int[][] arr = {{10, 20, 30, 40},
@@ -12,7 +14,7 @@ public class SortedMatrixSearch {
 
     private static void findElement(int[][] arr, int key) {
         int i = 0;
-        int j = arr.length - 1;
+        int j = arr[0].length - 1;
         while ((i < arr.length && j >= 0)) {
             if (key == arr[i][j]) {
                 System.out.println(key + " found at row = " + i + " col = " + j);
