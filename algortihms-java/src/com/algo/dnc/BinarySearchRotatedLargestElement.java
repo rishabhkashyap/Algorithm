@@ -13,6 +13,7 @@ public class BinarySearchRotatedLargestElement {
     private static int getLargest(int[] arr) {
         int start = 0;
         int end = arr.length - 1;
+        //If array is not rotated
         if (arr[start] <= arr[end]) {
             return arr[end];
         }
@@ -38,7 +39,7 @@ public class BinarySearchRotatedLargestElement {
     private static int getSmallest(int[] arr) {
         int start = 0;
         int end = arr.length - 1;
-        //Array is sorted
+        //If array is not rotated
         if (arr[start] <= arr[end]) {
             return arr[start];
         }
