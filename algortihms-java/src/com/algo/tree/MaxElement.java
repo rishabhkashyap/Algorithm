@@ -22,8 +22,6 @@ public class MaxElement {
         }
         int leftMax = max(root.getLeft());
         int rightMax = max(root.getRight());
-        int result = Math.max(root.getData(), leftMax);
-        result = Math.max(result, rightMax);
-        return result;
+        return Math.max(Math.max(leftMax, rightMax), root.getData());
     }
 }
