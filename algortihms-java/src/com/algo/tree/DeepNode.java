@@ -44,14 +44,16 @@ public class DeepNode {
 
     private static void findDeepestNode1(Node root, int height) {
 
-        if (root != null) {
-            if (height == 1) {
-                System.out.println("Deepest node in tree = " + root.getData());
-            } else if (height > 1) {
-                findDeepestNode1(root.getLeft(), --height);
-                findDeepestNode1(root.getRight(), height);
-            }
+        if (root == null) {
+            return;
         }
+        if (height == 1) {
+            System.out.println("Deepest node in tree = " + root.getData());
+        }
+        findDeepestNode1(root.getLeft(), height-1);
+        findDeepestNode1(root.getRight(), height-1);
+
+
     }
 
     //This approach gives height and deepest node in one cycle of recursion calls
