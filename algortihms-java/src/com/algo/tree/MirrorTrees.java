@@ -16,6 +16,7 @@ public class MirrorTrees {
         System.out.println("Original Tree");
         TreeUtil.preOrder(root);
         flipTree1(root);
+        //flipTree3(root);
         System.out.println("\nFlipped tree");
         TreeUtil.preOrder(root);
 //        root = flipTree2(root);
@@ -45,6 +46,19 @@ public class MirrorTrees {
         root.setLeft(root.getRight());
         root.setRight(temp);
         return root;
+    }
+
+    public static Node flipTree3(Node root) {
+        if (root == null) {
+            return null;
+        }
+        flipTree3(root.getLeft());
+        flipTree3(root.getRight());
+        Node temp = root.getRight();
+        root.setRight(root.getLeft());
+        root.setLeft(temp);
+        return root;
+
     }
 
 
