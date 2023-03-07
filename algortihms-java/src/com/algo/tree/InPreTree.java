@@ -16,20 +16,13 @@ public class InPreTree {
     }
 
     private static Node constructTree(int[] pre, Position rootPos, int[] in, int start, int end) {
-        if (rootPos.index >= pre.length) {
+        if (start > end || rootPos.index >= pre.length) {
             return null;
         }
         Node node = new Node(pre[rootPos.index++]);
-        if (start == end) {
-            return node;
-        }
         int loc = find(in, node.getData(), start, end);
-        if (loc > start) {
-            node.setLeft(constructTree(pre, rootPos, in, start, loc - 1));
-        }
-        if (end > loc) {
-            node.setRight(constructTree(pre, rootPos, in, loc + 1, end));
-        }
+        node.setLeft(constructTree(pre, rootPos, in, start, loc - 1));
+        node.setRight(constructTree(pre, rootPos, in, loc + 1, end));
         return node;
     }
 
