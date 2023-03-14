@@ -1,4 +1,5 @@
 package com.algo.tree;
+
 //Problem: https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/
 public class InPostTree106 {
     public static void main(String[] args) {
@@ -9,7 +10,7 @@ public class InPostTree106 {
     }
 
     private static Node constructTree(int[] inorder, int[] postorder) {
-        Position rootPos = new Position(postorder.length-1);
+        Position rootPos = new Position(postorder.length - 1);
         return constructTree(postorder, rootPos, inorder, 0, inorder.length - 1);
 
     }
@@ -20,6 +21,9 @@ public class InPostTree106 {
         }
         Node node = new Node(post[rootPos.index--]);
         int loc = find(in, node.getData(), start, end);
+        //Post order traversal: left -> right -> root
+        //Right node is created first because during post order traversal last node is root and before that right node is present
+        //then comes left node.
         node.setRight(constructTree(post, rootPos, in, loc + 1, end));
         node.setLeft(constructTree(post, rootPos, in, start, loc - 1));
         return node;
