@@ -25,6 +25,8 @@ public class Ancestor {
         printAncestors(root, node6);
         System.out.println("\nAncestors of node5");
         printAncestors(root, node5);
+        System.out.println("\nAncestors of node5");
+        printAncestors2(root,node5);
 
     }
 
@@ -39,6 +41,25 @@ public class Ancestor {
             return true;
         }
         if (root == node) {
+            return true;
+        }
+        return false;
+
+    }
+
+    private static boolean printAncestors2(Node root, Node node) {
+        if (root == null) {
+            return false;
+        }
+        if (root == node) {
+            return true;
+        }
+        if (printAncestors2(root.getLeft(), node)) {
+            System.out.print(root.getData() + "\t");
+            return true;
+        }
+        if (printAncestors2(root.getRight(), node)) {
+            System.out.print(root.getData() + "\t");
             return true;
         }
         return false;
