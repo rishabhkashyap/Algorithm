@@ -36,7 +36,7 @@ public class MaxPathSum {
         if (root == null) {
             return 0;
         }
-        //If left or right subtree sum comes as negative, it's not added as to the sum
+        //if the path sum is negative, we can ignore it, or count it as 0
         int leftSum = Math.max(maxPathSum(root.getLeft(), pathSum), 0);
         int rightSum = Math.max(maxPathSum(root.getRight(), pathSum), 0);
         int maxSum = Math.max(leftSum, rightSum) + root.getData();
