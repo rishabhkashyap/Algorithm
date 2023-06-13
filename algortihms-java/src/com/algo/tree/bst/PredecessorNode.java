@@ -20,7 +20,9 @@ public class PredecessorNode {
         node6.setLeft(node5);
 
         System.out.println("Predecessor of node 5 =  " + getInOrderPredecessor(root, node5).getData());
-        System.out.println("\nPredecessor of node 4 =  " + getInOrderPredecessor(root, root).getData());
+        System.out.println("Predecessor of node 4 =  " + getInOrderPredecessor(root, root).getData());
+        System.out.println("\nPredecessor of node 5 =  " + getInOrderPredecessor2(root, node5).getData());
+        System.out.println("Predecessor of node 4 =  " + getInOrderPredecessor2(root, root).getData());
 
     }
 
@@ -44,6 +46,26 @@ public class PredecessorNode {
             }
         }
         return predecessor;
+    }
+
+    private static Node getInOrderPredecessor2(Node root, Node node) {
+        return helper(root, node, null);
+    }
+
+    private static Node helper(Node root, Node node, Node prev) {
+        if (root == null) {
+            return null;
+        }
+        if (node.getLeft() != null) {
+            return findMax(root.getLeft());
+        }
+        if (root.getData() > node.getData()) {
+            return helper(root.getLeft(), node, prev);
+        } else if (root.getData() < node.getData()) {
+            return helper(root.getRight(), node, root);
+        } else {
+            return prev;
+        }
     }
 
     private static Node findMax(Node root) {
