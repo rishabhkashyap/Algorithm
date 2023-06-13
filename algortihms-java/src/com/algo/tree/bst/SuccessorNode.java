@@ -18,8 +18,10 @@ public class SuccessorNode {
         node2.setRight(node3);
         node6.setRight(node7);
         node6.setLeft(node5);
-        System.out.println("Successor of node 5 =  "+inOrderSuccessor(root,node5).getData());
-        System.out.println("\nSuccessor of node 4 =  "+inOrderSuccessor(root,root).getData());
+        System.out.println("Successor of node 5 =  " + inOrderSuccessor(root, node5).getData());
+        System.out.println("Successor of node 4 =  " + inOrderSuccessor(root, root).getData());
+        System.out.println("\nSuccessor of node 5 =  " + inorderSuccessor2(root, node5).getData());
+        System.out.println("Successor of node 4 =  " + inorderSuccessor2(root, root).getData());
     }
 
     private static Node inOrderSuccessor(Node root, Node node) {
@@ -32,7 +34,6 @@ public class SuccessorNode {
             return findMin(node.getRight());
         }
         while (current != null) {
-
             if (current.getData() > node.getData()) {
                 successor = current;
                 current = current.getLeft();
@@ -41,11 +42,32 @@ public class SuccessorNode {
             } else {
                 break;
             }
-
         }
         return successor;
 
     }
+
+    public static Node inorderSuccessor2(Node root, Node node) {
+        Node prev = new Node(-1);
+        return helper(root, node, prev);
+    }
+
+    private static Node helper(Node root, Node node, Node prev) {
+        if (root == null) {
+            return null;
+        }
+        if (node.getRight() != null) {
+            return findMin(node.getRight());
+        }
+        if (root.getData() > node.getData()) {
+            return helper(root.getLeft(), node, root);
+        } else if (root.getData() < node.getData()) {
+            return helper(root.getRight(), node, prev);
+        } else {
+            return prev;
+        }
+    }
+
 
     private static Node findMin(Node root) {
         if (root.getLeft() != null) {
