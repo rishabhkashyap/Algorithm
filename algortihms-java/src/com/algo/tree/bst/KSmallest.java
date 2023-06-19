@@ -29,7 +29,7 @@ public class KSmallest {
 
     }
 
-    //Kth largest node is (n-k+1)th smallest node in inorder traversal of bst
+    //Kth the largest node is (n-k+1)th the smallest node in inorder traversal of bst
     private static Node kthLargestElement1(Node root, int k) {
         Counter counter = new Counter();
         return kthSmallestElement(root, counter, countNodes(root) - k + 1);
@@ -42,10 +42,9 @@ public class KSmallest {
         return countNodes(root.getLeft()) + countNodes(root.getRight()) + 1;
     }
 
-
+    //Leetcode accepted solution
     private static Node kthSmallestElement(Node root, int k) {
         Counter counter = new Counter();
-        counter.k = 0;
         return kthSmallestElement(root, counter, k);
     }
 
@@ -55,7 +54,7 @@ public class KSmallest {
             return null;
         }
         Node node = kthSmallestElement(root.getLeft(), counter, k);
-        //if left node is not null that means its kth smallest element
+        //if left node is not null that means its kth the smallest element
         if (node != null) {
             return node;
         }
@@ -74,8 +73,7 @@ public class KSmallest {
             return -99999;
         }
         Node current = root;
-        int counter = 0;
-        int kthSmallest = Integer.MIN_VALUE;
+        int kthSmallest;
         Stack<Node> stack = new Stack<>();
         while (true) {
             if (current != null) {
@@ -120,5 +118,9 @@ public class KSmallest {
 
     private static class Counter {
         private int k;
+
+        private Counter() {
+            this.k = 0;
+        }
     }
 }
