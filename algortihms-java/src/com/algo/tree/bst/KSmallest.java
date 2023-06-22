@@ -25,8 +25,6 @@ public class KSmallest {
         System.out.println("3th smallest element in tree = " + kThSmallestUsingStack(root, 3));
         System.out.println("4th largest element in tree = " + kthLargestElement1(root, 4).getData());
         System.out.println("2nd largest element in tree = " + kthLargestElement2(root, 2).getData());
-
-
     }
 
     //Kth the largest node is (n-k+1)th the smallest node in inorder traversal of bst
@@ -67,33 +65,26 @@ public class KSmallest {
 
     }
 
-
     public static int kThSmallestUsingStack(Node root, int k) {
-        if (root == null) {
-            return -99999;
-        }
-        Node current = root;
-        int kthSmallest;
         Stack<Node> stack = new Stack<>();
+        Node current = root;
         while (true) {
-            if (current != null) {
+            while (current != null) {
                 stack.push(current);
                 current = current.getLeft();
-
-            } else {
+            }
+            if (!stack.isEmpty()) {
                 Node node = stack.pop();
                 --k;
                 if (k == 0) {
-                    kthSmallest = node.getData();
-                    break;
+                    return node.getData();
                 }
                 current = node.getRight();
-
-
+            } else {
+                break;
             }
-
         }
-        return kthSmallest;
+        return -1;
     }
 
     private static Node kthLargestElement2(Node root, int k) {
