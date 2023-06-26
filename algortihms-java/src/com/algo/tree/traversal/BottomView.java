@@ -109,9 +109,6 @@ public class BottomView {
             return level;
         }
 
-        public void setLevel(int level) {
-            this.level = level;
-        }
     }
 
 
