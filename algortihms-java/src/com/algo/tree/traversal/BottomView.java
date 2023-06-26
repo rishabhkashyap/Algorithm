@@ -23,18 +23,21 @@ public class BottomView {
         node3.setLeft(node10);
         node3.setRight(node14);
         printBottomView(root);
+        System.out.println();
+        printBottomView2(root);
     }
 
     private static void printBottomView(Node root) {
         Map<Integer, NodeContainer> containerMap = new HashMap<>();
-        bootomViewHelper(root, containerMap, 0, 0);
-        List<Integer> keyList=new ArrayList<>(containerMap.keySet());
+        bottomViewHelper(root, containerMap, 0, 0);
+        List<Integer> keyList = new ArrayList<>(containerMap.keySet());
         Collections.sort(keyList);
         keyList.forEach(k -> System.out.print(containerMap.get(k).node.getData() + "\t"));
 
     }
 
-    private static void bootomViewHelper(Node root, Map<Integer, NodeContainer> containerMap, int hd, int level) {
+    private static void bottomViewHelper(Node root, Map<Integer, NodeContainer> containerMap,
+                                         int hd, int level) {
         if (root == null) {
             return;
         }
@@ -53,14 +56,46 @@ public class BottomView {
                 containerMap.put(hd, container);
             }
         }
-        bootomViewHelper(root.getLeft(), containerMap, hd - 1, level + 1);
-        bootomViewHelper(root.getRight(), containerMap, hd + 1, level + 1);
+        bottomViewHelper(root.getLeft(), containerMap, hd - 1, level + 1);
+        bottomViewHelper(root.getRight(), containerMap, hd + 1, level + 1);
+
+    }
+
+    //Same approach used in previous method but cleaner code
+    private static void printBottomView2(Node root) {
+        Map<Integer, NodeContainer> containerMap = new HashMap<>();
+        bottomViewHelper2(root, containerMap, 0, 0);
+        List<Integer> keyList = new ArrayList<>(containerMap.keySet());
+        Collections.sort(keyList);
+        keyList.forEach(k -> System.out.print(containerMap.get(k).node.getData() + "\t"));
+
+    }
+
+    private static void bottomViewHelper2(Node root, Map<Integer, NodeContainer> containerMap,
+                                          int hd, int level) {
+        if (root == null) {
+            return;
+        }
+        if (!containerMap.containsKey(hd) || level >= containerMap.get(hd).getLevel()) {
+            NodeContainer nodeContainer = new NodeContainer(root, level);
+            containerMap.put(hd, nodeContainer);
+        }
+        bottomViewHelper2(root.getLeft(), containerMap, hd - 1, level + 1);
+        bottomViewHelper2(root.getRight(), containerMap, hd + 1, level + 1);
 
     }
 
     private static class NodeContainer {
         private com.algo.tree.Node node;
         private int level;
+
+        public NodeContainer(Node node, int level) {
+            this.node = node;
+            this.level = level;
+        }
+
+        public NodeContainer() {
+        }
 
         public Node getNode() {
             return node;
