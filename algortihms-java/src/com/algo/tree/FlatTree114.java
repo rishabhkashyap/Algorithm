@@ -1,8 +1,8 @@
 package com.algo.tree;
 
 import java.util.Stack;
-
-public class FlatTree {
+//Problem: https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/
+public class FlatTree114 {
 
     public static void main(String[] args) {
         Node root = new Node(1);
@@ -17,7 +17,8 @@ public class FlatTree {
         node2.setRight(node4);
         node5.setRight(node6);
         //flattenTreeIterative(root);
-        flattenTreeRecursive(root);
+       // flattenTreeRecursive(root);
+        convertToFlatTree(root);
         print(root);
     }
 
@@ -41,17 +42,17 @@ public class FlatTree {
     }
 
     public static void flattenTreeRecursive(Node root) {
-        if(root==null||(root.getRight()==null && root.getLeft()==null)){
+        if (root == null || (root.getRight() == null && root.getLeft() == null)) {
             return;
         }
-        if(root.getLeft()!=null){
+        if (root.getLeft() != null) {
             flattenTreeRecursive(root.getLeft());
-            Node temp=root.getRight();
+            Node temp = root.getRight();
             root.setRight(root.getLeft());
             root.setLeft(null);
-            Node current =root;
-            while (current.getRight()!=null){
-                current=current.getRight();
+            Node current = root;
+            while (current.getRight() != null) {
+                current = current.getRight();
 
             }
             current.setRight(temp);
@@ -59,6 +60,23 @@ public class FlatTree {
         flattenTreeRecursive(root.getRight());
     }
 
+    //Leetcode accepted solution
+    private static void convertToFlatTree(Node root) {
+        NodeContainer nodeContainer = new NodeContainer(null);
+        convertToFlatTree(root, nodeContainer);
+
+    }
+
+    private static void convertToFlatTree(Node root, NodeContainer nodeContainer) {
+        if (root == null) {
+            return;
+        }
+        convertToFlatTree(root.getRight(), nodeContainer);
+        convertToFlatTree(root.getLeft(), nodeContainer);
+        root.setRight(nodeContainer.node);
+        root.setLeft(null);
+        nodeContainer.node = root;
+    }
 
 
     public static void print(Node root) {
@@ -70,4 +88,13 @@ public class FlatTree {
         }
         System.out.println();
     }
+
+    private static class NodeContainer {
+        private Node node;
+
+        public NodeContainer(Node node) {
+            this.node = node;
+        }
+    }
+
 }
