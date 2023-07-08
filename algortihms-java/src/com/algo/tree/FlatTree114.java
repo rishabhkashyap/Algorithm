@@ -1,6 +1,7 @@
 package com.algo.tree;
 
 import java.util.Stack;
+
 //Problem: https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/
 public class FlatTree114 {
 
@@ -16,27 +17,30 @@ public class FlatTree114 {
         node2.setLeft(node3);
         node2.setRight(node4);
         node5.setRight(node6);
-        //flattenTreeIterative(root);
-       // flattenTreeRecursive(root);
-        convertToFlatTree(root);
+        flattenTreeIterative(root);
+        // flattenTreeRecursive(root);
+        //convertToFlatTree(root);
         print(root);
     }
 
     public static void flattenTreeIterative(Node root) {
         Stack<Node> stack = new Stack<>();
-        Node current = root;
-        while (current != null || !stack.isEmpty()) {
-            if (current.getRight() != null) {
-                stack.push(current.getRight());
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            Node curr = stack.pop();
+            if (curr != null) {
+                if (curr.getRight() != null) {
+                    stack.push(curr.getRight());
+                }
+                if (curr.getLeft() != null) {
+                    stack.push(curr.getLeft());
+                }
+                if (!stack.isEmpty()) {
+                    curr.setRight(stack.peek());
+                }
+                curr.setLeft(null);
+
             }
-            if (current.getLeft() != null) {
-                current.setRight(current.getLeft());
-                current.setLeft(null);
-            } else if (!stack.isEmpty()) {
-                Node node = stack.pop();
-                current.setRight(node);
-            }
-            current = current.getRight();
         }
 
     }
