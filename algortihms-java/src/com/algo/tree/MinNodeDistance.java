@@ -59,6 +59,6 @@ public class MinNodeDistance {
         if (leftDistance == 0 && rightDistance == 0) {
             return 0;
         }
-        return leftDistance != 0 ? leftDistance + 1 : rightDistance + 1;
+        return leftDistance+rightDistance+1;
     }
 }
