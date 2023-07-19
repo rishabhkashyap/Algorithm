@@ -18,7 +18,8 @@ public class ReverseList {
 		list.add(n6);
 
 		list.display();
-		Node revHead=reverseIteratively(n6);
+		//Node revHead=reverseIteratively(n6);
+		Node revHead=reverse(n6);
 		System.out.println();
 		list.display(revHead);
 
@@ -38,14 +39,14 @@ public class ReverseList {
 		if(head==null||head.next==null){
 			return head;
 		}
-		Node current=null;
+		Node reverseHead=null;
 		while(head!=null){
 			Node nextNode=head.next;
-			head.next=current;
-			current=head;
+			head.next=reverseHead;
+			reverseHead=head;
 			head=nextNode;
 		}
-		return current;
+		return reverseHead;
 	}
 	
 
