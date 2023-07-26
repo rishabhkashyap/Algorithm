@@ -23,12 +23,7 @@ public class LongestRepeatingCharacter424 {
             map.put(string.charAt(right), map.getOrDefault(string.charAt(right), 0) + 1);
             int maxRepeatingCharFreq = getMaxRepeatingChar(map);
             while (right - left + 1 - maxRepeatingCharFreq > k) {
-                int count = map.get(string.charAt(left));
-                if (--count == 0) {
-                    map.remove(string.charAt(left));
-                } else {
-                    map.put(string.charAt(left), count);
-                }
+                map.put(string.charAt(left), map.get(string.charAt(left)) - 1);
                 ++left;
             }
             maxLen = Math.max(maxLen, right - left + 1);
@@ -45,27 +40,19 @@ public class LongestRepeatingCharacter424 {
     //Instead of looping through all values in map, just check current maxFrq value with the
     //latest character whose frequency is updated
     private static int longestStringLen2(String string, int k) {
+        Map<Character, Integer> map = new HashMap<>();
         int i = 0;
         int j = 0;
         int maxLen = Integer.MIN_VALUE;
-        int maxFreq = Integer.MIN_VALUE;
-        Map<Character, Integer> map = new HashMap<>();
-        while (j < string.length()) {
+        int maxCharFreq = 0;
+        while (i < string.length() && j < string.length()) {
             map.put(string.charAt(j), map.getOrDefault(string.charAt(j), 0) + 1);
-            maxFreq = Math.max(maxFreq, map.get(string.charAt(j)));
-            if (j - i + 1 - maxFreq <= k) {
-                maxLen = Math.max(maxLen, j - i + 1);
-            }
-            while (j - i + 1 - maxFreq > k) {
-                int count = map.get(string.charAt(i));
-                --count;
-                if (count == 0) {
-                    map.remove(string.charAt(i));
-                } else {
-                    map.put(string.charAt(i), count);
-                }
+            maxCharFreq = Math.max(maxCharFreq, map.get(string.charAt(j)));
+            while (j - i + 1 - maxCharFreq > k) {
+                map.put(string.charAt(i), map.get(string.charAt(i)) - 1);
                 ++i;
             }
+            maxLen = Math.max(maxLen, j - i + 1);
             ++j;
         }
         return maxLen;
