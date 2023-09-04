@@ -4,18 +4,19 @@ package com.algo.linkedList;
 public class NthNode {
     public static void main(String[] args) {
         List list = new List();
-        int n = 2;
+        int n = 3;
         for (int i = 1; i <= 5; i++) {
             list.addLast(new Node(i));
         }
-        System.out.println(n+" node from end = "+getNthFromLast(list.getHead(), n));
+        list.display();
+        System.out.println(n+" th node from end = "+getNthFromLast(list.getHead(), n)+"\n");
         Node node = removeNthNodeEnd(list.getHead(), n);
         list.display(node);
     }
 
     private static int getNthFromLast(Node head, int n) {
         int count = 1;
-        Node temp = head;
+        Node temp = null;
         Node current = head;
         while (count < n) {
             current = current.next;
