@@ -27,10 +27,7 @@ public class PairWiseReverse {
     }
 
     private static Node pairWiseReverseNode(Node head) {
-        if (head == null) {
-            return null;
-        }
-        if (head.next == null) {
+        if (head == null||head.next==null) {
             return head;
         }
         Node previous = head;
