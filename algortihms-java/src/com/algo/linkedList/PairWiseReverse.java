@@ -19,19 +19,22 @@ public class PairWiseReverse {
 
         list.display();
         System.out.println();
-        //Node revHead = pairWiseReverseNode(n5);
+//        Node revHead = pairWiseReverseNode(list.getHead());
         Node revHead = reverseNodesRecursion(list.getHead());
         list.display(revHead);
 
     }
 
     private static Node pairWiseReverseNode(Node head) {
-        if (head == null || head.next == null) {
+        if (head == null) {
             return null;
+        }
+        if (head.next == null) {
+            return head;
         }
         Node previous = head;
         Node current = head.next;
-        Node newHead = current;
+        Node newHead = head.next;
         while (true) {
             Node nextNode = current.next;
             current.next = previous;
