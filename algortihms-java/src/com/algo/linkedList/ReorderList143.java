@@ -1,21 +1,22 @@
 package com.algo.linkedList;
 
+
 //L0 → L1 → … → Ln - 1 → Ln
 //Reorder the list to be on the following form:
 //L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …
-//https://leetcode.com/problems/reorder-list/solutions/3148599/easily-expalined-step-by-step-code-100-beats-and-0ms-runtime/
+//https://leetcode.com/problems/reorder-list/description/
 public class ReorderList143 {
     public static void main(String[] args) {
         List list = new List();
-        for (int i = 1; i <= 5; i++) {
+        for (int i = 1; i <= 6; i++) {
             list.addLast(new Node(i));
         }
         list.display();
-        reorderList(list.getHead());
+        reorderList2(list.getHead());
         list.display();
     }
 
-    private static void reorderList(Node head) {
+    private static void reorderList1(Node head) {
         Node fast = head;
         Node slow = head;
         Node prev = null;
@@ -54,25 +55,39 @@ public class ReorderList143 {
             secondHead = temp2;
 
         }
-
     }
 
-
-    private static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
+    private static void reorderList2(Node head) {
+        if (head == null || head.next == null) {
+            return;
         }
-
-        ListNode(int val) {
-            this.val = val;
+        Node fast = head;
+        Node slow = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
+        Node revHead = reverseList(slow.next);
+        slow.next = null;
+        while (head != null && revHead != null) {
+            Node temp1 = head.next;
+            Node temp2 = revHead.next;
+            head.next = revHead;
+            revHead.next = temp1;
+            head = temp1;
+            revHead = temp2;
         }
+    }
+
+    private static Node reverseList(Node head) {
+        Node revHead = null;
+        while (head != null) {
+            Node temp = head.next;
+            head.next = revHead;
+            revHead = head;
+            head = temp;
+        }
+        return revHead;
     }
 
 }
