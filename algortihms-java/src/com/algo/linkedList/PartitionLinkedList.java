@@ -1,6 +1,6 @@
 package com.algo.linkedList;
 
-
+//Problem: https://leetcode.com/problems/partition-list/description/
 public class PartitionLinkedList {
 
     public static void main(String[] args) {
@@ -25,7 +25,7 @@ public class PartitionLinkedList {
         list.addLast(new Node(3));
         list.display();
         Node head = list.getHead();
-        head = partitionList(head, 3);
+        head = partitionList2(head, 3);
         display(head);
     }
 
@@ -78,6 +78,32 @@ public class PartitionLinkedList {
         tail = tail.next;
         return tail;
 
+    }
+
+    //Leetcode accepted solution
+    private static Node partitionList2(Node head, int k) {
+        if (head == null) {
+            return null;
+        }
+        Node leftHead = new Node();
+        Node leftTail = leftHead;
+        Node rightHead = new Node();
+        Node rightTail = rightHead;
+        while (head != null) {
+            Node temp = head.next;
+            if (head.value < k) {
+                leftTail.next = head;
+                leftTail = leftTail.next;
+            } else {
+                rightTail.next = head;
+                rightTail = rightTail.next;
+            }
+            head.next = null;
+            head = temp;
+        }
+        leftTail.next = rightHead.next;
+        rightHead.next = null;
+        return leftHead.next;
     }
 
     private static void display(Node head) {
