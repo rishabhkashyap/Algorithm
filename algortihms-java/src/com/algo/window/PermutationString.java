@@ -3,6 +3,8 @@ package com.algo.window;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 //Problem: https://leetcode.com/problems/permutation-in-string/
 public class PermutationString {
@@ -13,7 +15,7 @@ public class PermutationString {
     }
 
 
-    //Similar to count anagraams problem
+    //Similar to count anagrams problem
     private static boolean containsPermutation(String pattern, String string) {
         Map<Character, Integer> pMap = createPatternMap(pattern);
         Map<Character, Integer> strMap = new HashMap<>();
@@ -35,23 +37,19 @@ public class PermutationString {
             if (j - i + 1 == pattern.length()) {
                 result = isPermutation(pMap, strMap);
                 if (result) {
-                    return result;
+                    return true;
                 }
             }
             ++j;
         }
-        return result;
+        return false;
 
     }
 
     private static Map<Character, Integer> createPatternMap(String str) {
-        Map<Character, Integer> map = new HashMap<>();
-        for (int i = 0; i < str.length(); i++) {
-            int count = map.getOrDefault(str.charAt(i), 0);
-            ++count;
-            map.put(str.charAt(i), count);
-        }
-        return map;
+        return str.chars()
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.summingInt(c -> 1)));
     }
 
     private static boolean isPermutation(Map<Character, Integer> patternMap, Map<Character, Integer> strMap) {
