@@ -21,22 +21,18 @@ public class NonRepeatedCharacter3 {
         int j = 0;
         Map<Character, Integer> map = new HashMap<>();
         while (j < str.length()) {
-            int count = map.getOrDefault(str.charAt(j), 0);
-            map.put(str.charAt(j), ++count);
-            if (map.size() == j - i + 1) {
-                len = Math.max(len, j - i + 1);
-            }
+            map.put(str.charAt(j), map.getOrDefault(str.charAt(j), 0) + 1);
             while (map.size() < j - i + 1) {
-                if (map.containsKey(str.charAt(i))) {
-                    int freq = map.get(str.charAt(i));
-                    --freq;
-                    if (freq == 0) {
-                        map.remove(str.charAt(i));
-                    } else {
-                        map.put(str.charAt(i), freq);
-                    }
+                int freq = map.get(str.charAt(i));
+                if (--freq == 0) {
+                    map.remove(str.charAt(i));
+                } else {
+                    map.put(str.charAt(i), freq);
                 }
                 ++i;
+            }
+            if (map.size() == j - i + 1) {
+                len = Math.max(len, j - i + 1);
             }
             ++j;
         }
