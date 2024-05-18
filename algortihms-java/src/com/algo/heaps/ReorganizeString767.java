@@ -10,10 +10,10 @@ import java.util.stream.Collectors;
 public class ReorganizeString767 {
     public static void main(String[] args) {
         String str = "aab";
-        System.out.println(rearangeString(str));
+        System.out.println(rearrangeString(str));
     }
 
-    private static String rearangeString(String str) {
+    private static String rearrangeString(String str) {
         StringBuilder sb = new StringBuilder();
         PriorityQueue<Pair> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(Pair::count).reversed());
         Map<Character, Integer> map = str.chars()
