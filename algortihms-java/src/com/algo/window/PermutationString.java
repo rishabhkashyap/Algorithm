@@ -64,6 +64,7 @@ public class PermutationString {
         return true;
     }
 
+    //Efficient solution, does not use hash map
     private static boolean containsPermutation2(String pattern, String string) {
         if (pattern.length() > string.length()) {
             return false;
