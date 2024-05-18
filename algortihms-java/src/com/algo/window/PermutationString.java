@@ -1,5 +1,6 @@
 package com.algo.window;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -9,9 +10,10 @@ import java.util.stream.Collectors;
 //Problem: https://leetcode.com/problems/permutation-in-string/
 public class PermutationString {
     public static void main(String[] args) {
-        String pattern = "ab";
-        String string = "eidbaooo";
+        String pattern = "adc";
+        String string = "dcda";
         System.out.println(containsPermutation(pattern, string));
+        System.out.println(containsPermutation2(pattern, string));
     }
 
 
@@ -60,5 +62,30 @@ public class PermutationString {
             }
         }
         return true;
+    }
+
+    private static boolean containsPermutation2(String pattern, String string) {
+        if (pattern.length() > string.length()) {
+            return false;
+        }
+        int[] arrPattern = new int[26];
+        int[] arrStr = new int[26];
+        for (int i = 0; i < pattern.length(); i++) {
+            arrPattern[pattern.charAt(i) - 'a']++;
+            arrStr[string.charAt(i) - 'a']++;
+        }
+        if (Arrays.equals(arrPattern, arrStr)) {
+            return true;
+        }
+        // 1 Window size of pattern is already covered,so consider next window which will start from pattern.length
+        for (int i = pattern.length(); i < string.length(); i++) {
+            //shift window towards left by 1 and add new character from string
+            arrStr[string.charAt(i - pattern.length()) - 'a']--;
+            arrStr[string.charAt(i) - 'a']++;
+            if (Arrays.equals(arrPattern, arrStr)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
