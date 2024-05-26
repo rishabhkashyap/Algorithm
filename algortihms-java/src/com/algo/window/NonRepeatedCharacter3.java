@@ -1,18 +1,40 @@
 package com.algo.window;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
+//Problem: https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
 public class NonRepeatedCharacter3 {
     public static void main(String[] args) {
         // String str = "ABDEFGABEF";
         String str = "GEEKSFORGEEKS";
         System.out.println("Length of longest substring without repeated characters = "
-                + longestNonRepeatedSubstr(str));
+                + longestNonRepeatedSubstr1(str));
+        System.out.println("Length of longest substring without repeated characters = "
+                + longestNonRepeatedSubstr2(str));
 
     }
 
-    private static int longestNonRepeatedSubstr(String str) {
+    private static int longestNonRepeatedSubstr1(String str) {
+        Set<Character> set = new HashSet<>();
+        int i = 0;
+        int j = 0;
+        int maxLen = 0;
+        while (j < str.length()) {
+            while (set.contains(str.charAt(j))) {
+                set.remove(str.charAt(i));
+                ++i;
+            }
+            set.add(str.charAt(j));
+            maxLen = Math.max(maxLen, j - i + 1);
+            ++j;
+        }
+        return maxLen;
+    }
+
+    private static int longestNonRepeatedSubstr2(String str) {
         if (str.length() == 0) {
             return 0;
         }
