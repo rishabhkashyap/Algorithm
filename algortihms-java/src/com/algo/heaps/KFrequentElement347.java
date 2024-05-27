@@ -1,6 +1,5 @@
 package com.algo.heaps;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Map;
@@ -9,8 +8,8 @@ import java.util.Queue;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-//Problem: https://leetcode.com/problems/top-k-frequent-elements/submissions/1263732185/
-public class KFrequentElement {
+//Problem: https://leetcode.com/problems/top-k-frequent-elements/description/
+public class KFrequentElement347 {
     public static void main(String[] args) {
         int[] arr = {1, 1, 1, 2, 2, 3};
         int k = 2;
