@@ -1,5 +1,6 @@
 package com.algo.window;
 //Problem: https://leetcode.com/problems/sliding-window-maximum/description/
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,21 +18,22 @@ public class SlidingWindowMax239 {
     private static int[] findWindowMax(int[] arr, int k) {
         int i = 0;
         Deque<Integer> deque = new ArrayDeque<>();
-        List<Integer> list = new ArrayList<>();
+        int[] result = new int[arr.length - k+1];
+        int j = 0;
         while (i < arr.length) {
             while (!deque.isEmpty() && arr[deque.peekLast()] < arr[i]) {
                 deque.removeLast();
             }
             deque.addLast(i);
-            while (!deque.isEmpty() && deque.peekFirst() < i + 1 - k) {
+            while (!deque.isEmpty() && deque.peekFirst() < i - k + 1) {
                 deque.removeFirst();
             }
-            if (i + 1 >= k) {
-                list.add(arr[deque.peekFirst()]);
+            if (i - k + 1 >= 0) {
+                result[j++] = arr[deque.peekFirst()];
             }
             ++i;
         }
-        return list.stream().mapToInt(e -> e).toArray();
+        return result;
     }
 
 }
