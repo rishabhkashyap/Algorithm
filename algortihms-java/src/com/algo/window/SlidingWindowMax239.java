@@ -2,10 +2,8 @@ package com.algo.window;
 //Problem: https://leetcode.com/problems/sliding-window-maximum/description/
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
-import java.util.List;
 
 public class SlidingWindowMax239 {
     public static void main(String[] args) {
