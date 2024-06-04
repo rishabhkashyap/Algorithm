@@ -40,6 +40,9 @@ public class SmallestRange632 {
             }
             if (node.index + 1 < list.get(node.listIndex).size()) {
                 var ele = list.get(node.listIndex).get(node.index + 1);
+                //Update max, so that it remains greater than min,if it is not updated
+                //everytime when new value is added to queue then there might be cases where
+                //max is smaller than min.We always want to keep max larger than min
                 max = Math.max(max, ele);
                 queue.add(new Node(ele, node.index + 1, node.listIndex));
             } else {
