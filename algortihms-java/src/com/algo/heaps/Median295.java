@@ -16,7 +16,9 @@ public class Median295 {
     }
 
     private static class MedianFinder {
+
         private final Queue<Integer> maxHeap;
+
         private final Queue<Integer> minHeap;
 
         public MedianFinder() {
@@ -36,7 +38,6 @@ public class Median295 {
             if (!minHeap.isEmpty() && minHeap.size() - maxHeap.size() > 1) {
                 maxHeap.add(minHeap.remove());
             }
-
         }
 
         public double findMedian() {
@@ -50,7 +51,6 @@ public class Median295 {
                 return minHeap.peek();
             }
             return (double) (maxHeap.peek() + minHeap.peek()) / 2;
-
         }
     }
 }
