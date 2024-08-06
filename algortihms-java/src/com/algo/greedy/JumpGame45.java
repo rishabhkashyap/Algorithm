@@ -28,35 +28,25 @@ public class JumpGame45 {
         dp[i] = 100001;
         for (int j = 1; j <= arr[i]; j++) {
             dp[i] = Math.min(dp[i], minJumps1(arr, i + j, dp) + 1);
-
         }
         return dp[i];
     }
 
-
     //Greedy solution
-    public static int minJumps2(int[] nums) {
-        if (nums.length == 1) {
-            return 0;
-        }
-        int count = 0;
-        int nextMaxJumpIndex = 0;
-        int currentJumpIndex = 0;
-        for (int i = 0; i < nums.length; i++) {
-            //Find out max jump that is possible from current index
-            nextMaxJumpIndex = Math.max(nextMaxJumpIndex, i + nums[i]);
-            if (nextMaxJumpIndex >= nums.length - 1) {
-                return ++count;
-            }
-            //once we  reach to max jump we took earlier we will update it to the max
-            //jump that we found later ie  nextMaxJumpIndex
-            if (i == currentJumpIndex) {
-                ++count;
-                currentJumpIndex = nextMaxJumpIndex;
-                nextMaxJumpIndex = 0;
+    //Let's say the range of the current jump is [curBegin, curEnd], curFarthest is the
+    // farthest point that all points in [curBegin, curEnd] can reach. Once the current
+    // point reaches curEnd, then trigger another jump, and set the new curEnd with curFarthest
+    private static int minJumps2(int[] arr){
+        var curEnd=0;
+        var farthestPoint=0;
+        var jumps=0;
+        for (var i = 0; i < arr.length - 1; i++) {
+            farthestPoint=Math.max(farthestPoint,i+arr[i]);
+            if(i==curEnd){
+                ++jumps;
+                curEnd=farthestPoint;
             }
         }
-        return count;
-
+        return jumps;
     }
 }
