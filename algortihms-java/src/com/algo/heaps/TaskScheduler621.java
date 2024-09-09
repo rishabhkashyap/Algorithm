@@ -1,11 +1,11 @@
 package com.algo.heaps;
 
-import java.util.ArrayDeque;
 import java.util.Collections;
-import java.util.Deque;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 //Problem: https://leetcode.com/problems/task-scheduler/description/
 public class TaskScheduler621 {
@@ -16,33 +16,30 @@ public class TaskScheduler621 {
     }
 
     private static int findMinTimeToCompletion(char[] arr, int n) {
-        int time = 0;
         Map<Character, Integer> map = new HashMap<>();
+        var output = 0;
         for (char ch : arr) {
             map.put(ch, map.getOrDefault(ch, 0) + 1);
         }
-        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(Collections.reverseOrder());
+        Queue<Integer> priorityQueue = new PriorityQueue<>(Collections.reverseOrder());
+        Queue<Task> queue = new LinkedList<>();
         priorityQueue.addAll(map.values());
-        Deque<CharData> deque = new ArrayDeque<>();
-        while (!priorityQueue.isEmpty() || !deque.isEmpty()) {
-            ++time;
+        while (!priorityQueue.isEmpty() || !queue.isEmpty()) {
+            ++output;
             if (!priorityQueue.isEmpty()) {
-                int task = priorityQueue.remove();
-                if (--task != 0) {
-                    deque.addLast(new CharData(task, time + n));
+                var freq = priorityQueue.remove();
+                if (--freq != 0) {
+                    queue.add(new Task(freq, output + n));
                 }
             }
-            if (!deque.isEmpty() && deque.peekFirst().timeToRemove == time) {
-                CharData charData = deque.removeFirst();
-                priorityQueue.add(charData.count);
+            if (!queue.isEmpty() && queue.peek().nextAvailableTime == output) {
+                var task = queue.remove();
+                priorityQueue.add(task.freq);
             }
         }
-        return time;
+        return output;
     }
 
-    private record CharData(
-            Integer count,
-            Integer timeToRemove
-    ) {
+    private  record Task(Integer freq, Integer nextAvailableTime) {
     }
 }
