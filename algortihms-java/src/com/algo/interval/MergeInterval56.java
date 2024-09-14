@@ -2,6 +2,7 @@ package com.algo.interval;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 //Problem: https://leetcode.com/problems/merge-intervals/description/
@@ -16,7 +17,7 @@ public class MergeInterval56 {
     }
 
     private static int[][] mergeInterval(int[][] arr) {
-        Arrays.sort(arr, (e1, e2) -> e1[0] - e2[0]);
+        Arrays.sort(arr, Comparator.comparingInt(e -> e[0]));
         List<int[]> result = new ArrayList<>();
         result.add(new int[]{arr[0][0], arr[0][1]});
         for (int i = 1; i < arr.length; i++) {
