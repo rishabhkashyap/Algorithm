@@ -3,6 +3,7 @@ package com.algo.tree;
 import java.util.LinkedList;
 import java.util.Queue;
 
+//https://leetcode.com/problems/minimum-depth-of-binary-tree/description/
 public class MinHeightTree {
     public static void main(String[] args) {
         Node root = new Node(10);
@@ -26,8 +27,28 @@ public class MinHeightTree {
 //        root.setRight(node3);
 //        node2.setLeft(node4);
 //        node2.setRight(node5);
+        System.out.println("Min depth of tree = "+findMinDepth(root));
         System.out.println("Minimum height of tree = " + getMinHeight1(root));
         System.out.println("Minimum height of tree = " + getMinHeight2(root));
+    }
+
+    //Leetcode solution
+    private static int findMinDepth(Node root) {
+        if (root == null) {
+            return 0;
+        }
+        if (root.getLeft() == null && root.getRight() == null) {
+            return 1;
+        }
+        int left = findMinDepth(root.getLeft());
+        int right = findMinDepth(root.getRight());
+        if (root.getLeft() == null) {
+            return right + 1;
+        }
+        if (root.getRight() == null) {
+            return left + 1;
+        }
+        return Math.min(left, right) + 1;
     }
 
     private static int getMinHeight1(Node root) {
@@ -45,7 +66,7 @@ public class MinHeightTree {
         if (root.getRight() == null) {
             return getMinHeight1(root.getLeft()) + 1;
         }
-        return Math.min(getMinHeight2(root.getLeft()), getMinHeight1(root.getRight())) + 1;
+        return Math.min(getMinHeight1(root.getLeft()), getMinHeight1(root.getRight())) + 1;
     }
 
     private static int getMinHeight2(Node root) {
