@@ -82,9 +82,9 @@ public class MinHeightTree {
             return 0;
         }
         Queue<Node> queue = new LinkedList<>();
-        int height = 0;
         queue.add(root);
         queue.add(null);
+        int height = 0;
         while (!queue.isEmpty()) {
             Node node = queue.remove();
             if (node != null) {
