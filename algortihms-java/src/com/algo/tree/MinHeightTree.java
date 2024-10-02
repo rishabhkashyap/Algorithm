@@ -27,12 +27,20 @@ public class MinHeightTree {
 //        root.setRight(node3);
 //        node2.setLeft(node4);
 //        node2.setRight(node5);
-        System.out.println("Min depth of tree = "+findMinDepth(root));
+        System.out.println("Min depth of tree = " + findMinDepth(root));
         System.out.println("Minimum height of tree = " + getMinHeight1(root));
         System.out.println("Minimum height of tree = " + getMinHeight2(root));
     }
 
     //Leetcode solution
+//    Base Case:
+//    If the root is null, return 0 since there are no nodes.
+//    Recursive Case:
+//    Recursively calculate the minimum depth of the left and right subtrees.
+//    If one subtree is missing (i.e., depth 0), return the depth of the other subtree plus 1 (for the current node)
+//    If both subtrees exist, return the smaller depth of the two plus 1 (for the current node).
+//    Time complexity O(N)
+//    Space complexity O(H) where H is height of the tree
     private static int findMinDepth(Node root) {
         if (root == null) {
             return 0;
