@@ -35,6 +35,8 @@ public class TreeDiameter {
 
     }
 
+    //To submit problem to leetcode subtract 1 from final result as this logic
+    //count nodes on longest path in tree.
     private static int findDiameter1(Node root) {
         if (root == null) {
             return 0;
@@ -55,6 +57,8 @@ public class TreeDiameter {
 
     }
 
+    //To submit problem to leetcode subtract 1 from final result as this logic
+    //count nodes on longest path in tree.
     private static int findDiameter2(Node root) {
         NodeHeight nodeHeight = new NodeHeight();
         return findDiameter2(root, nodeHeight);
