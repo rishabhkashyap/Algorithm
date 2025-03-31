@@ -65,9 +65,7 @@ public class DfsAdjacencyList {
                     performRecursiveDFS(neighbour);
                 }
             }
-
         }
-
     }
 
     private Vertex getUnvisitedNeighbour(Vertex vertex) {

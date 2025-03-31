@@ -15,6 +15,8 @@ public class PacificAtlantic417 {
         result.forEach(e -> System.out.print(e + " "));
     }
 
+    //DFS on top row, bottom row, first column, and last column to determine
+    //all cells that can be reached from top row, bottom row, first column, and last column
     private static List<List<Integer>> findCoordinates(int[][] arr) {
         Set<Point> pacific = new HashSet<>();
         Set<Point> atlantic = new HashSet<>();
