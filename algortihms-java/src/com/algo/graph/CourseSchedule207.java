@@ -53,6 +53,7 @@ public class CourseSchedule207 {
         return result.size() == courses;
     }
 
+    //Do topological sort
     private static boolean finishCourse2(int courses, int[][] preReq) {
         Map<Integer, List<Integer>> map = new HashMap<>();
         for (int[] arr : preReq) {
@@ -86,6 +87,9 @@ public class CourseSchedule207 {
                 return false;
             }
         }
+        // Course is removed from visited set if it is  possible to take course.
+        //This ensures that course does not show up visited when dfs is started on new course
+        //to check if it is possible to take that particular course
         visited.remove(course);
         //if all dependent courses are covered remove it from adjacency list to
         //indicate that there is no dependency for current course
