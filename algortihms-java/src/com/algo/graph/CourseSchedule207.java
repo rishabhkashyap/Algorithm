@@ -18,6 +18,7 @@ public class CourseSchedule207 {
         System.out.println(finishCourse2(courses, preReq));
     }
 
+    //Do topological sort
     private static boolean finishCourse1(int courses, int[][] preReq) {
         Map<Integer, Integer> inDegree = new HashMap<>();
         Map<Integer, Set<Integer>> adjMap = new HashMap<>();
@@ -53,7 +54,8 @@ public class CourseSchedule207 {
         return result.size() == courses;
     }
 
-    //Do topological sort
+    //Problem boils down to detect cycle in a directed graph. If there is a cycle in graph
+    // that means all courses cannot be covered
     private static boolean finishCourse2(int courses, int[][] preReq) {
         Map<Integer, List<Integer>> map = new HashMap<>();
         for (int[] arr : preReq) {
@@ -70,8 +72,6 @@ public class CourseSchedule207 {
         return true;
     }
 
-    //Problem boils down to detect cycle in a directed graph. If there is a cycle in graph
-    // that means all courses cannot be covered
     private static boolean performDFS(int course, Map<Integer, List<Integer>> map, Set<Integer> visited) {
         //Traversing dependent course if any course is visited twice that means there is
         //a cycle in graph and all coursed cannot be taken
