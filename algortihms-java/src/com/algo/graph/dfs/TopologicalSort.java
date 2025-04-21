@@ -98,6 +98,8 @@ public class TopologicalSort {
             }
         }
 
+        //This sort works only if there is no cycle in graph
+        //For topological sort on graph which may contain cycle refer CourseSchedule210
         public void sort() {
             Stack<Vertex> stack = new Stack<>();
             for (Vertex vertex : this.vertices) {
