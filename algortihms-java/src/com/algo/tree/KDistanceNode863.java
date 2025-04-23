@@ -30,10 +30,10 @@ public class KDistanceNode863 {
         node1.right = node8;
         node2.left = node7;
         node2.right = node4;
-        System.out.print(findKDistanceNode(root, node5, k));
+        System.out.print(findKDistanceNodes(root, node5, k));
     }
 
-    private static List<Integer> findKDistanceNode(TreeNode root, TreeNode target, int k) {
+    private static List<Integer> findKDistanceNodes(TreeNode root, TreeNode target, int k) {
         Map<Integer, TreeNode> map = getParentMap(root);
         Set<Integer> visited = new HashSet<>();
         Queue<TreeNode> queue = new LinkedList<>();
