@@ -31,6 +31,7 @@ public class PathSumIII437 {
 
     }
 
+    //Time complexity: O(N^2)
     private static int countPathSum1(TreeNode root, long target) {
         if (root == null) {
             return 0;
@@ -60,6 +61,7 @@ public class PathSumIII437 {
 //    Add currentSum to the hash map.
 //    Recur for left and right subtrees.
 //    Backtrack: Remove currentSum when returning to the previous node to maintain correctness.
+//    Time complexity: O(N)
     private static int countPathSum2(TreeNode root, long target) {
         Map<Long, Integer> map = new HashMap<>();
         // TO deal with scenario where node value is equal to target
