@@ -75,6 +75,11 @@ public class PathSumIII437 {
         }
         sum += root.val;
         var count = map.getOrDefault(sum - target, 0);
+        //Prefix sum is added after getting count because in edge case where :
+        //root node is 1 and tree contains only one node
+        //target = 0
+        //op = 0
+        //if prefix sum is added before getting count it will result in wrong answer
         map.put(sum, map.getOrDefault(sum, 0) + 1);
         count += countPathSum2(root.left, target, sum, map)
                 + countPathSum2(root.right, target, sum, map);
