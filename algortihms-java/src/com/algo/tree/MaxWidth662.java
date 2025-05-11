@@ -2,7 +2,9 @@ package com.algo.tree;
 
 import java.util.LinkedList;
 import java.util.Queue;
+
 //Problem: https://leetcode.com/problems/maximum-width-of-binary-tree/description/
+
 public class MaxWidth662 {
     public static void main(String[] args) {
         var root = new TreeNode(1);
