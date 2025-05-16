@@ -1,57 +1,55 @@
 package com.algo.tree;
 
 //Problem: https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/
+
 public class InPostTree106 {
     public static void main(String[] args) {
         int[] postorder = {9, 15, 7, 20, 3};
         int[] inorder = {9, 3, 15, 20, 7};
-        Node root = constructTree(inorder, postorder);
+        var root = constructTree(inorder, postorder);
         traversePreorder(root);
     }
 
-    private static Node constructTree(int[] inorder, int[] postorder) {
-        Position rootPos = new Position(postorder.length - 1);
-        return constructTree(postorder, rootPos, inorder, 0, inorder.length - 1);
-
+    private static TreeNode constructTree(int[] postorder, int[] inorder) {
+        return constructTree(postorder, postorder.length - 1, inorder, 0, inorder.length - 1);
     }
 
-    private static Node constructTree(int[] post, Position rootPos, int[] in, int start, int end) {
-        if (start > end || rootPos.index < 0) {
+    private static TreeNode constructTree(int[] postorder, int index, int[] inorder, int start, int end) {
+        if (start > end || index < 0) {
             return null;
         }
-        Node node = new Node(post[rootPos.index--]);
-        int loc = find(in, node.getData(), start, end);
-        //Post order traversal: left -> right -> root
-        //Right node is created first because during post order traversal last node is root and before that right node is present
-        //then comes left node.
-        node.setRight(constructTree(post, rootPos, in, loc + 1, end));
-        node.setLeft(constructTree(post, rootPos, in, start, loc - 1));
+        var node = new TreeNode(postorder[index]);
+        var loc = findNodeLocation(inorder, postorder[index], start, end);
+        var rightNodeCount = end - loc;
+        node.right = constructTree(postorder, index - 1, inorder, loc + 1, end);
+        node.right = constructTree(postorder, index - rightNodeCount - 1, inorder, start, loc - 1);
         return node;
     }
 
-    private static int find(int[] arr, int key, int start, int end) {
-        for (int i = start; i <= end; i++) {
-            if (arr[i] == key) {
+    private static int findNodeLocation(int[] preorder, int value, int start, int end) {
+        for (var i = start; i <= end; i++) {
+            if (preorder[i] == value) {
                 return i;
             }
         }
         return -1;
     }
 
-
-    private static void traversePreorder(Node root) {
+    private static void traversePreorder(TreeNode root) {
         if (root != null) {
-            System.out.print(root.getData() + "\t");
-            traversePreorder(root.getLeft());
-            traversePreorder(root.getRight());
+            System.out.print(root.val + "\t");
+            traversePreorder(root.left);
+            traversePreorder(root.right);
         }
     }
 
-    private static class Position {
-        private int index;
+    private static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-        private Position(int value) {
-            this.index = value;
+        TreeNode(int val) {
+            this.val = val;
         }
     }
 }
