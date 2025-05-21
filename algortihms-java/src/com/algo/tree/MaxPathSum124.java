@@ -49,9 +49,6 @@ public class MaxPathSum124 {
         }
     }
 
-
-
-
     private static class TreeNode {
 
         int val;
@@ -64,7 +61,4 @@ public class MaxPathSum124 {
             this.val = val;
         }
     }
-
-
-
 }
