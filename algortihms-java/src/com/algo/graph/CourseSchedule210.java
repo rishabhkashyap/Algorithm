@@ -32,15 +32,16 @@ public class CourseSchedule210 {
             adjMap.put(arr[1], neighbours);
         }
         Queue<Integer> queue = new LinkedList<>();
-        List<Integer> result = new ArrayList<>();
         for (int i = 0; i < courses; i++) {
             if (!inDegree.containsKey(i)) {
                 queue.add(i);
             }
         }
+        int[] result = new int[courses];
+        var i = 0;
         while (!queue.isEmpty()) {
             var temp = queue.remove();
-            result.add(temp);
+            result[i++] = temp;
             var neighbours = adjMap.get(temp);
             if (neighbours != null && !neighbours.isEmpty()) {
                 for (int neighbour : neighbours) {
@@ -54,7 +55,7 @@ public class CourseSchedule210 {
                 }
             }
         }
-        return result.size() == courses ? result.stream().mapToInt(e -> e).toArray() : new int[0];
+        return i == courses ? result : new int[0];
     }
 
     //DFS topological sort
@@ -101,7 +102,7 @@ public class CourseSchedule210 {
         }
         cycle.remove(i);
         visited.add(i);
-        result.add(i);
+        result.push(i);
         return true;
     }
 
