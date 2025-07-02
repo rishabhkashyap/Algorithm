@@ -3,20 +3,56 @@ package com.algo.linkedList;
 //Problem: https://leetcode.com/problems/rotate-list/description/
 public class RotateList61 {
     public static void main(String[] args) {
-        List list = new List();
-        for (int i = 1; i <= 5; i++) {
-            list.addLast(new Node(i));
-        }
+        List list = createList();
         int k = 12;
-        Node head = rotateList(list.getHead(), k);
-        Node temp = head;
+        var temp = rotateList1(list.getHead(), k);
+        while (temp != null) {
+            System.out.print(temp.value + "  ");
+            temp = temp.next;
+        }
+        System.out.println("\n");
+        list = createList();
+        temp = rotateList2(list.getHead(), k);
         while (temp != null) {
             System.out.print(temp.value + "  ");
             temp = temp.next;
         }
     }
 
-    private static Node rotateList(Node head, int k) {
+    private static List createList() {
+        List list = new List();
+        for (int i = 1; i <= 5; i++) {
+            list.addLast(new Node(i));
+        }
+        return list;
+    }
+
+    // No nonsense approach
+    private static Node rotateList1(Node head, int k) {
+        if (head == null || k == 0) {
+            return head;
+        }
+        var len = size(head);
+        var cur = head;
+        k = k % len;
+        if (k == 0) {
+            return head;
+        }
+        for (var i = 0; i < len - k - 1; i++) {
+            cur = cur.next;
+        }
+        var rHead = cur.next;
+        cur.next = null;
+        var temp = rHead;
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+        temp.next = head;
+        return rHead;
+    }
+
+    //fast and slow pointer approach
+    private static Node rotateList2(Node head, int k) {
         if (head == null || k <= 0) {
             return head;
         }
@@ -45,7 +81,6 @@ public class RotateList61 {
         prev.next = null;
         fastPtr.next = head;
         return slowPtr;
-
     }
 
     private static int size(Node head) {
