@@ -22,7 +22,6 @@ public class PairWiseReverse {
         var revHead = swapNodes(list.getHead());
         // Node revHead = reverseNodesRecursion(list.getHead());
         list.display(revHead);
-
     }
 
     private static Node swapNodes(Node head) {
