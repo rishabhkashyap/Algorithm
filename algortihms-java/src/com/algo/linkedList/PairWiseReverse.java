@@ -17,36 +17,30 @@ public class PairWiseReverse {
         list.add(n4);
         list.add(n5);
         list.add(n6);
-
         list.display();
         System.out.println();
-//        Node revHead = pairWiseReverseNode(list.getHead());
-        Node revHead = reverseNodesRecursion(list.getHead());
+        var revHead = swapNodes(list.getHead());
+        // Node revHead = reverseNodesRecursion(list.getHead());
         list.display(revHead);
 
     }
 
-    private static Node pairWiseReverseNode(Node head) {
-        if (head == null || head.next == null) {
-            return head;
+    private static Node swapNodes(Node head) {
+        var dummy = new Node(0);
+        dummy.next = head;
+        var prev = dummy;
+        var curr = head;
+        while (curr != null && curr.next != null) {
+            var temp = curr.next.next;
+            var second = curr.next;
+            //swap nodes
+            second.next = curr;
+            curr.next = temp;
+            prev.next = second;
+            prev = curr;
+            curr = temp;
         }
-        Node previous = head;
-        Node current = head.next;
-        Node newHead = head.next;
-        while (true) {
-            Node nextNode = current.next;
-            current.next = previous;
-            if (nextNode == null || nextNode.next == null) {
-                previous.next = nextNode;
-                break;
-            }
-            previous.next = nextNode.next;
-            previous = nextNode;
-            current = previous.next;
-
-        }
-        return newHead;
-
+        return dummy.next;
     }
 
     private static Node reverseNodesRecursion(Node head) {
@@ -60,5 +54,4 @@ public class PairWiseReverse {
         head.next.next = reverseNodesRecursion(head.next.next);
         return head;
     }
-
 }
