@@ -22,8 +22,6 @@ public class BinaryTreePath257 {
         result = getPaths3(root);
         System.out.println();
         result.forEach(e -> System.out.print(e + "\t"));
-
-
     }
 
     private static List<String> getPaths(TreeNode root) {
@@ -83,8 +81,6 @@ public class BinaryTreePath257 {
         getPaths3(root.right, new Pair(root.right, pair.path + "->"), result);
         if (root.left == null && root.right == null) {
             result.add(pair.path);
-
-
         }
     }
 
