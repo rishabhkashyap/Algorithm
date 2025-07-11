@@ -16,7 +16,9 @@ public class LongestConsecutiveSubsequence {
         int result = 0;
         Set<Integer> set = new HashSet<>();
         Arrays.stream(nums).forEach(set::add);
-        for (int ele : nums) {
+        for (int ele : set) {
+            //if ele - 1 does not exist in set, it means that this is the first number
+            //of sequence
             if (!set.contains(ele - 1)) {
                 int count = 0;
                 int start = ele;
