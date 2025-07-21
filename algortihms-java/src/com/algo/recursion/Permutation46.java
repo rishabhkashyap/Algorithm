@@ -30,9 +30,9 @@ public class Permutation46 {
             result.add(new ArrayList<>(list));
             return;
         }
-        for (int j = 0; j < arr.length; j++) {
-            if (!list.contains(arr[j])) {
-                list.add(arr[j]);
+        for (int i : arr) {
+            if (!list.contains(i)) {
+                list.add(i);
                 helper(arr, list, result);
                 list.remove(list.size() - 1);
             }
