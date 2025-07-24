@@ -10,42 +10,31 @@ import java.util.List;
 public class SumItUpRepeated {
 
     public static void main(String[] args) throws IOException {
-
-        int[] input = {2, 3, 5, 6, 8};
-        int target = 10;
-        List<List<Integer>> result=combinationSum(input, target);
-        result.forEach(e->System.out.println(e));
+        int[] input = {2, 3, 6, 7};
+        int target = 7;
+        List<List<Integer>> result = getCombinations(input, target);
+        result.forEach(System.out::println);
     }
 
+    private static List<List<Integer>> getCombinations(int[] arr, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
+        helper(arr, target, 0, list, result);
+        return result;
+    }
 
-
-	public static List<List<Integer>> combinationSum(int[] arr, int target) {
-		List<List<Integer>> result = new ArrayList<>();
-		List<Integer> combination = new ArrayList<>();
-		combinationSum(arr, target, combination, result, 0, 0);
-		return result;
-	}
-
-	public static void combinationSum(int[] arr, int target, List<Integer> combination,
-			List<List<Integer>> result, int i, int sum) {
-		if (i > arr.length) {
-			return;
-		}
-		if (sum == target) {
-			result.add(new ArrayList<>(combination));
-			return;
-		}
-		if (sum > target) {
-			return;
-		}
-
-		for (int j = i; j < arr.length; j++) {
-
-			combination.add(arr[j]);
-			combinationSum(arr, target, combination, result, j, sum + arr[j]);
-			combination.remove(combination.size() - 1);
-
-		}
-	}
-
+    private static void helper(int[] arr, int target, int i, List<Integer> list, List<List<Integer>> result) {
+        if (target == 0) {
+            result.add(new ArrayList<>(list));
+            return;
+        }
+        if (target < 0) {
+            return;
+        }
+        for (int j = i; j < arr.length; j++) {
+            list.add(arr[j]);
+            helper(arr, target - arr[j], j, list, result);
+            list.remove(list.size() - 1);
+        }
+    }
 }
