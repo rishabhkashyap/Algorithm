@@ -14,6 +14,10 @@ public class SumItUpRepeated {
         int target = 7;
         List<List<Integer>> result = getCombinations(input, target);
         result.forEach(System.out::println);
+        System.out.println();
+        result.clear();
+        result = getCombinations2(input, target);
+        result.forEach(System.out::println);
     }
 
     private static List<List<Integer>> getCombinations(int[] arr, int target) {
@@ -36,5 +40,27 @@ public class SumItUpRepeated {
             helper(arr, target - arr[j], j, list, result);
             list.remove(list.size() - 1);
         }
+    }
+
+    //No loop
+    private static List<List<Integer>> getCombinations2(int[] arr, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
+        createCombinations(arr, target, 0, list, result);
+        return result;
+    }
+
+    private static void createCombinations(int[] arr, int target, int i, List<Integer> list, List<List<Integer>> result) {
+        if(target == 0){
+            result.add(new ArrayList<>(list));
+            return;
+        }
+        if(target < 0 || i >= arr.length){
+            return;
+        }
+        list.add(arr[i]);
+        createCombinations(arr, target - arr[i], i, list, result);
+        list.remove(list.size() - 1);
+        createCombinations(arr, target, i + 1, list, result);
     }
 }
