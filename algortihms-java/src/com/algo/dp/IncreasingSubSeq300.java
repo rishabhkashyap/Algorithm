@@ -3,7 +3,7 @@ package com.algo.dp;
 import java.util.Arrays;
 
 //Problem: https://leetcode.com/problems/longest-increasing-subsequence/description/
-public class IncreasingSubSeq {
+public class IncreasingSubSeq300 {
     public static void main(String[] args) {
         int[] arr = {10, 9, 2, 5, 3, 7, 101, 18};
         System.out.println(findMaxLen(arr));
