@@ -2,10 +2,9 @@ package com.algo.dp;
 
 import java.util.Arrays;
 
-public class LongestPalindromicSubstring {
+//Problem: https://leetcode.com/problems/longest-palindromic-substring/description/
 
-    private static String substring;
-
+public class LongestPalindromicSubstring5 {
 
     public static void main(String[] args) {
 //        String string = "cbbd";
@@ -14,6 +13,8 @@ public class LongestPalindromicSubstring {
                 + findLongestSubstringLength1(string));
         System.out.println("Length of longest palindromic substring = "
                 + findLongestSubstringLength2(string));
+        System.out.println("Length of longest palindromic substring = "
+                + findLongestSubstringLength3(string));
 
     }
 
@@ -27,7 +28,6 @@ public class LongestPalindromicSubstring {
     }
 
     private static int findLongestSubstringLength1(String string, int i, int j, int[][] dp) {
-
         if (i >= string.length() || j < 0) {
             return 0;
         }
@@ -41,7 +41,6 @@ public class LongestPalindromicSubstring {
             dp[i][j] = 2;
             return 2;
         }
-
         if (dp[i][j] != -1) {
             return dp[i][j];
         }
@@ -65,14 +64,13 @@ public class LongestPalindromicSubstring {
             start = i;
             end = i;
         }
-
         //Strings of length>=2
         for (int len = 2; len <= string.length(); ++len) {
-            //i represnts start index of substring
+            //i represents start index of substring
             for (int i = 0; i <= string.length() - len; ++i) {
                 //j represents end index of substring
                 int j = i + len - 1;
-                //Cheks of palindromic string greater than 2
+                //Checks of palindromic string greater than 2
                 if (string.charAt(i) == string.charAt(j) && dp[i + 1][j - 1]) {
                     dp[i][j] = true;
                     if (len > maxLen) {
@@ -92,10 +90,43 @@ public class LongestPalindromicSubstring {
                     }
                 }
             }
-
         }
         System.out.println("Longest substring = " + string.substring(start, end + 1));
         return maxLen;
     }
 
+    private static String findLongestSubstringLength3(String string) {
+        var maxLen = 0;
+        var start = 0;
+        var end = 0;
+        for (var i = 0; i < string.length(); i++) {
+            //Expand outward for odd len substring
+            var left = i;
+            var right = i;
+            while (left >= 0 && right < string.length() && string.charAt(left) == string.charAt(right)) {
+                var len = right - left + 1;
+                if (len > maxLen) {
+                    maxLen = len;
+                    start = left;
+                    end = right;
+                }
+                --left;
+                ++right;
+            }
+            //Expand outward for even len substring
+            left = i;
+            right = i + 1;
+            while (left >= 0 && right < string.length() && string.charAt(left) == string.charAt(right)) {
+                var len = right - left + 1;
+                if (len > maxLen) {
+                    maxLen = len;
+                    start = left;
+                    end = right;
+                }
+                --left;
+                ++right;
+            }
+        }
+        return string.substring(start, end + 1);
+    }
 }
