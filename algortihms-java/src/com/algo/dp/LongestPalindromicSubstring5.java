@@ -14,7 +14,7 @@ public class LongestPalindromicSubstring5 {
         System.out.println("Length of longest palindromic substring = "
                 + findLongestSubstringLength2(string));
         System.out.println("Length of longest palindromic substring = "
-                + findLongestSubstringLength3(string));
+                + findLongestSubstring(string));
 
     }
 
@@ -95,7 +95,7 @@ public class LongestPalindromicSubstring5 {
         return maxLen;
     }
 
-    private static String findLongestSubstringLength3(String string) {
+    private static String findLongestSubstring(String string) {
         var maxLen = 0;
         var start = 0;
         var end = 0;
