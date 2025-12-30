@@ -34,7 +34,6 @@ public class MatrixChainMultiplication {
     }
 
     //Recursion+dp
-
     private static int getMinOperations2(int[] arr) {
         int[][] dp = new int[arr.length + 1][arr.length + 1];
         for (int[] dpRow : dp) {
@@ -59,11 +58,4 @@ public class MatrixChainMultiplication {
         }
         return dp[i][j];
     }
-
-    private static int getMinOperations3(int[] arr) {
-        return 0;
-
-    }
-
-
 }
