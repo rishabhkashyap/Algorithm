@@ -19,7 +19,7 @@ public class JumpGame55 {
     }
 
     private static boolean canReachEnd1(int[] arr, int i, int[] dp) {
-        if (i >= arr.length - 1) {
+        if (i == arr.length - 1) {
             return true;
         }
         if (dp[i] != -1) {
