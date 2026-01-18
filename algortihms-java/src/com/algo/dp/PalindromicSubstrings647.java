@@ -39,20 +39,20 @@ public class PalindromicSubstrings647 {
         //Expand outward for each character and check if palindromic substring is available
         //Consider substring of len 2
         for (int i = 0; i < string.length(); i++) {
-            var left = i;
-            var right = i;
-            while (left >= 0 && right < string.length() && string.charAt(left) == string.charAt(right)) {
-                ++count;
-                --left;
-                ++right;
-            }
-            left = i;
-            right = i + 1;
-            while (left >= 0 && right < string.length() && string.charAt(left) == string.charAt(right)) {
-                ++count;
-                --left;
-                ++right;
-            }
+            // Odd substring
+            count += expandSubStr(string, i, i);
+            //even substrings
+            count += expandSubStr(string, i, i + 1);
+        }
+        return count;
+    }
+
+    private static int expandSubStr(String string, int left, int right) {
+        var count = 0;
+        while (left >= 0 && right < string.length() && string.charAt(left) == string.charAt(right)) {
+            ++count;
+            --left;
+            ++right;
         }
         return count;
     }
