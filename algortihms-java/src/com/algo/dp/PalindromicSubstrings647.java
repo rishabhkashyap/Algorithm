@@ -16,7 +16,7 @@ public class PalindromicSubstrings647 {
             dp[i][i] = true;
             ++count;
         }
-        for (int len = 2; len <= string.length(); len++) {
+        for (int len = 2; len <= string.length(); ++len) {
             for (int start = 0; start <= string.length() - len; ++start) {
                 var end = start + len - 1;
                 if ((string.charAt(start) == string.charAt(end))) {
