@@ -54,6 +54,7 @@ public class ValidParentheses32 {
                 stack.push(i);
             } else {
                 stack.pop();
+                // stack will be empty only in case of invalid string
                 if (!stack.isEmpty()) {
                     len = Math.max(len, i - stack.peek());
                 } else {
