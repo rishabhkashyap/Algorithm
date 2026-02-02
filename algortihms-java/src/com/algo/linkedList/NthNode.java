@@ -9,7 +9,7 @@ public class NthNode {
             list.addLast(new Node(i));
         }
         list.display();
-        System.out.println(n+" th node from end = "+getNthFromLast(list.getHead(), n)+"\n");
+        System.out.println(n + " th node from end = " + getNthFromLast(list.getHead(), n) + "\n");
         Node node = removeNthNodeEnd(list.getHead(), n);
         list.display(node);
     }
@@ -25,13 +25,13 @@ public class NthNode {
                 return -1;
             }
         }
-        while (current != null && current.next != null) {
+        while (current != null) {
             if (temp == null) {
                 temp = head;
             } else {
                 temp = temp.next;
-                current = current.next;
             }
+            current = current.next;
         }
         assert temp != null;
         return temp.getValue();
