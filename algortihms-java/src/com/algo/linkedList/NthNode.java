@@ -25,7 +25,7 @@ public class NthNode {
             }
         }
         Node temp = head;
-        while (current.next != null) {
+        while (current != null &&current.next != null) {
             temp = temp.next;
             current = current.next;
         }
