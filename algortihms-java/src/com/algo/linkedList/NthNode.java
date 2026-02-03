@@ -16,7 +16,6 @@ public class NthNode {
 
     private static int getNthFromLast(Node head, int n) {
         int count = 1;
-        Node temp = null;
         Node current = head;
         while (count < n) {
             current = current.next;
@@ -25,15 +24,11 @@ public class NthNode {
                 return -1;
             }
         }
-        while (current != null) {
-            if (temp == null) {
-                temp = head;
-            } else {
-                temp = temp.next;
-            }
+        Node temp = head;
+        while (current.next != null) {
+            temp = temp.next;
             current = current.next;
         }
-        assert temp != null;
         return temp.getValue();
     }
 
