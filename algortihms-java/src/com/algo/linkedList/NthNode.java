@@ -14,6 +14,8 @@ public class NthNode {
         list.display(node);
     }
 
+    //Stop slow pointer at n -1 th node and move fast pointer to the last node of the list
+    //this way we can make n -1 th node's next to point to n + 1 the node and remove nth node
     private static int getNthFromLast(Node head, int n) {
         int count = 1;
         Node current = head;
