@@ -17,15 +17,15 @@ public class NthNode {
     private static int getNthFromLast(Node head, int n) {
         int count = 1;
         Node current = head;
-        while (count < n) {
+        while (count < n && current != null) {
             current = current.next;
             ++count;
-            if (current == null) {
-                return -1;
-            }
+        }
+        if (current == null) {
+            return -1;
         }
         Node temp = head;
-        while (current != null &&current.next != null) {
+        while (current != null && current.next != null) {
             temp = temp.next;
             current = current.next;
         }
@@ -34,7 +34,6 @@ public class NthNode {
 
     private static Node removeNthNodeEnd(Node head, int n) {
         int count = 0;
-        Node temp = head;
         Node current = head;
         //Stop temp at n-1th node
         while (count < n) {
@@ -44,6 +43,7 @@ public class NthNode {
                 return head.next;
             }
         }
+        Node temp = head;
         while (current != null && current.getNext() != null) {
             current = current.next;
             temp = temp.next;
