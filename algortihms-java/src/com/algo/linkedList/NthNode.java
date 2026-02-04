@@ -33,23 +33,19 @@ public class NthNode {
     }
 
     private static Node removeNthNodeEnd(Node head, int n) {
-        int count = 0;
-        Node current = head;
-        //Stop temp at n-1th node
-        while (count < n) {
-            current = current.getNext();
-            ++count;
-            if (current == null) {
-                return head.next;
-            }
+        var fast = head;
+        for (int i = 0; i < n; ++i) {
+            fast = fast.next;
         }
-        Node temp = head;
-        while (current != null && current.getNext() != null) {
-            current = current.next;
-            temp = temp.next;
+        if (fast == null) {
+            return head.next;
         }
-        assert temp != null;
-        temp.next = temp.next.next;
+        var slow = head;
+        while (fast.next != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        slow.next = slow.next.next;
         return head;
     }
 
