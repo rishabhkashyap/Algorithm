@@ -49,7 +49,7 @@ public class CycleHead142 {
         if (!cycleExist) {
             return null;
         }
-        fast = head;
+        slow = head;
         while (fast != slow) {
             fast = fast.next;
             slow = slow.next;
