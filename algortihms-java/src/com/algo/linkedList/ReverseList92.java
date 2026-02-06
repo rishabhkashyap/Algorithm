@@ -1,5 +1,4 @@
 package com.algo.linkedList;
-
 //Problem: https://leetcode.com/problems/reverse-linked-list-ii/description/
 
 public class ReverseList92 {
@@ -18,46 +17,22 @@ public class ReverseList92 {
             System.out.print(result.val + " ");
             result = result.next;
         }
-        System.out.println();
-        result = reverseList2(head, left, right);
-        while (result != null) {
-            System.out.print(result.val + " ");
-            result = result.next;
-        }
     }
 
+
+    //Preferred solution.
+    //reverse right - left +1 nodes and then attach it to original list
     private static ListNode reverseList(ListNode head, int left, int right) {
         //Using dummy node allows to handle edge case where left = 1 ie left is pointing
         //to head of linked list.
         var dummy = new ListNode(0);
         dummy.next = head;
-        var prev = dummy;
-        for (var i = 0; i < left - 1; i++) {
-            prev = prev.next;
+        var curr = dummy;
+        ListNode prev = null;
+        for (var i = 0; i < left; i++) {
+            prev = curr;
+            curr = curr.next;
         }
-        var curr = prev.next;
-        ListNode forward;
-        for (var i = 0; i < right - left; i++) {
-            forward = curr.next;
-            curr.next = forward.next;
-            forward.next = prev.next;
-            prev.next = forward;
-        }
-        return dummy.next;
-    }
-
-    //Preferred solution.
-    //reverse right - left +1 nodes and then attach it to original list
-    private static ListNode reverseList2(ListNode head, int left, int right) {
-        //Using dummy node allows to handle edge case where left = 1 ie left is pointing
-        //to head of linked list.
-        var dummy = new ListNode(0);
-        dummy.next = head;
-        var prev = dummy;
-        for (var i = 0; i < left - 1; i++) {
-            prev = prev.next;
-        }
-        var curr = prev.next;
         ListNode temp = null;
         ListNode reverseHead = null;
         for (var i = 0; i < right - left + 1; i++) {
