@@ -4,7 +4,7 @@ class SquareRoot:
         high = num
         ans = 0;
         while low <= high:
-            mid = (low + high) // 2
+            mid = low + (high - low) // 2
             if num == mid * mid:
                 return mid;
             elif num > (mid * mid):
