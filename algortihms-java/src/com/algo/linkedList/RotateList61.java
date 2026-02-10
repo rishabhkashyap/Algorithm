@@ -33,11 +33,11 @@ public class RotateList61 {
             return head;
         }
         var len = size(head);
-        var cur = head;
         k = k % len;
         if (k == 0) {
             return head;
         }
+        var cur = head;
         for (var i = 0; i < len - k - 1; i++) {
             cur = cur.next;
         }
