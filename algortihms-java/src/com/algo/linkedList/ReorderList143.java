@@ -12,57 +12,48 @@ public class ReorderList143 {
             list.addLast(new Node(i));
         }
         list.display();
-        reorderList2(list.getHead());
+        reorderList1(list.getHead());
         list.display();
     }
 
+    //Clean and easy to understand solution
     private static void reorderList1(Node head) {
-        Node fast = head;
-        Node slow = head;
+        var fast = head;
+        var slow = head;
         Node prev = null;
         while (fast != null && fast.next != null) {
             prev = slow;
             slow = slow.next;
             fast = fast.next.next;
         }
-        Node secondHead = null;
-        if (fast != null) {
-            secondHead = slow.next;
-            slow.next = null;
-        } else {
+        //list len is even
+        Node rev = null;
+        if (fast == null) {
             prev.next = null;
-            secondHead = slow;
+            rev = reverseList(slow);
+        } else {
+            rev = reverseList(slow.next);
+            slow.next = null;
         }
-        Node revHead = null;
-        while (secondHead != null) {
-            Node temp = secondHead.next;
-            secondHead.next = revHead;
-            revHead = secondHead;
-            secondHead = temp;
-        }
-        secondHead = revHead;
-        while (head != null) {
-            Node temp1 = head.next;
-            Node temp2 = null;
-            if (secondHead != null) {
-                temp2 = secondHead.next;
-            }
-            head.next = secondHead;
-            if (secondHead != null) {
-                secondHead.next = temp1;
-            }
-            head = temp1;
-            secondHead = temp2;
-
+        var current = head;
+        while (current != null && rev != null) {
+            var temp1 = current.next;
+            var temp2 = rev.next;
+            current.next = rev;
+            rev.next = temp1;
+            current = temp1;
+            rev = temp2;
         }
     }
 
+    //Smart but confusing solution
     //For even size list like 1->2->3->4->5->6
     //Middle part of the list(3 ->4) will remain same. Following solution therefore just
     //reverse last 2 nodes of list ie 5->6. For any give even size linked list this solution
     //will reverse nodes from n/2 +1 ....n. New head of reverse head will always be made to point to
     //new head.next in merging loop, so it will always point to the  middle nodes(3->4) at the end and gives
     //expected result.
+
     private static void reorderList2(Node head) {
         if (head == null || head.next == null) {
             return;
