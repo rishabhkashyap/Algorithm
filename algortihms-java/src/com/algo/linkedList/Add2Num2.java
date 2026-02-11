@@ -36,7 +36,6 @@ public class Add2Num2 {
             }
             int sum = value1 + value2 + carry;
             carry = sum / 10;
-            sum %= 10;
             tail.next = new Node(sum % 10);
             tail = tail.next;
         }
