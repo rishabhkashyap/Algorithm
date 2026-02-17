@@ -15,42 +15,46 @@ public class Median295 {
         System.out.println(medianFinder.findMedian());
     }
 
+    //To get median efficiently, keep data sorted in 2 heaps. Left heap contains the left sorted elements and right
+    //heap contains the right sorted elements. Elements in left heap are always smaller than elements in right heap
+    //Left heap is a max heap and righ heap is min heap, so to calculate median of the stream grab the peek
+    //of both heaps if even and divide by 2 else whichever heap is greater, grab the peek of that heap
     private static class MedianFinder {
 
-        private final Queue<Integer> maxHeap;
+        private final Queue<Integer> leftHeap;
 
-        private final Queue<Integer> minHeap;
+        private final Queue<Integer> rightHeap;
 
         public MedianFinder() {
-            this.maxHeap = new PriorityQueue<>(Comparator.reverseOrder());
-            this.minHeap = new PriorityQueue<>();
+            this.leftHeap = new PriorityQueue<>(Comparator.reverseOrder());
+            this.rightHeap = new PriorityQueue<>();
         }
 
         public void addNum(int num) {
-            maxHeap.add(num);
-            if (!maxHeap.isEmpty() && !minHeap.isEmpty()
-                    && (maxHeap.peek() >= minHeap.peek())) {
-                minHeap.add(maxHeap.remove());
+            leftHeap.add(num);
+            if (!rightHeap.isEmpty() && leftHeap.peek() >= rightHeap.peek()) {
+                rightHeap.add(leftHeap.remove());
             }
-            if (!maxHeap.isEmpty() && maxHeap.size() - minHeap.size() > 1) {
-                minHeap.add(maxHeap.remove());
+            if (leftHeap.size() - rightHeap.size() > 1) {
+                rightHeap.add(leftHeap.remove());
             }
-            if (!minHeap.isEmpty() && minHeap.size() - maxHeap.size() > 1) {
-                maxHeap.add(minHeap.remove());
+            if (rightHeap.size() - leftHeap.size() > 1) {
+                leftHeap.add(rightHeap.remove());
             }
         }
 
         public double findMedian() {
-            if (maxHeap.isEmpty() && minHeap.isEmpty()) {
+            if (leftHeap.isEmpty() && rightHeap.isEmpty()) {
                 return 0.0;
             }
-            if (maxHeap.size() > minHeap.size()) {
-                return maxHeap.peek();
+            if (leftHeap.size() > rightHeap.size()) {
+                return leftHeap.peek();
             }
-            if (minHeap.size() > maxHeap.size()) {
-                return minHeap.peek();
+            if (rightHeap.size() > leftHeap.size()) {
+                return rightHeap.peek();
             }
-            return (double) (maxHeap.peek() + minHeap.peek()) / 2;
+            return (double) (leftHeap.peek() + rightHeap.peek()) / 2;
         }
     }
+
 }
