@@ -32,6 +32,8 @@ public class Median295 {
 
         public void addNum(int num) {
             leftHeap.add(num);
+            //This check ensures that 50 pct of bottom element are in left heap and 50 pct of top element
+            // are in right heap.
             if (!rightHeap.isEmpty() && leftHeap.peek() >= rightHeap.peek()) {
                 rightHeap.add(leftHeap.remove());
             }
