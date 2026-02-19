@@ -2,7 +2,7 @@ from typing import List
 
 #Problem: https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
 # when nums[low] is equal to nums[mid] we increment low by 1, so for checking whether
-#left part is sorted or righ part is sorted compare nums[low] and nums[mid]
+#left part is sorted or right part is sorted compare nums[low] and nums[mid]
 class Search:
     def find(self, nums: List[int], target: int) -> bool:
         low = 0
