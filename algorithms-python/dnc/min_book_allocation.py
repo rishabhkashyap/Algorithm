@@ -5,12 +5,9 @@ class Book:
     def find_min_books(self, books: List[int], students: int) -> int:
         if students > len(books):
             return -1
-        low = books[0]
-        high = 0
         result = float('inf')
-        for book in books:
-            low = max(low, book)
-            high += book
+        low = max(books)
+        high = sum(books)
         while low <= high:
             mid = low + (high - low) // 2
             if self._valid_distribution(books, mid, students):
@@ -20,7 +17,7 @@ class Book:
                 low = mid + 1
         return result
 
-    def _valid_distribution(self, books, mid, students):
+    def _valid_distribution(self, books: List[int], mid: int, students: int):
         total = 0
         count = 0
         for book in books:
