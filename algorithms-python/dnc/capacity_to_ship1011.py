@@ -1,5 +1,6 @@
 from typing import List
 
+#Problem: https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/description/
 
 class Shipping:
     def get_min_weight(self, weights: List[int], days: int) -> int:
