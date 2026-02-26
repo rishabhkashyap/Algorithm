@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class NumberRange {
+//Problem: https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists/description/
+public class NumberRange632 {
     public static void main(String[] args) {
         List<List<Integer>> lists = List.of(
                 List.of(2, 3, 4, 8, 10, 15),
