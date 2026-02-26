@@ -1,98 +1,51 @@
 package com.algo.heaps;
 
-import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class NumberRange {
     public static void main(String[] args) {
-//        int[] arr1 = {3, 6, 8, 10, 15};
-//        int[] arr2 = {1, 5, 12};
-//        int[] arr3 = {4, 8, 15, 16};
-//        int[] arr4 = {2, 6};
-        int[] arr1 = {2, 3, 4, 8, 10, 15};
-        int[] arr2 = {1, 5, 12};
-        int[] arr3 = {7, 8, 15, 16};
-        int[] arr4 = {3, 6};
-        List<Integer> result = findSmallestRange(arr1, arr2, arr3, arr4);
-        System.out.println("Range start = " + result.get(0) + " end = " + result.get(1));
-
-
+        List<List<Integer>> lists = List.of(
+                List.of(2, 3, 4, 8, 10, 15),
+                List.of(1, 5, 12),
+                List.of(7, 8, 15, 16),
+                List.of(3, 6)
+        );
+        int[] result = findSmallestRange(lists);
+        System.out.println("Range start = " + result[0] + " end = " + result[1]);
     }
 
-    private static List<Integer> findSmallestRange(int[]... arrs) {
-        int range = Integer.MAX_VALUE;
-        if (arrs == null || arrs.length == 0) {
-            throw new IllegalArgumentException("Array cannot be empty or null");
+    private static int[] findSmallestRange(List<List<Integer>> nums) {
+        int left = Integer.MAX_VALUE;
+        int right = Integer.MIN_VALUE;
+        Queue<Element> queue = new PriorityQueue<>(Comparator.comparing(Element::value));
+        for (int i = 0; i < nums.size(); i++) {
+            var value = nums.get(i).get(0);
+            queue.add(new Element(i, 0, value));
+            left = Math.min(left, value);
+            right = Math.max(right, value);
         }
-        int start = 0;
-        int end = 0;
-        int high = Integer.MIN_VALUE;
-        Queue<Node> queue = new PriorityQueue<>();
-        for (int i = 0; i < arrs.length; i++) {
-            queue.add(new Node(arrs[i][0], 0, i));
-            high = Math.max(arrs[i][0], high);
-
-        }
+        int[] result = {left, right};
         while (true) {
-            Node node = queue.remove();
-            int low = node.getElement();
-            int index = node.getIndex();
-            int arrIndex = node.getArrIndex();
-            if (range > (high - low)) {
-                range = high - low;
-                start = low;
-                end = high;
-            }
-            if (index + 1 < arrs[arrIndex].length) {
-                queue.add(new Node(arrs[arrIndex][index + 1], index + 1, arrIndex));
-                high = Math.max(high, arrs[arrIndex][index + 1]);
-            } else {
+            var ele = queue.remove();
+            if (ele.loc() + 1 >= nums.get(ele.index()).size()) {
                 break;
             }
+            var nextValue = nums.get(ele.index).get(ele.loc() + 1);
+            queue.add(new Element(ele.index(), ele.loc() + 1, nextValue));
+            left = queue.peek().value();
+            right = Math.max(right, nextValue);
+            if (right - left < result[1] - result[0]) {
+                result[0] = left;
+                result[1] = right;
+            }
         }
-        return Arrays.asList(start, end);
+        return result;
     }
 
-    private static class Node implements Comparable<Node> {
-        private int element;
-        private int index;
-        private int arrIndex;
+    private record Element(int index, int loc, int value){}
 
-        public Node(int element, int index, int listIndex) {
-            this.element = element;
-            this.index = index;
-            this.arrIndex = listIndex;
-        }
 
-        public int getElement() {
-            return element;
-        }
-
-        public void setElement(int element) {
-            this.element = element;
-        }
-
-        public int getIndex() {
-            return index;
-        }
-
-        public void setIndex(int index) {
-            this.index = index;
-        }
-
-        public int getArrIndex() {
-            return arrIndex;
-        }
-
-        public void setArrIndex(int arrIndex) {
-            this.arrIndex = arrIndex;
-        }
-
-        @Override
-        public int compareTo(Node o) {
-            return this.element - o.element;
-        }
-    }
 }
