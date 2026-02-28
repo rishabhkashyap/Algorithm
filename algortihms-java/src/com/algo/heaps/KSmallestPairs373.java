@@ -22,6 +22,8 @@ public class KSmallestPairs373 {
         PriorityQueue<Pair> priorityQueue = new PriorityQueue<>(
                 Comparator.comparingInt(e -> (arr1[e.index1] + arr2[e.index2])));
         List<List<Integer>> result = new ArrayList<>();
+        //Adding all pairs (arr1[i], arr2[0]) prevents duplicate pairs in
+        //next loop where queue is updated.
         for (int i = 0; i < arr1.length; i++) {
             priorityQueue.add(new Pair(i, 0));
         }
