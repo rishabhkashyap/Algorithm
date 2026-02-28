@@ -12,15 +12,11 @@ public class InversionCount {
 
     }
 
-
     private static class Inversion {
-        private int[] arr;
-        private int[] temp;
+        private final int[] arr;
 
         Inversion(int[] arr) {
             this.arr = arr;
-            this.temp = new int[arr.length];
-
         }
 
         private int countInversions() {
@@ -33,45 +29,46 @@ public class InversionCount {
         private int mergeSort(int start, int end) {
             int inversionCount = 0;
             if (start < end) {
-                int mid = start+(end - start) / 2;
+                int mid = start + (end - start) / 2;
                 inversionCount = mergeSort(start, mid);
                 inversionCount += mergeSort(mid + 1, end);
                 inversionCount += merge(start, mid, end);
-
             }
             return inversionCount;
         }
 
         private int merge(int start, int mid, int end) {
-
+            int[] temp = new int[end - start + 1];
             int i = start;
             int j = mid + 1;
-            int k = start;
-            int inversionCount = 0;
-            while ((i <= mid) && (j <= end)) {
+            int k = 0;
+            int result = 0;
+            while (i <= mid && j <= end) {
                 if (arr[i] <= arr[j]) {
                     temp[k] = arr[i];
                     ++i;
                 } else {
                     temp[k] = arr[j];
                     ++j;
-                    inversionCount = inversionCount + (mid - i + 1);
+                    result = result + (mid - i + 1);
                 }
                 ++k;
             }
-
             while (i <= mid) {
-                temp[k++] = arr[i];
+                temp[k] = arr[i];
+                ++k;
                 ++i;
             }
             while (j <= end) {
                 temp[k++] = arr[j];
                 ++j;
             }
-            for (i = start; i <= end; i++) {
-                arr[i] = temp[i];
+            i = 0;
+            while (i < temp.length) {
+                arr[i + start] = temp[i];
+                ++i;
             }
-            return inversionCount;
+            return result;
         }
     }
 }
