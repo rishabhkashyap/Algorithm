@@ -19,49 +19,35 @@ public class KSortedList23 {
             System.out.print(result.val + "  ");
             result = result.next;
         }
-
     }
 
     private static ListNode mergedList(ListNode[] listNodes) {
-        ListNode head = new ListNode();
-        ListNode tail = head;
-        Queue<Pair> queue = new PriorityQueue<>(Comparator.comparing(e -> e.node.val));
-        for (int i = 0; i < listNodes.length; i++) {
-            if (listNodes[i] != null) {
-                queue.add(new Pair(i, listNodes[i]));
-                listNodes[i] = listNodes[i].next;
-            } else {
-                listNodes[i] = null;
+        Queue<ListNode> queue = new PriorityQueue<>(Comparator.comparingInt(e -> e.val));
+        for (ListNode node : listNodes) {
+            if (node != null) {
+                queue.add(node);
             }
         }
+        ListNode head = new ListNode();
+        ListNode tail = head;
         while (!queue.isEmpty()) {
-            var pair = queue.remove();
-            tail.next = pair.node;
+            var node = queue.remove();
+            tail.next = node;
             tail = tail.next;
-            tail.next = null;
-            if (listNodes[pair.index] != null) {
-                queue.add(new Pair(pair.index, listNodes[pair.index]));
-                listNodes[pair.index] = listNodes[pair.index].next;
+            if (node.next != null) {
+                queue.add(node.next);
             }
         }
         return head.next;
     }
-
-    private record Pair(int index, ListNode node) {
-    }
-
-
 }
 
 class ListNode {
     int val;
+
     ListNode next;
 
     ListNode() {
-    }
-
-    ListNode(int val) {
-        this.val = val;
     }
 
     ListNode(int val, ListNode next) {
