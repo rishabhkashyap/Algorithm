@@ -16,7 +16,7 @@ class Shipping:
                 low = mid + 1
         return result
 
-    def _valid(self, weights: List[int], mid: int, days: int):
+    def _valid(self, weights: List[int], mid: int, days: int) -> bool:
         count = 0
         total = 0
         for weight in weights:
