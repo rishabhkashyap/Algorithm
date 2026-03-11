@@ -21,11 +21,16 @@ public class LevelOrderTraversal107 {
         root.right = node20;
         node20.left = node15;
         node20.right = node7;
-        List<List<Integer>> result = levelOrderRev(root);
+        List<List<Integer>> result = levelOrderRev1(root);
+        System.out.println(result);
+        System.out.println();
+        result.clear();
+        result = levelOrderRev2(root);
         System.out.println(result);
     }
 
-    private static List<List<Integer>> levelOrderRev(TreeNode root) {
+    //Using stack to store the result of each level
+    private static List<List<Integer>> levelOrderRev1(TreeNode root) {
         if (root == null) {
             return Collections.emptyList();
         }
@@ -51,6 +56,33 @@ public class LevelOrderTraversal107 {
         List<List<Integer>> result = new ArrayList<>();
         while (!stack.isEmpty()) {
             result.add(stack.pop());
+        }
+        return result;
+    }
+
+    //Without stack use LinkedList instead to store result of each level. Add at the
+    //beginning of the list
+    private static List<List<Integer>> levelOrderRev2(TreeNode root) {
+        if (root == null) {
+            return Collections.emptyList();
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        LinkedList<List<Integer>> result = new LinkedList<>();
+        while (!queue.isEmpty()) {
+            var size = queue.size();
+            List<Integer> lvlNodes = new ArrayList<>();
+            while (size-- > 0) {
+                var node = queue.remove();
+                lvlNodes.add(node.val);
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
+            result.addFirst(lvlNodes);
         }
         return result;
     }
