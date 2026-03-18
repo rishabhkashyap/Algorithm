@@ -19,26 +19,47 @@ public class MaxPathSum124 {
         node10.right = node25;
         node25.left = node3;
         node25.right = node4;
-        System.out.println("Max path sum = " + maxSum(root));
+        System.out.println("Max path sum = " + maxSum1(root));
+        System.out.println("Max path sum = " + maxSum2(root));
     }
 
-    private static int maxSum(TreeNode root) {
+    private static int maxSum1(TreeNode root) {
         var sum = new Sum(Integer.MIN_VALUE);
-        maxSum(root, sum);
+        maxSum1(root, sum);
         return sum.value;
     }
 
-    private static int maxSum(TreeNode root, Sum sum) {
+    private static int maxSum1(TreeNode root, Sum sum) {
         if (root == null) {
             return 0;
         }
-        var leftSum = maxSum(root.left, sum);
-        var rightSum = maxSum(root.right, sum);
+        var leftSum = maxSum1(root.left, sum);
+        var rightSum = maxSum1(root.right, sum);
         var maxPath = Math.max(root.val, Math.max(leftSum, rightSum) + root.val);
         var rootIncluded = leftSum + rightSum + root.val;
         sum.value = Math.max(sum.value, Math.max(maxPath, rootIncluded));
         return maxPath;
     }
+
+    //cleaner code similar approach as maxSum1
+    private static int maxSum2(TreeNode root) {
+        var sum = new Sum(Integer.MIN_VALUE);
+        maxSum2(root, sum);
+        return sum.value;
+    }
+
+    private static int maxSum2(TreeNode root, Sum sum) {
+        if (root == null) {
+            return 0;
+        }
+        //if left or right sum is negative, make it zero
+        var leftSum = Math.max(maxSum2(root.left, sum), 0);
+        var rightSum = Math.max(maxSum2(root.right, sum), 0);
+        sum.value = Math.max(sum.value, leftSum + root.val + rightSum);
+        return Math.max(leftSum, rightSum) + root.val;
+    }
+
+
 
     private static class Sum{
 
