@@ -1,8 +1,10 @@
 package com.algo.tree;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 //Problem:https://leetcode.com/problems/merge-two-binary-trees/description/
+
 public class MergeTree617 {
     public static void main(String[] args) {
         Node root1 = new Node(1);
@@ -50,23 +52,24 @@ public class MergeTree617 {
         if (root2 == null) {
             return root1;
         }
-        Stack<NodePair> stack = new Stack<>();
-        stack.add(new NodePair(root1, root2));
+        //Using deque as stack for better performance.
+        Deque<NodePair> stack = new ArrayDeque<>();
+        stack.push(new NodePair(root1, root2));
         while (!stack.isEmpty()) {
-            var nodePair = stack.pop();
-            if (nodePair.node1 == null || nodePair.node2 == null) {
+            var pair = stack.pop();
+            if (pair.node2 == null) {
                 continue;
             }
-            nodePair.node1.setData(nodePair.node1.getData()+nodePair.node2.getData());
-            if (nodePair.node1.getLeft() == null) {
-                nodePair.node1.setLeft(nodePair.node2.getLeft());
+            pair.node1.setData(pair.node1.getData() + pair.node2.getData());
+            if (pair.node1.getLeft() == null) {
+                pair.node1.setLeft(pair.node2.getLeft());
             } else {
-                stack.push(new NodePair(nodePair.node1.getLeft(), nodePair.node2.getLeft()));
+                stack.push(new NodePair(pair.node1.getLeft(), pair.node2.getLeft()));
             }
-            if (nodePair.node1.getRight() == null) {
-                nodePair.node1.setRight(nodePair.node2.getRight());
+            if (pair.node1.getRight() == null) {
+                pair.node1.setRight(pair.node2.getRight());
             } else {
-                stack.push(new NodePair(nodePair.node1.getRight(), nodePair.node2.getRight()));
+                stack.push(new NodePair(pair.node1.getRight(), pair.node2.getRight()));
             }
         }
         return root1;
