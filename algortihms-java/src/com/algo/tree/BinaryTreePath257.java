@@ -7,7 +7,7 @@ import java.util.Stack;
 
 //Problem: https://leetcode.com/problems/binary-tree-paths/description/
 public class BinaryTreePath257 {
-     static void main() {
+    static void main() {
         TreeNode root = new TreeNode(1);
         TreeNode node2 = new TreeNode(2);
         TreeNode node3 = new TreeNode(3);
@@ -53,13 +53,13 @@ public class BinaryTreePath257 {
         return paths;
     }
 
-    private static void getPaths2(TreeNode root, StringBuilder path, List<String> paths){
-        if(root == null){
+    private static void getPaths2(TreeNode root, StringBuilder path, List<String> paths) {
+        if (root == null) {
             return;
         }
         var length = path.length();
         path.append(root.val);
-        if(root.left == null && root.right == null){
+        if (root.left == null && root.right == null) {
             paths.add(path.toString());
         }
         path.append("->");
