@@ -15,21 +15,24 @@ public class BinaryTreePath257 {
         root.left = node3;
         root.right = node2;
         node2.right = node5;
-        List<String> result = getPaths(root);
+        List<String> result = getPaths1(root);
         result.forEach(e -> System.out.print(e + "\t"));
         result = getPaths2(root);
         System.out.println();
         result.forEach(e -> System.out.print(e + "\t"));
+        result = getPaths3(root);
+        System.out.println();
+        result.forEach(e -> System.out.print(e + "\t"));
     }
 
-    private static List<String> getPaths(TreeNode root) {
+    private static List<String> getPaths1(TreeNode root) {
         List<String> result = new ArrayList<>();
         List<String> path = new ArrayList<>();
-        getPaths(root, path, result);
+        getPaths1(root, path, result);
         return result;
     }
 
-    private static void getPaths(TreeNode root, List<String> path, List<String> result) {
+    private static void getPaths1(TreeNode root, List<String> path, List<String> result) {
         if (root == null) {
             return;
         }
@@ -37,21 +40,42 @@ public class BinaryTreePath257 {
         if (root.left == null && root.right == null) {
             result.add(String.join("->", path));
         }
-        getPaths(root.left, path, result);
-        getPaths(root.right, path, result);
+        getPaths1(root.left, path, result);
+        getPaths1(root.right, path, result);
         path.remove(path.size() - 1);
     }
 
-    //Iterative solution
+    //cleaner recursive approach
     private static List<String> getPaths2(TreeNode root) {
+        List<String> paths = new ArrayList<>();
+        var path = new StringBuilder();
+        getPaths2(root, path, paths);
+        return paths;
+    }
+
+    private static void getPaths2(TreeNode root, StringBuilder path, List<String> paths){
+        if(root == null){
+            return;
+        }
+        var length = path.length();
+        path.append(root.val);
+        if(root.left == null && root.right == null){
+            paths.add(path.toString());
+        }
+        path.append("->");
+        getPaths2(root.left, path, paths);
+        getPaths2(root.right, path, paths);
+        path.setLength(length);
+    }
+
+    //Iterative solution
+    private static List<String> getPaths3(TreeNode root) {
         if (root == null) {
             return Collections.emptyList();
         }
         List<String> result = new ArrayList<>();
         Stack<Pair> stack = new Stack<>();
-        var sb = new StringBuilder();
-        sb.append(root.val);
-        stack.push(new Pair(root, sb));
+        stack.push(new Pair(root, String.valueOf(root.val)));
         while (!stack.isEmpty()) {
             var pair = stack.pop();
             var node = pair.node;
@@ -60,17 +84,11 @@ public class BinaryTreePath257 {
                 result.add(path.toString());
             } else {
                 if (node.right != null) {
-                    sb = new StringBuilder(path);
-                    sb.append("->");
-                    sb.append(node.right.val);
-                    var rightPair = new Pair(node.right, sb);
+                    var rightPair = new Pair(node.right, path + "->" + node.right.val);
                     stack.push(rightPair);
                 }
                 if (node.left != null) {
-                    sb = new StringBuilder(path);
-                    sb.append("->");
-                    sb.append(node.left.val);
-                    var leftPair = new Pair(node.left, sb);
+                    var leftPair = new Pair(node.left, path + "->" + node.left.val);
                     stack.push(leftPair);
                 }
             }
@@ -80,7 +98,7 @@ public class BinaryTreePath257 {
 
     private record Pair(
             TreeNode node,
-            StringBuilder path
+            String path
     ) {
     }
 
