@@ -28,6 +28,7 @@ public class PathSumIII437 {
         var target = 14;
         System.out.println(countPathSum1(root, target));
         System.out.println(countPathSum2(root, target));
+        System.out.println(countPathSum3(root, target));
 
     }
 
@@ -36,24 +37,47 @@ public class PathSumIII437 {
         if (root == null) {
             return 0;
         }
-        var count = countPathSum1(root, target, 0L);
+        var count = helper1(root, target);
         count += countPathSum1(root.left, target);
         count += countPathSum1(root.right, target);
         return count;
     }
 
-    private static int countPathSum1(TreeNode root, long target, long sum) {
+    //Post order computation
+    private static int helper1(TreeNode root, long sum) {
         if (root == null) {
             return 0;
         }
-        sum += root.val;
-        var leftCount = countPathSum1(root.left, target, sum);
-        var rightCount = countPathSum1(root.right, target, sum);
-        if (sum == target) {
+        sum -= root.val;
+        var leftCount = helper1(root.left, sum);
+        var rightCount = helper1(root.right, sum);
+        if (sum == 0) {
             return leftCount + rightCount + 1;
         }
         return leftCount + rightCount;
+    }
 
+    //Time complexity: O(N^2)
+    private static int countPathSum2(TreeNode root, long target) {
+        if (root == null) {
+            return 0;
+        }
+        var count = helper2(root, target);
+        count += countPathSum2(root.left, target);
+        count += countPathSum2(root.right, target);
+        return count;
+    }
+
+    //Preorder computation
+    private static int helper2(TreeNode root, long sum) {
+        if (root == null) {
+            return 0;
+        }
+        sum -= root.val;
+        var count = sum == 0 ? 1 : 0;
+        count += helper2(root.left, sum);
+        count += helper2(root.right, sum);
+        return count;
     }
 
 //    Start at the root and maintain a currentSum (prefix sum).
@@ -62,14 +86,14 @@ public class PathSumIII437 {
 //    Recur for left and right subtrees.
 //    Backtrack: Remove currentSum when returning to the previous node to maintain correctness.
 //    Time complexity: O(N)
-    private static int countPathSum2(TreeNode root, long target) {
+    private static int countPathSum3(TreeNode root, long target) {
         Map<Long, Integer> map = new HashMap<>();
         // TO deal with scenario where node value is equal to target
         map.put(0L, 1);
-        return countPathSum2(root, target, 0, map);
+        return countPathSum3(root, target, 0, map);
     }
 
-    private static int countPathSum2(TreeNode root, long target, long sum, Map<Long, Integer> map) {
+    private static int countPathSum3(TreeNode root, long target, long sum, Map<Long, Integer> map) {
         if (root == null) {
             return 0;
         }
@@ -81,8 +105,8 @@ public class PathSumIII437 {
         //op = 0
         //if prefix sum is added before getting count it will result in wrong answer
         map.put(sum, map.getOrDefault(sum, 0) + 1);
-        count += countPathSum2(root.left, target, sum, map)
-                + countPathSum2(root.right, target, sum, map);
+        count += countPathSum3(root.left, target, sum, map)
+                + countPathSum3(root.right, target, sum, map);
         map.put(sum, map.get(sum) - 1);
         return count;
     }
