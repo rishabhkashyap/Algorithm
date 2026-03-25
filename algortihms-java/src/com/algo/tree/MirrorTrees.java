@@ -1,9 +1,10 @@
 package com.algo.tree;
 
+//Problem: https://leetcode.com/problems/invert-binary-tree/description/
+
 public class MirrorTrees {
 
-    public static void main(String[] args) {
-
+    static void main() {
         Node root = new Node(1);
         Node node2 = new Node(2);
         Node node3 = new Node(3);
@@ -15,50 +16,21 @@ public class MirrorTrees {
         node2.setRight(node5);
         System.out.println("Original Tree");
         TreeUtil.preOrder(root);
-        flipTree1(root);
-        //flipTree3(root);
+        root = flipTree(root);
         System.out.println("\nFlipped tree");
         TreeUtil.preOrder(root);
-//        root = flipTree2(root);
-//        System.out.println("\nFlipped tree");
-//        TreeUtil.preOrder(root);
     }
 
-    //Flip Tree
-    private static void flipTree1(Node root) {
-        Node temp;
-        if (root != null) {
-            flipTree1(root.getLeft());
-            flipTree1(root.getRight());
-            temp = root.getLeft();
-            root.setLeft(root.getRight());
-            root.setRight(temp);
-        }
-    }
-
-    private static Node flipTree2(Node root) {
+    private static Node flipTree(Node root) {
         if (root == null) {
             return null;
         }
-        root.setLeft(flipTree2(root.getLeft()));
-        root.setRight(flipTree2(root.getRight()));
-        Node temp = root.getLeft();
-        root.setLeft(root.getRight());
-        root.setRight(temp);
-        return root;
-    }
-
-    public static Node flipTree3(Node root) {
-        if (root == null) {
-            return null;
-        }
-        flipTree3(root.getLeft());
-        flipTree3(root.getRight());
-        Node temp = root.getRight();
+        flipTree(root.getLeft());
+        flipTree(root.getRight());
+        var temp = root.getRight();
         root.setRight(root.getLeft());
         root.setLeft(temp);
         return root;
-
     }
 
 
