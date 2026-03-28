@@ -74,6 +74,12 @@ public class PathSumIII437 {
             return 0;
         }
         sum -= root.val;
+        //Do not return count the moment sum hits 0 because there might be nodes that are negative or zero
+        // which may give us new path.
+        //path: 5 -> 3 -> 0 -> 0 target = 8 . If we return value the moment sum hits zero then we will miss
+        //path 5->3->0 and 5 ->3 ->0 -> 0
+        //consider path 10 ->5 -> -5 target sum 10 if we return when sum hits zero we will have one path ie 10,
+        // and we will miss longer path 10 -> 5 -> -5
         var count = sum == 0 ? 1 : 0;
         count += helper2(root.left, sum);
         count += helper2(root.right, sum);
