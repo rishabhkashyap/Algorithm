@@ -1,6 +1,8 @@
 package com.algo.tree;
 
-public class Node {
+import java.util.Objects;
+
+public final class Node {
 	private int data;
 	private Node right;
 	private Node left;
@@ -35,4 +37,15 @@ public class Node {
 		this.left = left;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (o == null || getClass() != o.getClass()) return false;
+		Node node = (Node) o;
+		return data == node.data && Objects.equals(right, node.right) && Objects.equals(left, node.left);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(data, right, left);
+	}
 }

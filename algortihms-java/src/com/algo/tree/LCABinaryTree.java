@@ -1,10 +1,14 @@
 package com.algo.tree;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class LCABinaryTree {
-    public static void main(String[] args) {
+    static void main() {
         Node root = new Node(1);
         Node node2 = new Node(2);
         Node node3 = new Node(3);
@@ -24,11 +28,18 @@ public class LCABinaryTree {
         System.out.println(findLCA1(root, node4, node6).getData());
         System.out.println(findLCA1(root, node3, node4).getData());
         System.out.println(findLCA1(root, node2, node4).getData());
+
         System.out.println("\nFind path approach");
         System.out.println(findLCA2(root, node4, node5).getData());
         System.out.println(findLCA2(root, node4, node6).getData());
         System.out.println(findLCA2(root, node3, node4).getData());
         System.out.println(findLCA2(root, node2, node4).getData());
+
+        System.out.println("\nRecursive approach to handle scenario where nodes are not part of the tree");
+        System.out.println(findLCA3(root, node4, node5).getData());
+        System.out.println(findLCA3(root, node4, node6).getData());
+        System.out.println(findLCA3(root, node3, node4).getData());
+        System.out.println(findLCA3(root, node2, new Node(100)));
 
 
     }
@@ -48,39 +59,73 @@ public class LCABinaryTree {
         return left != null ? left : right;
     }
 
+    //Iterative approach
+    //This solution also handle scenario where node1 or node2 or both are not part of the tree
     private static Node findLCA2(Node root, Node node1, Node node2) {
-        List<Node> path1 = new ArrayList<>();
-        List<Node> path2 = new ArrayList<>();
-        findPath(root, node1, path1);
-        findPath(root, node2, path2);
-        int i = 0;
-        Node lca = null;
-        while (i < path1.size() && i < path2.size()) {
-            if (path1.get(i) == path2.get(i)) {
-                lca = path1.get(i);
-            } else {
-                break;
-            }
-            ++i;
-        }
-        return lca;
-
-    }
-
-    private static boolean findPath(Node root, Node node, List<Node> path) {
         if (root == null) {
-            return false;
+            return null;
         }
-        boolean left = findPath(root.getLeft(), node, path);
-        boolean right = findPath(root.getRight(), node, path);
-        if (left || right) {
-            path.add(0, root);
-            return true;
+        Map<Node, Node> parentMap = new HashMap<>();
+        Deque<Node> stack = new ArrayDeque<>();
+        stack.push(root);
+        parentMap.put(root, null);
+        while (!parentMap.containsKey(node1) || !parentMap.containsKey(node2)) {
+            if (stack.isEmpty()) {
+                //This means that one of node1 or node2 is not part of the tree.
+                return null;
+            }
+            var node = stack.pop();
+            if (node.getLeft() != null) {
+                stack.push(node.getLeft());
+                parentMap.put(node.getLeft(), node);
+            }
+            if (node.getRight() != null) {
+                stack.push(node.getRight());
+                parentMap.put(node.getRight(), node);
+            }
         }
-        if (root == node) {
-            path.add(root);
-            return true;
+        //Get path of node1 ie node1 to root
+        Set<Node> path = new HashSet<>();
+        while (node1 != null) {
+            path.add(node1);
+            node1 = parentMap.get(node1);
         }
-        return false;
+        //search for first node that is common in node1 and node2 paths
+        while (!path.contains(node2)) {
+            node2 = parentMap.get(node2);
+        }
+        return node2;
     }
+
+    //Recursive solution that handle scenarios where node1 or node2 or both are not part of the tree
+
+    private static Node findLCA3(Node root, Node node1, Node node2) {
+        var nodeCount = new NodeCount();
+        var result = findLCA3(root, node1, node2, nodeCount);
+        return nodeCount.val == 2 ? result : null;
+    }
+
+    //Use postorder traversal to update nodeCount
+    private static Node findLCA3(Node root, Node node1, Node node2, NodeCount nodeCount) {
+        if (root == null) {
+            return null;
+        }
+        var left = findLCA3(root.getLeft(), node1, node2, nodeCount);
+        var right = findLCA3(root.getRight(), node1, node2, nodeCount);
+        if (root == node1 || root == node2) {
+            ++nodeCount.val;
+            return root;
+        }
+        if (left != null && right != null) {
+            return root;
+        }
+        return left != null ? left : right;
+    }
+
+
+    private static class NodeCount{
+        int val;
+    }
+
+
 }
