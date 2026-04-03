@@ -4,7 +4,7 @@ import com.algo.tree.Node;
 
 public class SuccessorNode {
 
-    public static void main(String[] args) {
+    static void main() {
         Node root = new Node(4);
         Node node1 = new Node(1);
         Node node2 = new Node(2);
@@ -24,6 +24,12 @@ public class SuccessorNode {
         System.out.println("Successor of node 4 =  " + inorderSuccessor2(root, root).getData());
     }
 
+    //Logic: if node has right subtree then look for smallest element in right subtree. We look for smallest element
+    // in right subtree because we need the smallest element that is larger than the node. Such node will appear as
+    //successor to node in inorder traversal.
+    //In case node does not have right subtree, Do a tree traversal and find the immediate largest ancestor of the node
+    //Closest large ancesstor of node will be successor of the node
+    //This is cleaner approach
     private static Node inOrderSuccessor(Node root, Node node) {
         Node current = root;
         Node successor = null;
