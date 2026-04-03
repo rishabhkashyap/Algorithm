@@ -28,7 +28,7 @@ public class SuccessorNode {
     // in right subtree because we need the smallest element that is larger than the node. Such node will appear as
     //successor to node in inorder traversal.
     //In case node does not have right subtree, Do a tree traversal and find the immediate largest ancestor of the node
-    //Closest large ancesstor of node will be successor of the node
+    //Closest large ancestor of node will be successor of the node
     //This is cleaner approach
     private static Node inOrderSuccessor(Node root, Node node) {
         Node current = root;
@@ -39,18 +39,15 @@ public class SuccessorNode {
         if (node.getRight() != null) {
             return findMin(node.getRight());
         }
-        while (current != null) {
+        while (current != node) {
             if (current.getData() > node.getData()) {
                 successor = current;
                 current = current.getLeft();
-            } else if (current.getData() < node.getData()) {
-                current = current.getRight();
             } else {
-                break;
+                current = current.getRight();
             }
         }
         return successor;
-
     }
 
     public static Node inorderSuccessor2(Node root, Node node) {

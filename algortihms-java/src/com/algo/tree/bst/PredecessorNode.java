@@ -35,14 +35,12 @@ public class PredecessorNode {
         if (node.getLeft() != null) {
             return findMax(node.getLeft());
         }
-        while (current != null) {
+        while (current != node) {
             if (current.getData() > node.getData()) {
                 current = current.getLeft();
-            } else if (current.getData() < node.getData()) {
+            } else {
                 predecessor = current;
                 current = current.getRight();
-            } else {
-                break;
             }
         }
         return predecessor;
