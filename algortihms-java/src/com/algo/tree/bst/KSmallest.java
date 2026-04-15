@@ -6,7 +6,7 @@ import java.util.Stack;
 
 public class KSmallest {
 
-    public static void main(String[] args) {
+    static void main() {
 
         Node root = new Node(4);
         Node node1 = new Node(1);
@@ -23,24 +23,16 @@ public class KSmallest {
         node6.setLeft(node5);
         System.out.println("3th smallest element in tree = " + kthSmallestElement(root, 3).getData());
         System.out.println("3th smallest element in tree = " + kThSmallestUsingStack(root, 3));
-        System.out.println("4th largest element in tree = " + kthLargestElement1(root, 4).getData());
         System.out.println("2nd largest element in tree = " + kthLargestElement2(root, 2).getData());
     }
 
-    //Kth the largest node is (n-k+1)th the smallest node in inorder traversal of bst
-    private static Node kthLargestElement1(Node root, int k) {
-        Counter counter = new Counter();
-        return kthSmallestElement(root, counter, countNodes(root) - k + 1);
-    }
 
-    private static int countNodes(Node root) {
-        if (root == null) {
-            return 0;
-        }
-        return countNodes(root.getLeft()) + countNodes(root.getRight()) + 1;
-    }
 
     //Leetcode accepted solution
+    //Worst case time complexity O(N)
+    //Average time complexityO(H + K). Code goes to the extreme left to find the smallest number which will require
+    //traversal equivalent to height(H) of tree and then k traversal are needed to find kth smallest element.
+    //Space complexity: O(log N)
     private static Node kthSmallestElement(Node root, int k) {
         Counter counter = new Counter();
         return kthSmallestElement(root, counter, k);
@@ -61,10 +53,12 @@ public class KSmallest {
             return root;
         }
         return kthSmallestElement(root.getRight(), counter, k);
-
-
     }
 
+    //Worst case time complexity O(N)
+    //Average time complexityO(H + K). Code goes to the extreme left to find the smallest number which will require
+    //traversal equivalent to height(H) of tree and then k traversal are needed to find kth smallest element.
+    //Space complexity: O(log N)
     public static int kThSmallestUsingStack(Node root, int k) {
         Stack<Node> stack = new Stack<>();
         Node current = root;
