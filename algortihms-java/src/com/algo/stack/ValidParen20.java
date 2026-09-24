@@ -12,24 +12,22 @@ public class ValidParen20 {
     }
 
     private static boolean isValidString(String string) {
-        Set<Character> set = Set.of('(', '{', '[');
+        if (string == null || string.length() % 2 != 0) {
+            return false;
+        }
         Stack<Character> stack = new Stack<>();
-        for (char ch : string.toCharArray()) {
-            if (set.contains(ch)) {
+        for (int i = 0; i < string.length(); i++) {
+            char ch = string.charAt(i);
+            if (ch == '(' || ch == '{' || ch == '[') {
                 stack.push(ch);
-            } else {
-                var openBracket = getOpenBracket(ch);
-                if (!stack.isEmpty() && stack.peek() == openBracket) {
-                    stack.pop();
-                } else {
-                    return false;
-                }
+            } else if (stack.isEmpty() || stack.pop() != charToRemove(ch)) {
+                return false;
             }
         }
         return stack.isEmpty();
     }
 
-    private static char getOpenBracket(char ch) {
+    private static char charToRemove(char ch) {
         return switch (ch) {
             case ']' -> '[';
             case '}' -> '{';
