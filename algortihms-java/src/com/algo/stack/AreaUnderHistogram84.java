@@ -2,12 +2,16 @@ package com.algo.stack;
 
 import java.util.Stack;
 
-public class AreaUnderHistogram {
+public class AreaUnderHistogram84 {
     public static void main(String[] args) {
         int[] arr = {6, 2, 5, 4, 5, 1, 6};
         // int[] arr = {2, 4};
         System.out.println("Largest area under histogram = " + findLargestArea1(arr));
     }
+    //The current element acts as the first smaller element to the right of the evaluated bar.
+    // Once popped, the new top of the stack represents the first smaller element to the left.
+    // Together, these define the strict left and right boundaries for any given height, which
+    // dictates the maximum width.
 
     private static int findLargestArea1(int[] arr) {
         int[] smallestLeft = findSmallestElementLeft(arr);
@@ -20,7 +24,6 @@ public class AreaUnderHistogram {
             } else {
                 width = smallestRight[i] - smallestLeft[i] - 1;
             }
-
             int area = arr[i] * width;
             maxArea = Math.max(maxArea, area);
         }
@@ -60,7 +63,6 @@ public class AreaUnderHistogram {
             }
             stack.push(i);
         }
-
         return smallestRight;
     }
 }
