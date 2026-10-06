@@ -3,7 +3,7 @@ package com.algo.stack;
 import java.util.Stack;
 
 public class AreaUnderHistogram84 {
-    public static void main(String[] args) {
+    static void main() {
         int[] arr = {6, 2, 5, 4, 5, 1, 6};
         // int[] arr = {2, 4};
         System.out.println("Largest area under histogram = " + findLargestArea1(arr));
@@ -18,7 +18,7 @@ public class AreaUnderHistogram84 {
         int[] smallestRight = findSmallestElementRight(arr);
         int maxArea = Integer.MIN_VALUE;
         for (int i = 0; i < arr.length; i++) {
-            int width = 0;
+            int width;
             if (smallestLeft[i] == 0 && smallestRight[i] == 0) {
                 width = 1;
             } else {
