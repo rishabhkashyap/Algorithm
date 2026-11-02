@@ -34,30 +34,29 @@ public class NonRepeatedCharacter3 {
         return maxLen;
     }
 
+
     private static int longestNonRepeatedSubstr2(String str) {
-        if (str.length() == 0) {
-            return 0;
-        }
-        int len = Integer.MIN_VALUE;
+        Map<Character, Integer> map = new HashMap<>();
         int i = 0;
         int j = 0;
-        Map<Character, Integer> map = new HashMap<>();
-        while (j < str.length()) {
-            map.put(str.charAt(j), map.getOrDefault(str.charAt(j), 0) + 1);
-            while (map.size() < j - i + 1) {
-                int freq = map.get(str.charAt(i));
-                if (--freq == 0) {
-                    map.remove(str.charAt(i));
+        int maxLen = 0;
+        while (i < str.length()) {
+            char ch = str.charAt(i);
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+            while (map.get(ch) > 1) {
+                char chLeft = str.charAt(j);
+                int count = map.get(chLeft);
+                if (--count == 0) {
+                    map.remove(chLeft);
                 } else {
-                    map.put(str.charAt(i), freq);
+                    map.put(chLeft, count);
                 }
-                ++i;
+                ++j;
             }
-            if (map.size() == j - i + 1) {
-                len = Math.max(len, j - i + 1);
-            }
-            ++j;
+            maxLen = Math.max(maxLen, i - j + 1);
+            ++i;
         }
-        return len;
+        return maxLen;
+
     }
 }
